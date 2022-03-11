@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1647000220174" clover="3.2.0">
+  <project timestamp="1647000220174" name="All files">
+    <metrics statements="13" coveredstatements="12" conditionals="11" coveredconditionals="10" methods="1" coveredmethods="1" elements="25" coveredelements="23" complexity="0" loc="13" ncloc="13" packages="1" files="1" classes="1"/>
+    <file name="app.js" path="C:\Users\Adrian\VSCodeRepos\WithU-Project\app.js">
+      <metrics statements="13" coveredstatements="12" conditionals="11" coveredconditionals="10" methods="1" coveredmethods="1"/>
+      <line num="6" count="15" type="cond" truecount="4" falsecount="1"/>
+      <line num="8" count="4" type="stmt"/>
+      <line num="9" count="4" type="stmt"/>
+      <line num="11" count="3" type="stmt"/>
+      <line num="12" count="3" type="stmt"/>
+      <line num="14" count="4" type="stmt"/>
+      <line num="15" count="4" type="stmt"/>
+      <line num="17" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="18" count="3" type="stmt"/>
+      <line num="19" count="4" type="stmt"/>
+      <line num="21" count="0" type="stmt"/>
+      <line num="23" count="15" type="cond" truecount="4" falsecount="0"/>
+      <line num="26" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
