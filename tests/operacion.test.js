@@ -1,6 +1,7 @@
 const { TestWatcher } = require("jest");
 const operar = require("../app.js");
 
+
 //SUMA
 test('sumar 1 + 2 es igual a 3', () =>{
     expect(operar(1,"+",2)).toBe(3);
