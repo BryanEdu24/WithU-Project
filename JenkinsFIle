@@ -3,7 +3,7 @@ pipeline{
         agent { label 'tests' }
             
             stages {    
-                
+
                 stage('tests'){
                     steps{
                         dir("tests"){
