@@ -1,0 +1,36 @@
+pipeline{ 
+
+        agent { label 'master' }
+
+            stages {    
+                stage('tests'){
+                    steps{
+                        dir("tests"){
+                            sh "npm test"
+                        }
+                    }
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+
+
+    
+}
