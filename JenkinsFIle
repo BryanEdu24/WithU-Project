@@ -3,11 +3,22 @@ pipeline{
         agent { label 'tests' }
             
             stages {    
+                
                 stage('tests'){
                     steps{
                         dir("tests"){
                             sh "npm test"
                         }
+                    }
+                }
+                stage('docker build'){
+                    steps{
+                        echo"build"
+                    }
+                }
+                stage("docker push"){
+                    steps{
+                        echo "push"
                     }
                 }
 
