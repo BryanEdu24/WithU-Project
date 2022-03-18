@@ -5,7 +5,7 @@ class SAPublicacion {
 	constructor(){}
     
 	agregarPublicacion(pool, publicacion, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
-		console.log("hola");
+		console.log("TO-DO");
 	}
 
 }
