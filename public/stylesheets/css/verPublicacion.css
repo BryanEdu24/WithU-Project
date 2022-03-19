@@ -1,0 +1,48 @@
+body{
+    background-color: #fff2db;
+}
+.box{
+    width: 80%;
+    height: 5%;
+  
+}
+#titulo{
+    background-color: #52adf7;
+    padding-left: 2%;
+    color: #fff2db;
+}
+#publicacion{
+    margin-top: 2%;
+    border-radius: 10px;
+    border: 1px solid #52adf7;
+}
+#cuerpo{
+    padding: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+    text-align: justify;
+}
+#columnaInfo{
+    min-width: 17%;
+    max-width: 17%;
+    border-right: 1px solid #52adf7;
+}
+#usuario{
+    text-align: center;
+    max-height: 300px;
+    min-height: 100px;
+    border-bottom: 1px solid #52adf7;
+    color:#d8a2fc
+}
+#info h4{
+    color:#d8a2fc;
+}
+
+#userImage{
+    margin-top: 2%;
+    max-width: 70%;
+    max-height: 70%;
+}
+#userName{
+    margin-top: 4%;
+}
