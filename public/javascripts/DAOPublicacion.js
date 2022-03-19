@@ -31,5 +31,9 @@ class DAOPublicacion {
 		*/
 	}
 
+	leerPublicacion() {
+		
+	}
+
 }
 module.exports = DAOPublicacion;
