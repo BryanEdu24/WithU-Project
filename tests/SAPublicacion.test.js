@@ -8,7 +8,7 @@ const pool = mysql.createPool({
 	password: config.password,
 	database: config.database
 });
-const sa = new SAPublicacion();
+/*const sa = new SAPublicacion();
 
 const tituloCorrecto = "Prueba titulo correcto con menos de 50 caracteres";
 const tituloIncorrecto = "Prueba titulo incorrecto con más de 50 caracteres. Debería fallar";
@@ -109,4 +109,4 @@ test('Intentamos agregar una publicación con titulo incorrecto', done =>{
 
     let publicacion = { titulo: tituloIncorrecto, cuerpo: cuerpoCorrecto };
     sa.agregarPublicacion(pool, publicacion, cb);
-});
+});*/
