@@ -8,6 +8,10 @@ const pool = mysql.createPool({
 	password: config.password,
 	database: config.database
 });
+
+test('pruebaJenkins',()=>{
+		expect(1).toBe(1);
+	});
 /*const sa = new SAPublicacion();
 
 const tituloCorrecto = "Prueba titulo correcto con menos de 50 caracteres";
