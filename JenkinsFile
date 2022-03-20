@@ -6,10 +6,9 @@ pipeline{
 
                 stage('tests'){
                     steps{
-                        dir("tests"){
-                            sh "npm test"
+                            bat "npm run test"
                         }
-                    }
+                    
                 }
                 stage('docker build'){
                     steps{
