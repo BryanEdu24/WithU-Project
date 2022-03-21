@@ -8,6 +8,16 @@ const config = require("./config");
 const express = require("express");
 const app = express();
 
+const multer = require("multer");
+const multerFactory = multer({ storage: multer.memoryStorage() });
+const bodyParser = require("body-parser");
+
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
 //Constantes para la base de datos
 const mysql = require("mysql");
 const { append } = require("express/lib/response");
@@ -18,7 +28,27 @@ const pool = mysql.createPool({
 	password: config.password,
 	database: config.database
 });
+app.get("/", function(req,res){
+	res.render("crearPublicacion");
+});
 
+// Crear una publicacion
+app.post('/crearPublicacion', function (req, res) {
+	let publicacion = {
+		titulo: req.body.titulo,
+		cuerpo : req.body.cuerpo
+	}
+	let sa = new SAPublicacion(pool);
+	sa.agregarPublicacion(publicacion, function(err, id){
+		if(err){
+			console.log(err);
+			res.redirect("/");
+		}
+		else{
+			res.redirect("/leerPublicacion/" + id);
+		}
+	});
+});
 
 //Vista de datos básicos de publicación
 app.get("/leerPublicacion/:id", function(request, response){
