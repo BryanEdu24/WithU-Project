@@ -12,7 +12,7 @@ class DAOPublicacion {
 				callback(new Error("Error de conexion a la base de datos"));
 			}
 			else {
-				connection.query("INSERT INTO Publicacion (Titulo, Cuerpo) VALUES (?, ?)",  [ publicacion.titulo, publicacion.cuerpo ], //Aquí va la query a la BD
+				connection.query("INSERT INTO publicacion (Titulo, Cuerpo) VALUES (?, ?)",  [ publicacion.titulo, publicacion.cuerpo ], //Aquí va la query a la BD
 					function(err, result) {
 						connection.release();
 						if (err) {
@@ -36,7 +36,7 @@ class DAOPublicacion {
 				callback(new Error("Error de conexion a la base de datos"));
 			}
 			else {
-				connection.query("SELECT * FROM Publicacion WHERE ID=?" ,[ID] ,//Aquí va la query a la BD
+				connection.query("SELECT * FROM publicacion WHERE ID=?" ,[ID] ,//Aquí va la query a la BD
 					function(err, rows) {
 						connection.release();
 						if (err) {
