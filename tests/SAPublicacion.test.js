@@ -118,3 +118,25 @@ test('Intentamos agregar una publicación con titulo incorrecto', done =>{
     let publicacion = { titulo: tituloIncorrecto, cuerpo: cuerpoCorrecto };
     sa.agregarPublicacion(pool, publicacion, cb);
 });
+
+// Test de Vista Publicacion
+
+test('Leer datos de una publicación', done => {
+    function callback(err, publicacion) { 
+        try{
+            expect(err).toBe(null);
+            expect(publicacion.titulo).toBe(tituloCorrecto);
+            expect(publicacion.cuerpo).toBe(cuerpoCorrecto);
+            done(); 
+        }catch(error){
+            done(error);
+        }  
+    }
+
+    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto };
+    sa.agregarPublicacion(pool, publicacion, function (err, ID) {
+        expect(err).toBe(null);
+        sa.leerPublicacion(pool, ID, callback);
+    });
+
+});
