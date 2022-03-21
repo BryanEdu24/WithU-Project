@@ -1,0 +1,42 @@
+<html>
+    <%- include("head") %>
+
+    <body>
+        
+        <div class="section1 centrarTexto">
+            <h1>Creación de una publicación básica</h1>
+        </div>
+        <form method="POST" action="crearPregunta" enctype="multipart/form-data">
+            <div class="container" id="Contenedor">
+                <div class="d-flex justify-content-center flex-column Titulo">
+                    <div class="Parte1 p-2">
+                        Titulo: <p class="asterisco"> * </p>  
+                    </div>
+
+                    <div class="p-2">
+                        <input class="form-control" type="text" placeholder="Titulo de publicación" name="publicacion[titulo]">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center flex-column " id="Cuerpo">
+                    <div class="Parte2 p-2">
+                        Cuerpo: <p class="asterisco"> * </p>  
+                    </div>
+
+                    <div class="form-group p-2">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" placeholder="Cuerpo de publicación" name="publicacion[cuerpo]"></textarea>
+                    </div>
+                </div>
+
+                <div id="textochiquito">
+                    <b>Todos los campos con * son obligatorios </b>
+                </div>
+
+                <div class="d-flex justify-content-center" id="Boton">
+                    <button type="submit" class="btn btn-primary">Publicar</button>
+                </div>
+            </div>
+        </form>
+    </body>
+
+</html>

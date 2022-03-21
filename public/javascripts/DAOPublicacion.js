@@ -50,9 +50,8 @@ class DAOPublicacion {
 				);
 			}
 		});
-		
 	}
-
+/*
 	listarPublicaciones(callback){
 		this._pool.getConnection(function(err, connection) {
 			if (err) {
@@ -82,7 +81,7 @@ class DAOPublicacion {
 			}
 		});
 	}
-
+*/
 }
 module.exports = DAOPublicacion;
 
