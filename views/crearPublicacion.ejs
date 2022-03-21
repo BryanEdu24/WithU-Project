@@ -6,7 +6,7 @@
         <div class="section1 centrarTexto">
             <h1>Creación de una publicación básica</h1>
         </div>
-        <form method="POST" action="crearPregunta" enctype="multipart/form-data">
+        <form method="POST" action="crearPublicacion" enctype="multipart/form-data">
             <div class="container" id="Contenedor">
                 <div class="d-flex justify-content-center flex-column Titulo">
                     <div class="Parte1 p-2">
@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="form-group p-2">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" placeholder="Cuerpo de publicación" name="publicacion[cuerpo]"></textarea>
+                        <textarea class="form-control" rows="8" placeholder="Cuerpo de publicación" name="publicacion[cuerpo]"></textarea>
                     </div>
                 </div>
 
@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="d-flex justify-content-center" id="Boton">
-                    <button type="submit" class="btn btn-primary">Publicar</button>
+                    <input type="submit" class="btn btn-primary" value ="Publicar">
                 </div>
             </div>
         </form>

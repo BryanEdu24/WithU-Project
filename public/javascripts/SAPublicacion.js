@@ -7,7 +7,8 @@ class SAPublicacion {
 	}
     
 	agregarPublicacion(publicacion, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
-		if(publicacion.titulo !== "" || publicacion.cuerpo !== ""){
+
+		if(publicacion.titulo === "" || publicacion.cuerpo === ""){
 			callback("No puede haber campos vacios");
 		}
 		else{
@@ -19,7 +20,7 @@ class SAPublicacion {
 					callback("El cuerpo es demasiado corto");
 				}
 				else{
-					let dao = new DAOPublicacion(pool);
+					let dao = new DAOPublicacion(this._pool);
 					dao.agregarPublicacion(publicacion, callback);
 				}
 			}
@@ -35,7 +36,7 @@ class SAPublicacion {
 			callback("El id no es mayor que 0");
 		}
 		else { //Si todo es correcto...
-			let DAO = new DAOPublicacion(pool);
+			let DAO = new DAOPublicacion(this._pool);
 			DAO.leerPublicacion(id, callback);
 		}
 	}

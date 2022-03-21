@@ -20,6 +20,7 @@ test('Intentamos agregar un objeto undefined', done =>{
         try{
             expect(err).toBe(null);
             expect(ID).toBeLessThanOrEqual(0);
+            done();
         }catch(error){
             done(error);
         }    
@@ -34,6 +35,7 @@ test('Intentamos agregar un objeto null', done =>{
         try{
             expect(err).toBe(null);
             expect(ID).toBeLessThanOrEqual(0);
+            done();
         }catch(error){
             done(error);
         }    
@@ -47,6 +49,7 @@ test('Intentamos agregar un objeto que no es una publicación', done =>{
         try{
             expect(err).toBe(null);
             expect(ID).toBeLessThanOrEqual(0);
+            done();
         }catch(error){
             done(error);
         }    
@@ -61,6 +64,7 @@ test('Intentamos agregar una publicación con titulo y cuerpo correctos', done =
         try{
             expect(err).toBe(null);
             expect(ID).toBeGreaterThan(0);
+            done();
         }catch(error){
             done(error);
         }
@@ -75,6 +79,7 @@ test('Intentamos agregar una publicación con titulo vacío', done =>{
         try{
             expect(err).toBe(null);
             expect(ID).toBeLessThanOrEqual(0);
+            done();
         }catch(error){
             done(error);
         }    
@@ -89,6 +94,7 @@ test('Intentamos agregar una publicación con cuerpo vacio', done =>{
         try{
             expect(err).toBe(null);
             expect(ID).toBeLessThanOrEqual(0);
+            done();
         }catch(error){
             done(error);
         }    
@@ -103,6 +109,7 @@ test('Intentamos agregar una publicación con titulo incorrecto', done =>{
         try{
             expect(err).toBe(null);
             expect(ID).toBeLessThanOrEqual(0);
+            done();
         }catch(error){
             done(error);
         }    

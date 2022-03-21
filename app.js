@@ -30,10 +30,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Crear una publicacion
-app.post('/crearPublicacion', function (req, res) {
+app.post('/crearPublicacion', multerFactory.none(), function (req, res) {
 	let publicacion = {
-		titulo: req.body.titulo,
-		cuerpo : req.body.cuerpo
+		titulo: req.body.publicacion.titulo,
+		cuerpo : req.body.publicacion.cuerpo
 	}
 	let sa = new SAPublicacion(pool);
 	sa.agregarPublicacion(publicacion, function(err, id){
@@ -58,7 +58,8 @@ app.get("/leerPublicacion/:id", function(request, response){
 		}
 		else {
 			let busq = "Vista de publicación";
-			response.render("verPublicacion", {publicacion:result});
+			console.log(result);
+			response.render("verPublicacion", {publicacion: result});
 		}
 	});
 });

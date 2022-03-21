@@ -12,13 +12,14 @@ class DAOPublicacion {
 				callback(new Error("Error de conexion a la base de datos"));
 			}
 			else {
-				connection.query("INSERT INTO Publicacion (Titulo, Cuerpo) VALUES (?, ?)",  publicacion.Titulo, publicacion.Cuerpo, //Aquí va la query a la BD
+				connection.query("INSERT INTO Publicacion (Titulo, Cuerpo) VALUES (?, ?)",  [ publicacion.titulo, publicacion.cuerpo ], //Aquí va la query a la BD
 					function(err, result) {
 						connection.release();
 						if (err) {
-							callback(new Error("Hubo un problema con la base de datos"));
+							callback(err);
 						}
 						else {
+							console.log("correcto");
 							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el instert)
 							callback(null, result.insertId);
 						}
