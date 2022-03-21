@@ -1,28 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1647617016692" clover="3.2.0">
-  <project timestamp="1647617016692" name="All files">
-    <metrics statements="11" coveredstatements="4" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="2" elements="19" coveredelements="6" complexity="0" loc="11" ncloc="11" packages="2" files="2" classes="2"/>
+<coverage generated="1647798227058" clover="3.2.0">
+  <project timestamp="1647798227058" name="All files">
+    <metrics statements="14" coveredstatements="8" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="4" elements="24" coveredelements="12" complexity="0" loc="14" ncloc="14" packages="2" files="3" classes="3"/>
     <package name="WithU-Project">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="config.js" path="C:\Users\Adrian\VSCodeRepos\WithU-Project\config.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="3" count="1" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
       </file>
     </package>
     <package name="WithU-Project.public.javascripts">
-      <metrics statements="10" coveredstatements="3" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="2"/>
-      <file name="DAOPublicacion" path="C:\Users\Adrian\VSCodeRepos\WithU-Project\public\javascripts\DAOPublicacion">
-        <metrics statements="10" coveredstatements="3" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="2"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="10" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
+      <metrics statements="13" coveredstatements="7" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="4"/>
+      <file name="DAOPublicacion.js" path="C:\Users\Adrian\VSCodeRepos\WithU-Project\public\javascripts\DAOPublicacion.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+      </file>
+      <file name="SAPublicacion.js" path="C:\Users\Adrian\VSCodeRepos\WithU-Project\public\javascripts\SAPublicacion.js">
+        <metrics statements="10" coveredstatements="4" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="10" count="7" type="stmt"/>
+        <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="16" count="0" type="stmt"/>
         <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="19" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
       </file>
     </package>
   </project>
