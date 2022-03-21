@@ -8,10 +8,15 @@ const config = require("./config");
 const express = require("express");
 const app = express();
 
+const multer = require("multer");
+const multerFactory = multer({ storage: multer.memoryStorage() });
+const bodyParser = require("body-parser");
+const path = require("path");
+
 //Constantes para la base de datos
 const mysql = require("mysql");
 const { append } = require("express/lib/response");
-const express = require("express");
+const { hasUncaughtExceptionCaptureCallback } = require("process");
 const pool = mysql.createPool({
 	host: config.host,
 	user: config.user,
@@ -19,6 +24,28 @@ const pool = mysql.createPool({
 	database: config.database
 });
 
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Crear una publicacion
+app.post('/crearPublicacion', function (req, res) {
+	let publicacion = {
+		titulo: req.body.titulo,
+		cuerpo : req.body.cuerpo
+	}
+	let sa = new SAPublicacion(pool);
+	sa.agregarPublicacion(publicacion, function(err, id){
+		if(err){
+			console.log(err);
+			res.redirect("/");
+		}
+		else{
+			res.redirect("/leerPublicacion/" + id);
+		}
+	});
+});
 
 //Vista de datos básicos de publicación
 app.get("/leerPublicacion/:id", function(request, response){
@@ -36,6 +63,10 @@ app.get("/leerPublicacion/:id", function(request, response){
 	});
 });
 
+app.get("/", function(req,res){
+	res.render("crearPublicacion");
+});
 
-
-  
+app.listen(3000, () => {
+    console.log("Escuchando en el puerto 3000");
+});

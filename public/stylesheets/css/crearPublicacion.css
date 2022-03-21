@@ -1,0 +1,60 @@
+body {
+    color: black;
+    background: linear-gradient(to bottom, white, #52adf7); }
+    #section1 {
+        font-size: 25px;
+        text-align: center;
+    }
+
+.publicacion {
+    display: grid;
+    grid-template-rows: auto auto;
+}           
+
+.section1 {
+    width: 100%;
+    margin-bottom: 2%;
+}
+
+.centrarTexto{
+    text-align: center;
+}
+
+.asterisco {
+    color:red;
+}
+
+.Parte1 p {
+    display:inline;
+}
+
+.Parte2 p {
+    display:inline;
+}
+
+#Titulo {
+    margin-top: 1%;
+    color: black;
+}
+
+#Cuerpo {
+    margin-top: 2%;
+    color: black;
+}
+
+#Contenedor {
+    border:1px solid black;
+    border-radius: 10px;
+}
+
+#textochiquito {
+    font-size: 12px;
+    padding-left: 10px;
+    margin-top: 0.5%;
+    color: red;
+}
+
+#Boton{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
