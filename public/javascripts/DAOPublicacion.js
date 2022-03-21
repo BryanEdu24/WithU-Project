@@ -6,43 +6,40 @@ class DAOPublicacion {
 	}
 	
 	agregarPublicacion(publicacion, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
-		callback("error");
-		/*
 		this._pool.getConnection(function(err, connection) {
 			if (err) {
-				//connection.release();
-				callback(err);
+				connection.release();
+				callback(new Error("Error de conexion a la base de datos"));
 			}
 			else {
-				connection.query(" " , //Aquí va la query a la BD
-					function(err, rows) {
+				connection.query("INSERT INTO Publicacion (Titulo, Cuerpo) VALUES (?, ?)",  publicacion.Titulo, publicacion.Cuerpo, //Aquí va la query a la BD
+					function(err, result) {
 						connection.release();
 						if (err) {
-							callback(err);
+							callback(new Error("Hubo un problema con la base de datos"));
 						}
 						else {
 							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el instert)
-							callback(null, preguntasDistintas);
+							callback(null, result.insertId);
 						}
 					}
 				);
 			}
 		});
-		*/
 	}
 
 	leerPublicacion(ID,callback) {
 		this._pool.getConnection(function(err, connection) {
 			if (err) {
 				connection.release();
-				callback(err);
+				callback(new Error("Error de conexion a la base de datos"));
 			}
 			else {
 				connection.query("SELECT * FROM Publicacion WHERE ID=?" ,[ID] ,//Aquí va la query a la BD
 					function(err, rows) {
 						connection.release();
 						if (err) {
-							callback(err);
+							callback(new Error("Error de conexion a la base de datos"));
 						}
 						else {
 							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el insert)
@@ -54,6 +51,36 @@ class DAOPublicacion {
 			}
 		});
 		
+	}
+
+	listarPublicaciones(callback){
+		this._pool.getConnection(function(err, connection) {
+			if (err) {
+				connection.release();
+				callback(new Error("Error de conexion a la base de datos"));
+			}
+			else {
+				connection.query("SELECT * FROM Publicacion", //Aquí va la query a la BD
+					function(err, rows) {
+						connection.release();
+						if (err) {
+							callback(new Error("Error de conexion a la base de datos"));
+						}
+						else {
+							let listaPublicaciones = Array.from(new Set(
+								rows.map(l => l.ID))).map(id => {
+									return {
+										ID: id, 
+										Titulo: rows.find(l => l.id === id).Titulo,
+										Cuerpo: rows.find(l => l.id === id).Cuerpo,
+									}
+								});
+							callback(null,listaPublicaciones);
+						}
+					}
+				);
+			}
+		});
 	}
 
 }
