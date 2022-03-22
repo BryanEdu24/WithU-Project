@@ -9,7 +9,7 @@ const pool = mysql.createPool({
 	database: config.database
 });
 
-const sa = new SAPublicacion();
+const sa = new SAPublicacion(pool);
 
 const tituloCorrecto = "Prueba titulo correcto con menos de 50 caracteres";
 const tituloIncorrecto = "Prueba titulo incorrecto con más de 50 caracteres. Debería fallar";
@@ -18,8 +18,7 @@ const cuerpoCorrecto = "Este cuerpo tiene más de 90 caracteres: \n\nLorem ipsum
 test('Intentamos agregar un objeto undefined', done =>{
     function cb(err, ID){
         try{
-            expect(err).toBe(null);
-            expect(ID).toBeLessThanOrEqual(0);
+            expect(err).toBe("El objeto no es una publicacion");
             done();
         }catch(error){
             done(error);
@@ -27,28 +26,34 @@ test('Intentamos agregar un objeto undefined', done =>{
     }
 
     let publicacion = undefined;
-    sa.agregarPublicacion(pool, publicacion, cb);
+    try{
+        sa.agregarPublicacion(publicacion, cb);
+    }catch(error){
+        done(error);
+    }
 });
 
 test('Intentamos agregar un objeto null', done =>{
     function cb(err, ID){
         try{
-            expect(err).toBe(null);
-            expect(ID).toBeLessThanOrEqual(0);
+            expect(err).toBe("El objeto no es una publicacion");
             done();
         }catch(error){
             done(error);
         }    
     }
     let publicacion = null;
-    sa.agregarPublicacion(pool, publicacion, cb);
+    try{
+        sa.agregarPublicacion(publicacion, cb);
+    }catch(error){
+        done(error);
+    }
 });
 
 test('Intentamos agregar un objeto que no es una publicación', done =>{
     function cb(err, ID){
         try{
-            expect(err).toBe(null);
-            expect(ID).toBeLessThanOrEqual(0);
+            expect(err).toBe("El objeto no es una publicacion");
             done();
         }catch(error){
             done(error);
@@ -56,7 +61,11 @@ test('Intentamos agregar un objeto que no es una publicación', done =>{
     }
 
     let publicacion = undefined;
-    sa.agregarPublicacion(pool, publicacion, cb);
+    try{
+        sa.agregarPublicacion(publicacion, cb);
+    }catch(error){
+        done(error);
+    }
 });
 
 test('Intentamos agregar una publicación con titulo y cuerpo correctos', done =>{
@@ -71,14 +80,17 @@ test('Intentamos agregar una publicación con titulo y cuerpo correctos', done =
     }
 
     let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto};
-    sa.agregarPublicacion(pool, publicacion, cb);
+    try{
+        sa.agregarPublicacion(publicacion, cb);
+    }catch(error){
+        done(error);
+    }
 });
 
 test('Intentamos agregar una publicación con titulo vacío', done =>{
     function cb(err, ID){
         try{
-            expect(err).toBe(null);
-            expect(ID).toBeLessThanOrEqual(0);
+            expect(err).toBe("No puede haber campos vacios");
             done();
         }catch(error){
             done(error);
@@ -86,14 +98,17 @@ test('Intentamos agregar una publicación con titulo vacío', done =>{
     }
     
     let publicacion = { titulo: "", cuerpo: cuerpoCorrecto};
-    sa.agregarPublicacion(pool, publicacion, cb);
+    try{
+        sa.agregarPublicacion(publicacion, cb);
+    }catch(error){
+        done(error);
+    }
 });
 
 test('Intentamos agregar una publicación con cuerpo vacio', done =>{
     function cb(err, ID){
         try{
-            expect(err).toBe(null);
-            expect(ID).toBeLessThanOrEqual(0);
+            expect(err).toBe("No puede haber campos vacios");
             done();
         }catch(error){
             done(error);
@@ -101,14 +116,17 @@ test('Intentamos agregar una publicación con cuerpo vacio', done =>{
     }
 
     let publicacion = { titulo: tituloCorrecto, cuerpo: "" };
-    sa.agregarPublicacion(pool, publicacion, cb);
+    try{
+        sa.agregarPublicacion(publicacion, cb);
+    }catch(error){
+        done(error);
+    }
 });
 
 test('Intentamos agregar una publicación con titulo incorrecto', done =>{
     function cb(err, ID){
         try{
-            expect(err).toBe(null);
-            expect(ID).toBeLessThanOrEqual(0);
+            expect(err).toBe("El titulo tiene más de 50 caracteres");
             done();
         }catch(error){
             done(error);
@@ -116,7 +134,11 @@ test('Intentamos agregar una publicación con titulo incorrecto', done =>{
     }
 
     let publicacion = { titulo: tituloIncorrecto, cuerpo: cuerpoCorrecto };
-    sa.agregarPublicacion(pool, publicacion, cb);
+    try{
+        sa.agregarPublicacion(publicacion, cb);
+    }catch(error){
+        done(error);
+    }
 });
 
 // Test de Vista Publicacion
@@ -125,8 +147,8 @@ test('Leer datos de una publicación', done => {
     function callback(err, publicacion) { 
         try{
             expect(err).toBe(null);
-            expect(publicacion.titulo).toBe(tituloCorrecto);
-            expect(publicacion.cuerpo).toBe(cuerpoCorrecto);
+            expect(publicacion.Titulo).toBe(tituloCorrecto);
+            expect(publicacion.Cuerpo).toBe(cuerpoCorrecto);
             done(); 
         }catch(error){
             done(error);
@@ -134,9 +156,14 @@ test('Leer datos de una publicación', done => {
     }
 
     let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto };
-    sa.agregarPublicacion(pool, publicacion, function (err, ID) {
-        expect(err).toBe(null);
-        sa.leerPublicacion(pool, ID, callback);
-    });
+    
+    try{
+        sa.agregarPublicacion(publicacion, function (err, ID) {
+            expect(err).toBe(null);
+            sa.leerPublicacion(ID, callback);
+        });
+    }catch(error){
+        done(error);
+    }
 
 });

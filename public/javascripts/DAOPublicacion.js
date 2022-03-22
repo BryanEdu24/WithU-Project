@@ -1,5 +1,6 @@
 "use strict";
-
+const DAOEtiqueta = require("./DAOEtiqueta");
+const DAOPublicacionEtiqueta = require("./DAOPublicacionEtiqueta");
 class DAOPublicacion {
 	constructor(pool) {
 		this._pool = pool;
@@ -9,17 +10,16 @@ class DAOPublicacion {
 		this._pool.getConnection(function(err, connection) {
 			if (err) {
 				connection.release();
-				callback(new Error("Error de conexion a la base de datos"));
+				callback("Error de conexion a la base de datos");
 			}
 			else {
 				connection.query("INSERT INTO publicacion (Titulo, Cuerpo) VALUES (?, ?)",  [ publicacion.titulo, publicacion.cuerpo ], //Aquí va la query a la BD
 					function(err, result) {
 						connection.release();
 						if (err) {
-							callback(err);
+							callback("Los datos no son correctos.");
 						}
 						else {
-							console.log("correcto");
 							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el instert)
 							callback(null, result.insertId);
 						}

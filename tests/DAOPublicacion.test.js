@@ -8,7 +8,7 @@ const pool = mysql.createPool({
 	password: config.password,
 	database: config.database
 });
-
+jest.setTimeout(10000);
 const dao = new DAOPublicacion(pool);
 
 const tituloCorrecto = "Prueba titulo correcto con menos de 50 caracteres";
@@ -19,6 +19,7 @@ test('Agregamos una publicación correctamente', done =>{
         try{
             expect(err).toBe(null);
             expect(ID).toBeGreaterThan(0);
+            done();
         }catch(error){
             done(error);
         }
@@ -32,6 +33,7 @@ test('Error de conexión a la BBDD', done =>{
     function cb(err, ID){
         try{
             expect(err).toBe("Error al obtener la conexión");
+            done();
         }catch(error){
             done(error);
         }    
@@ -39,13 +41,18 @@ test('Error de conexión a la BBDD', done =>{
     
     let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto};
     let dao2 = new DAOPublicacion();
-    dao2.agregarPublicacion(publicacion, cb);
+    try{
+        dao2.agregarPublicacion(publicacion, cb);
+    } catch(err){
+        done();
+    }
 });
 
 test('Error al ejecutar la petición a la BBDD', done =>{
     function cb(err, ID){
         try{
             expect(err).toBe("Los datos no son correctos.");
+            done();
         }catch(error){
             done(error);
         }    

@@ -1,34 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1647798227058" clover="3.2.0">
-  <project timestamp="1647798227058" name="All files">
-    <metrics statements="14" coveredstatements="8" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="4" elements="24" coveredelements="12" complexity="0" loc="14" ncloc="14" packages="2" files="3" classes="3"/>
+<coverage generated="1647944470926" clover="3.2.0">
+  <project timestamp="1647944470926" name="All files">
+    <metrics statements="47" coveredstatements="37" conditionals="26" coveredconditionals="20" methods="12" coveredmethods="10" elements="85" coveredelements="67" complexity="0" loc="47" ncloc="47" packages="2" files="5" classes="5"/>
     <package name="WithU-Project">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="config.js" path="C:\Users\Adrian\VSCodeRepos\WithU-Project\config.js">
+      <file name="config.js" path="C:\Users\Adrián\VSCodeRepos\WithU-Project\config.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="3" count="2" type="stmt"/>
       </file>
     </package>
     <package name="WithU-Project.public.javascripts">
-      <metrics statements="13" coveredstatements="7" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="4"/>
-      <file name="DAOPublicacion.js" path="C:\Users\Adrian\VSCodeRepos\WithU-Project\public\javascripts\DAOPublicacion.js">
-        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="9" count="3" type="stmt"/>
-        <line num="39" count="2" type="stmt"/>
+      <metrics statements="46" coveredstatements="36" conditionals="26" coveredconditionals="20" methods="12" coveredmethods="10"/>
+      <file name="DAOEtiqueta.js" path="C:\Users\Adrián\VSCodeRepos\WithU-Project\public\javascripts\DAOEtiqueta.js">
+        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
       </file>
-      <file name="SAPublicacion.js" path="C:\Users\Adrian\VSCodeRepos\WithU-Project\public\javascripts\SAPublicacion.js">
-        <metrics statements="10" coveredstatements="4" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="2"/>
+      <file name="DAOPublicacion.js" path="C:\Users\Adrián\VSCodeRepos\WithU-Project\public\javascripts\DAOPublicacion.js">
+        <metrics statements="23" coveredstatements="18" conditionals="8" coveredconditionals="5" methods="7" coveredmethods="7"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="19" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="24" count="3" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="42" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="87" count="2" type="stmt"/>
+      </file>
+      <file name="DAOPublicacionEtiqueta.js" path="C:\Users\Adrián\VSCodeRepos\WithU-Project\public\javascripts\DAOPublicacionEtiqueta.js">
+        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+      </file>
+      <file name="SAPublicacion.js" path="C:\Users\Adrián\VSCodeRepos\WithU-Project\public\javascripts\SAPublicacion.js">
+        <metrics statements="19" coveredstatements="16" conditionals="18" coveredconditionals="15" methods="3" coveredmethods="3"/>
         <line num="2" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="10" count="7" type="stmt"/>
-        <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="19" count="0" type="stmt"/>
+        <line num="10" count="8" type="cond" truecount="6" falsecount="0"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="13" count="5" type="cond" truecount="4" falsecount="0"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="17" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="21" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="34" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="37" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
       </file>
     </package>
   </project>
