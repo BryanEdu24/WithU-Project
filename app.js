@@ -35,6 +35,7 @@ app.post('/crearPublicacion', multerFactory.none(), function (req, res) {
 		titulo: req.body.publicacion.titulo,
 		cuerpo : req.body.publicacion.cuerpo
 	}
+	console.log(req.body);
 	let sa = new SAPublicacion(pool);
 	sa.agregarPublicacion(publicacion, function(err, id){
 		if(err){
@@ -58,7 +59,6 @@ app.get("/leerPublicacion/:id", function(request, response){
 		}
 		else {
 			let busq = "Vista de publicación";
-			console.log(result);
 			response.render("verPublicacion", {publicacion: result});
 		}
 	});
