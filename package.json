@@ -6,6 +6,7 @@
     "start": "node ./bin/www",
     "test": "jest",
     "test-with-coverage": "jest --coverage",
+    "test-open": "jest --detectOpenHandles",
     "live": "nodemon app.js"
   },
   "dependencies": {
