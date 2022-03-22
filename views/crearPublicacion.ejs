@@ -2,8 +2,7 @@
     <%- include("head") %>
 
     <body>
-        
-        <div class="section1 centrarTexto">
+        <div class="section1 text-center">
             <h1>Creación de una publicación básica</h1>
         </div>
         <form method="POST" action="crearPublicacion" enctype="multipart/form-data">
@@ -20,15 +19,31 @@
 
                 <div class="d-flex justify-content-center flex-column " id="Cuerpo">
                     <div class="Parte2 p-2">
-                        Cuerpo: <p class="asterisco"> * </p>  
+                        Cuerpo: <b class="asterisco"> * </b>  
                     </div>
-
+    
                     <div class="form-group p-2">
-                        <textarea class="form-control" rows="8" placeholder="Cuerpo de publicación" name="publicacion[cuerpo]"></textarea>
+                        <textarea class="form-control" type="text" rows="8" placeholder="Cuerpo de publicación" ></textarea>
+                      </div>
+                </div>
+    
+                <div class="flex-column" id="AniadirSeccion">
+                    <div class="Parte3 p-2">
+                        <b>AÑADIR A LA SECCIÓN:</b> <b class="asterisco"> * </b> 
+                        <select class="OpcionesSeccion">
+                            <option value="Valor Predefinido"> Seleccione una sección...</option>
+                            
+                            <option value="Familia">Familia</option>
+                            <option value="Amistades">Amistades</option>
+                            <option value="Estudios">Estudios</option>
+                            <option value="Relaciones">Relaciones</option>
+                            <option value="Sexualidad">Sexualidad</option>
+                            <option value="Trabajo">Trabajo</option>
+                          </select> 
                     </div>
                 </div>
-
-                <div id="textochiquito">
+    
+                <div id="Textochiquito">
                     <b>Todos los campos con * son obligatorios </b>
                 </div>
 
