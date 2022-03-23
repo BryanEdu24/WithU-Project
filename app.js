@@ -12,7 +12,6 @@ const multer = require("multer");
 const multerFactory = multer({ storage: multer.memoryStorage() });
 const bodyParser = require("body-parser");
 const path = require("path");
-
 //Constantes para la base de datos
 const mysql = require("mysql");
 const { append } = require("express/lib/response");
@@ -29,18 +28,27 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//Sesiones de usuarios (Para flash necesitamos un usuario invitado. Pasará a ser el usuario logueado cuando implementemos el login)
+const session = require("express-session");
+app.use(session({
+    secret: "miclavesecreta",
+    resave: false,
+    saveUninitialized: false
+}));
+
 // Creacion y obtencion de flash (Vista)
-app.use((request, response, next) => {
-    response.setFlash = (str) => {
-        request.session.flashMessage = str;
-    }
-    response.locals.getFlash = () => {
+function middleFlash(request, response, next) {
+    response.setFlash = function(msg) {
+        request.session.flashMessage = msg;
+    };
+    response.locals.getFlash = function() {
         let mensaje = request.session.flashMessage;
         delete request.session.flashMessage;
         return mensaje;
-    }
+    };
     next();
-});
+}
+app.use(middleFlash);
 
 // Crear una publicacion
 app.post('/crearPublicacion', multerFactory.none(), function (req, res) {
@@ -48,12 +56,12 @@ app.post('/crearPublicacion', multerFactory.none(), function (req, res) {
 		titulo: req.body.publicacion.titulo,
 		cuerpo : req.body.publicacion.cuerpo
 	}
-	console.log(req.body);
 	let sa = new SAPublicacion(pool);
 	sa.agregarPublicacion(publicacion, function(err, id) {
 		if(err){
+			console.log(err);
 			res.setFlash(err);
-			res.redirect("/crearPublicacion", {err});
+			res.redirect("/crearPublicacion");
 		}
 		else{
 			res.setFlash("Se ha creado la publicación con éxito con id:" + id);
@@ -78,9 +86,14 @@ app.get("/leerPublicacion/:id", function(request, response){
 	});
 });
 
+app.get("/crearPublicacion", function(req,res){
+	res.render("crearPublicacion");
+});
+
 app.get("/", function(req,res){
 	res.render("crearPublicacion");
 });
+
 
 app.listen(3000, () => {
     console.log("Escuchando en el puerto 3000");

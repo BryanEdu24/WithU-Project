@@ -7,25 +7,22 @@ class SAPublicacion {
 	}
     
 	agregarPublicacion(publicacion, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
+		
 		if(publicacion === undefined || publicacion === null || publicacion.titulo === undefined || publicacion.cuerpo === undefined){
 			callback("El objeto no es una publicacion");
 		}
 		else if(publicacion.titulo === "" || publicacion.cuerpo === ""){
 			callback("No puede haber campos vacios");
 		}
+		else if(publicacion.titulo.length > 50){
+			callback("El titulo tiene más de 50 caracteres");
+		}
+		else if(publicacion.cuerpo.length < 90){
+			callback("El cuerpo es demasiado corto");
+		}
 		else{
-			if(publicacion.titulo.length > 50){
-				callback("El titulo tiene más de 50 caracteres");
-			}
-			else{
-				if(publicacion.cuerpo.length < 90){
-					callback("El cuerpo es demasiado corto");
-				}
-				else{
-					let dao = new DAOPublicacion(this._pool);
-					dao.agregarPublicacion(publicacion, callback);
-				}
-			}
+			let dao = new DAOPublicacion(this._pool);
+			dao.agregarPublicacion(publicacion, callback);
 		}
 	}
 

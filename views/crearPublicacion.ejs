@@ -9,7 +9,7 @@
   
         <% let mensaje = getFlash(); %>
         <% if (mensaje) { %>
-            <div class="row <%= mensaje === "Se ha creado la publicación con éxito" ? "alert alert-success" : "alert alert-danger" %>">
+            <div class="row <%= mensaje.includes("Se ha creado la publicación con éxito") ? "alert alert-success" : "alert alert-danger" %>">
                 <%= mensaje %>
             </div>
         <% } %>
