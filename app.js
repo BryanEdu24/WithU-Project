@@ -29,6 +29,19 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Creacion y obtencion de flash (Vista)
+app.use((request, response, next) => {
+    response.setFlash = (str) => {
+        request.session.flashMessage = str;
+    }
+    response.locals.getFlash = () => {
+        let mensaje = request.session.flashMessage;
+        delete request.session.flashMessage;
+        return mensaje;
+    }
+    next();
+});
+
 // Crear una publicacion
 app.post('/crearPublicacion', multerFactory.none(), function (req, res) {
 	let publicacion = {
@@ -37,13 +50,14 @@ app.post('/crearPublicacion', multerFactory.none(), function (req, res) {
 	}
 	console.log(req.body);
 	let sa = new SAPublicacion(pool);
-	sa.agregarPublicacion(publicacion, function(err, id){
+	sa.agregarPublicacion(publicacion, function(err, id) {
 		if(err){
-			console.log(err);
+			res.setFlash(err);
 			res.redirect("/crearPublicacion", {err});
 		}
 		else{
-			res.redirect("/crearPublicacion/" + id);
+			res.setFlash("Se ha creado la publicación con éxito con id:" + id);
+			res.redirect("/crearPublicacion");
 		}
 	});
 });
