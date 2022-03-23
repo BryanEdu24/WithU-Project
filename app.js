@@ -40,10 +40,10 @@ app.post('/crearPublicacion', multerFactory.none(), function (req, res) {
 	sa.agregarPublicacion(publicacion, function(err, id){
 		if(err){
 			console.log(err);
-			res.redirect("/");
+			res.redirect("/crearPublicacion", {err});
 		}
 		else{
-			res.redirect("/leerPublicacion/" + id);
+			res.redirect("/crearPublicacion/" + id);
 		}
 	});
 });

@@ -2,12 +2,11 @@
     <%- include("header") %>
     <%- include("flash") %>
     
-    
+    <% 
+    if (err) {
+        <div class="alert alert-danger"> <%=err%> </div>
+    }
 
     <%- include("footer") %>
 </body>
 
-<% let msg = getAndClearFlash();
-if (msg) { %>
-    <div class="flash"><%= msg ></div>
-<%  } %>
