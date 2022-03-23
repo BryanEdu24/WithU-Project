@@ -1,0 +1,13 @@
+<body>
+    <%- include("header") %>
+    <%- include("flash") %>
+    
+    
+
+    <%- include("footer") %>
+</body>
+
+<% let msg = getAndClearFlash();
+if (msg) { %>
+    <div class="flash"><%= msg ></div>
+<%  } %>
