@@ -5,11 +5,13 @@
         <div class="section1 text-center">
             <h1>Creación de una publicación básica</h1>
         </div>
+
         <form method="POST" action="crearPublicacion" enctype="multipart/form-data">
-            <div class="container" id="Contenedor">
-                <div class="d-flex justify-content-center flex-column Titulo">
+            <div class="Container">
+
+                <div class="Titulo d-flex justify-content-center flex-column">
                     <div class="Parte1 p-2">
-                        Titulo: <p class="asterisco"> * </p>  
+                        Titulo:<b class="asterisco">* </b>  
                     </div>
 
                     <div class="p-2">
@@ -17,9 +19,9 @@
                     </div>
                 </div>
 
-                <div class="d-flex justify-content-center flex-column " id="Cuerpo">
+                <div class="Cuerpo d-flex justify-content-center flex-column">
                     <div class="Parte2 p-2">
-                        Cuerpo: <b class="asterisco"> * </b>  
+                        Cuerpo:<b class="asterisco">* </b>  
                     </div>
     
                     <div class="form-group p-2">
@@ -27,9 +29,9 @@
                       </div>
                 </div>
     
-                <div class="flex-column" id="AniadirSeccion">
+                <div class="AniadirSeccion flex-column">
                     <div class="Parte3 p-2">
-                        <b>AÑADIR A LA SECCIÓN:</b> <b class="asterisco"> * </b> 
+                        <b>AÑADIR A LA SECCIÓN:</b><b class="asterisco">* </b> 
                         <select class="OpcionesSeccion" name="publicacion[seccion]">
                             <option value="Valor Predefinido"> Seleccione una sección...</option>
                             
@@ -39,17 +41,18 @@
                             <option value="Relaciones">Relaciones</option>
                             <option value="Sexualidad">Sexualidad</option>
                             <option value="Trabajo">Trabajo</option>
-                          </select> 
+                        </select> 
                     </div>
                 </div>
     
-                <div id="Textochiquito">
+                <div class="Textochiquito">
                     <b>Todos los campos con * son obligatorios </b>
                 </div>
 
                 <div class="d-flex justify-content-center" id="Boton">
                     <input type="submit" class="btn btn-primary" value ="Publicar">
                 </div>
+
             </div>
         </form>
     </body>

@@ -1,77 +1,67 @@
 body {
     color: black;
-    background: linear-gradient(to bottom, white, #52adf7); }
-    #section1 {
-        font-size: 25px;
-        text-align: center;
-    }
-
-#publicacion {
-    display: grid;
-    grid-template-rows: auto auto;
-}           
-
-#section1 {
-    margin-bottom: 2%;
+    background: linear-gradient(to bottom, white, #52adf7); 
 }
 
-.asterisco {
-    color:red;
+.section1 {
+    margin-bottom: 1.5%;
+}
+
+.Container {
+    border:1px solid black;
+    border-radius: 10px;
+}
+
+.Titulo {
+    margin-top: 0.5%;
+    color: black;
 }
 
 .Parte1 p {
     display:inline;
 }
 
+.Cuerpo {
+    margin-top: 1%;
+    color: black;
+}
+
 .Parte2 p {
     display:inline;
+}
+
+.AniadirSeccion {
+    margin-top: 1%;
+    font-size: 15px;
+    color: black;
 }
 
 .Parte3 p {
     display: inline;
 }
 
-#Titulo {
-    margin-top: 1%;
-    color: black;
-}
-
-#Cuerpo {
-    margin-top: 2%;
-    color: black;
-}
-
-#Contenedor {
-    border:1px solid black;
-    border-radius: 10px;
-}
-
-#AniadirSeccion {
-    font-size: 15px;
-    display: flex;
-    padding-left: 10px;
-    color: black;
-}
-
-.caja1 {
-    margin:10px auto 40px auto;	
-    border:1px solid black;
-    height:30px;
+.OpcionesSeccion {
+    border: 1px solid black;
+    height: 30px;
     overflow: hidden;
     width: 220px;
-    position:relative;
+    position: relative;
 }
 
 select {
     background: beige;
-    font-size: 15px;
     height: 30px;
+    font-size: 15px;
     width: 235px;
 }
 
  select:focus{ outline: none;}
 
-#Textochiquito {
+ .asterisco {
+    color:red;
+}
+
+.Textochiquito {
     font-size: 12px;
     padding-left: 10px;
     margin-top: 0.25%;
