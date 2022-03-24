@@ -18,7 +18,7 @@ class SAPublicacion {
 			callback("El titulo tiene más de 50 caracteres");
 		}
 		else if(publicacion.cuerpo.length < 90){
-			callback("El cuerpo es demasiado corto");
+			callback("El cuerpo debe tener más de 90 caracteres");
 		}
 		else{
 			let dao = new DAOPublicacion(this._pool);

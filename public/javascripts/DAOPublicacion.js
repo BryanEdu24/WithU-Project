@@ -52,6 +52,31 @@ class DAOPublicacion {
 			}
 		});
 	}
+
+	prueba(callback){
+		this._pool.getConnection(function(err, connection) {
+			if (err) {
+				connection.release();
+				callback(new Error("Error de conexion a la base de datos"));
+			}
+			else {
+				console.log("trans");
+				connection.query("INSERT INTO publicacion(Titulo, Cuerpo) VALUES (?, ?)", ['Tengo depresion','Hola necesito aiuda creo que tengo depresion alguien puede ayudarme porfiiiiis? Necesito saber lo que me pasa'],//Aquí va la query a la BD
+					function(err, rows) {
+						connection.release();
+						if (err) {
+							callback(new Error("Error de conexion a la base de datos"));
+						}
+						else {	
+							console.log("query correcta");
+							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el insert)
+							callback(null,true);
+						}
+					}
+				);
+			}
+		});
+	}
 /*
 	listarPublicaciones(callback){
 		this._pool.getConnection(function(err, connection) {
@@ -86,7 +111,7 @@ class DAOPublicacion {
 }
 module.exports = DAOPublicacion;
 
-/*const mysql = require("mysql");
+const mysql = require("mysql");
 const pool = mysql.createPool({
 	host: "localhost",
 	user: "root",
@@ -94,14 +119,29 @@ const pool = mysql.createPool({
 	database: "withu"
 });
 function leer(){
-	let dao= new DAOPublicacion(pool);
-	dao.leerPublicacion(1,function(err,pub){
-		if(err){
-			console.log(err);
-		}
-		else{
-			console.log(pub);
-		}
+	pool.getConnection(function(err, connection) {
+		connection.beginTransaction(function(error){
+			if(error){
+				connection.rollback(() => { console.log("rollback")});
+				connection.release();
+			}
+			else{
+				let dao= new DAOPublicacion(pool);
+				dao.prueba(function(err,pub){
+					if(err){
+						connection.rollback(() => { console.log("rollback")});
+						console.log(err);
+					}
+					else{
+						connection.commit(() => { console.log("commit")});
+						console.log(pub);
+					}
+					connection.release();
+				});
+			}
+			
+		});
+		
 	});
 }
-leer();*/
+leer();
