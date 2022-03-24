@@ -54,7 +54,8 @@ app.use(middleFlash);
 app.post('/crearPublicacion', multerFactory.none(), function (req, res) {
 	let publicacion = {
 		titulo: req.body.publicacion.titulo,
-		cuerpo : req.body.publicacion.cuerpo
+		cuerpo : req.body.publicacion.cuerpo,
+		seccion : req.body.publicacion.seccion
 	}
 	let sa = new SAPublicacion(pool);
 	sa.agregarPublicacion(publicacion, function(err, id) {
