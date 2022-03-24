@@ -8,7 +8,7 @@ class SAPublicacion {
     
 	agregarPublicacion(publicacion, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
 		
-		if(publicacion === undefined || publicacion === null || publicacion.titulo === undefined || publicacion.cuerpo === undefined){
+		if(publicacion === undefined || publicacion === null || publicacion.titulo === undefined || publicacion.cuerpo === undefined || publicacion.cuerpo === undefined){
 			callback("El objeto no es una publicacion");
 		}
 		else if(publicacion.titulo === "" || publicacion.cuerpo === ""){
@@ -19,6 +19,9 @@ class SAPublicacion {
 		}
 		else if(publicacion.cuerpo.length < 90){
 			callback("El cuerpo debe tener más de 90 caracteres");
+		}
+		else if(isNaN(publicacion.seccion) && publicacion.seccion <= 0) {
+			callback("La seccion no es correcta");
 		}
 		else{
 			let dao = new DAOPublicacion(this._pool);
