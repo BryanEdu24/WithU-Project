@@ -1,5 +1,6 @@
 "use strict";
 const DAOPublicacion = require("./DAOPublicacion");
+const DAOSeccion = require("./DAOSeccion");
 
 class SAPublicacion {
 	constructor(pool){
@@ -40,6 +41,24 @@ class SAPublicacion {
 		else { //Si todo es correcto...
 			let DAO = new DAOPublicacion(this._pool);
 			DAO.leerPublicacion(id, callback);
+		}
+	}
+
+	leerPublicacionesPorSeccion(idSec, callback) {
+		if (idSec === undefined || isNaN(idSec) || idSec <= 0) {
+			callback("Error al seleccionar la publicacion");
+		}
+		else {
+			let daoSec = new DAOSeccion(this._pool);
+			daoSec.leerSeccion(idSec, function(sec){
+				if(err){
+					callback("La seccion no existe");
+				}
+				else{
+					let daoPub = new DAOPublicacion(this._pool);
+					daoPub.leerPublicacionesPorSeccion(idSec,callback);
+				}
+			});
 		}
 	}
 

@@ -7,7 +7,6 @@
     "test": "jest --forceExit",
     "test-with-coverage": "jest --coverage --forceExit",
     "test-open": "jest --detectOpenHandles",
-    "change": "jest --runInBand --detectOpenHandles --forceExit",
     "live": "nodemon app.js"
   },
   "dependencies": {
