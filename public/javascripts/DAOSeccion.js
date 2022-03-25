@@ -6,29 +6,7 @@ class DAOSeccion {
 		this._pool = pool;
 	}
 	
-	agregarSeccion(seccion, callback) { //Seccion debería ser una estructura {nombre}
-		this._pool.getConnection(function(err, connection) {
-			if (err) {
-				connection.release();
-				callback("Error de conexion a la base de datos");
-			}
-			else {
-				connection.query("INSERT INTO seccion (nombre) VALUES (?)",  [ Seccion.nombre], //Aquí va la query a la BD
-					function(err, result) {
-						connection.release();
-						if (err) {
-							callback("Los datos no son correctos.");
-						}
-						else {
-							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el instert)
-							callback(null, result.insertId);
-						}
-					}
-				);
-			}
-		});
-	}
-
+	
 	leerPublicacion(ID,callback) {
 		this._pool.getConnection(function(err, connection) {
 			if (err) {
