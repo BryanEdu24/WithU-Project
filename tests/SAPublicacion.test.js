@@ -86,6 +86,7 @@ test('Intentamos agregar una publicación con titulo, cuerpo, seccion y etiqueta
     let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion:seccionCorrecta, etiqueta: etiquetaCorrecta};
     try{
         sa.agregarPublicacion(publicacion, cb);
+        done();
     }catch(error){
         done(error);
     }
@@ -103,6 +104,7 @@ test('Intentamos agregar una publicación con titulo ,etiqueta y cuerpo correcto
     let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion:seccionIncorrecta, etiqueta: etiquetaCorrecta};
     try{
         sa.agregarPublicacion(publicacion, cb);
+        done();
     }catch(error){
         done(error);
     }

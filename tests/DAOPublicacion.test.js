@@ -26,7 +26,13 @@ test('Agregamos una publicación correctamente', done =>{
     }
 
     let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, idSeccion: seccionCorrecta};
-    dao.agregarPublicacion(publicacion, cb);
+    
+    try{
+        dao.agregarPublicacion(publicacion, cb);
+        done();
+    } catch(err){
+        done(error);
+    }
 });
 
 test('Error de conexión a la BBDD', done =>{

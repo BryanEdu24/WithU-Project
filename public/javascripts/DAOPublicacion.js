@@ -8,14 +8,13 @@ class DAOPublicacion {
 	
 	agregarPublicacion(publicacion, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
 		this._pool.getConnection(function(err, connection) {
+			connection.release();
 			if (err) {
-				connection.release();
 				callback("Error de conexion a la base de datos");
 			}
 			else {
 				connection.query("INSERT INTO publicacion (Titulo, Cuerpo) VALUES (?, ?)",  [ publicacion.titulo, publicacion.cuerpo ], //Aquí va la query a la BD
 					function(err, result) {
-						connection.release();
 						if (err) {
 							callback("Los datos no son correctos.");
 						}
@@ -110,38 +109,3 @@ class DAOPublicacion {
 */
 }
 module.exports = DAOPublicacion;
-
-const mysql = require("mysql");
-const pool = mysql.createPool({
-	host: "localhost",
-	user: "root",
-	password: "",
-	database: "withu"
-});
-function leer(){
-	pool.getConnection(function(err, connection) {
-		connection.beginTransaction(function(error){
-			if(error){
-				connection.rollback(() => { console.log("rollback")});
-				connection.release();
-			}
-			else{
-				let dao= new DAOPublicacion(pool);
-				dao.prueba(function(err,pub){
-					if(err){
-						connection.rollback(() => { console.log("rollback")});
-						console.log(err);
-					}
-					else{
-						connection.commit(() => { console.log("commit")});
-						console.log(pub);
-					}
-					connection.release();
-				});
-			}
-			
-		});
-		
-	});
-}
-leer();
