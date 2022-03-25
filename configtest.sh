@@ -7,5 +7,5 @@ module.exports = {
         host: 'localhost',
         user: 'withuroot',
         password: 'withugps2022',
-        database: 'withutest'
+        database: 'withu'
 }" > config.js
