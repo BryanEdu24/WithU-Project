@@ -7,6 +7,7 @@
     "test": "jest",
     "test-with-coverage": "jest --coverage",
     "test-open": "jest --detectOpenHandles",
+    "change": "jest --config ./test/jest-e2e.json --forceExit",
     "live": "nodemon app.js"
   },
   "dependencies": {

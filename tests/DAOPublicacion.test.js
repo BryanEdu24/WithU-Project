@@ -8,7 +8,7 @@ const pool = mysql.createPool({
 	password: config.password,
 	database: config.database
 });
-jest.setTimeout(10000);
+jest.setTimeout(5000);
 const dao = new DAOPublicacion(pool);
 
 const tituloCorrecto = "Prueba titulo correcto con menos de 50 caracteres";
