@@ -29,7 +29,6 @@ test('Agregamos una publicación correctamente', done =>{
     
     try{
         dao.agregarPublicacion(publicacion, cb);
-        done();
     } catch(err){
         done(error);
     }
