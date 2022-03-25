@@ -1,13 +1,11 @@
 "use strict";
-const DAOEtiqueta = require("./DAOEtiqueta");
-const DAOPublicacionEtiqueta = require("./DAOPublicacionEtiqueta");
 class DAOSeccion {
 	constructor(pool) {
 		this._pool = pool;
 	}
 	
 	
-	leerPublicacion(ID,callback) {
+	leerSeccion(ID,callback) {
 		this._pool.getConnection(function(err, connection) {
 			if (err) {
 				connection.release();
