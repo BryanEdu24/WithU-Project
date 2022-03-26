@@ -37,20 +37,46 @@
                       </div>
                 </div>
     
-                <div class="AniadirSeccion flex-column">
-                    <div class="Parte3 p-2">
-                        <b>AÑADIR A LA SECCIÓN:</b><b class="asterisco">* </b> 
-                        <select class="OpcionesSeccion" name="publicacion[seccion]">
-                            <option value="Valor Predefinido"> Seleccione una sección...</option>
-                            <option value="Familia">Familia</option>
-                            <option value="Amistades">Amistades</option>
-                            <option value="Estudios">Estudios</option>
-                            <option value="Relaciones">Relaciones</option>
-                            <option value="Sexualidad">Sexualidad</option>
-                            <option value="Trabajo">Trabajo</option>
-                        </select> 
+                <div class="d-flex p-2 flex-column justify-content-between">
+
+                    <!-- Aqui esta para elegir la seccion -->
+                    <div class="AniadirSeccion flex-column">
+                        <div class="Parte3 p-2">
+                            <b>AÑADIR A LA SECCIÓN:</b><b class="asterisco">*</b> 
+                            <select class="OpcionesSeccion" name="publicacion[seccion]">
+                                <option value="Valor Predefinido"> Seleccione una sección...</option>
+                                
+                                <option value="Familia">Familia</option>
+                                <option value="Amistades">Amistades</option>
+                                <option value="Estudios">Estudios</option>
+                                <option value="Relaciones">Relaciones</option>
+                                <option value="Sexualidad">Sexualidad</option>
+                                <option value="Trabajo">Trabajo</option>
+                            </select> 
+                        </div>
                     </div>
-                </div>
+
+                 <!-- Aqui es donde esta la seleccion de las etiquetas -->
+                    <div class="p-2 d-flex flex-column" id="seleccion_etiquetas">
+                        
+                        <div class="d-flex p-2">
+                            <div class="p-2">
+                                <h5>Selección de etiquetas: </h5>
+                            </div>
+                        <div class="p-2" id="textoEtiqueta" >
+                            <input class="form-control" type="text" placeholder="Etiqueta" name="etiqueta" id="nuevaEtiqueta">
+                        </div>
+                        <div class="p-2">
+                            <input id="botonAñadirEtiqueta" type="button" class="btn btn-primary" value ="Añadir">                                 
+                        </div>
+                    </div>
+
+                    <div id="listaEtiquetas" class="p-2 d-flex" name="etiquetas">
+                        <!-- Aqui el texto se añade solo cuando haces click -->
+                    </div>
+
+                </div>                    
+
     
                 <div class="Textochiquito">
                     <b>Todos los campos con * son obligatorios </b>
@@ -61,7 +87,8 @@
                 </div>
 
             </div>
-        </form>
+        </form>        
     </body>
 
+    <script src="/stylesheets/js/crearPublicacion.js"></script>
 </html>
