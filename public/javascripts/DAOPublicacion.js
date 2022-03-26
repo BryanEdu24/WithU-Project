@@ -13,7 +13,7 @@ class DAOPublicacion {
 				callback("Error de conexion a la base de datos");
 			}
 			else {
-				connection.query("INSERT INTO publicacion (Titulo, Cuerpo) VALUES (?, ?)",  [ publicacion.titulo, publicacion.cuerpo ], //Aquí va la query a la BD
+				connection.query("INSERT INTO publicacion (Titulo, IDSec, Cuerpo ) VALUES (?, ?, ?)",  [ publicacion.titulo, publicacion.seccion, publicacion.cuerpo ], //Aquí va la query a la BD
 					function(err, result) {
 						if (err) {
 							callback("Los datos no son correctos.");
@@ -43,7 +43,7 @@ class DAOPublicacion {
 						}
 						else {
 							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el insert)
-							let publicacion={ID:rows[0].ID,Titulo:rows[0].Titulo,Cuerpo:rows[0].Cuerpo};
+							let publicacion={ID:rows[0].ID,Titulo:rows[0].Titulo,Cuerpo:rows[0].Cuerpo,Seccion:rows[0].IDSec,Etiquetas:rows[0].Etiquetas};
 							callback(null,publicacion);
 						}
 					}
@@ -52,30 +52,7 @@ class DAOPublicacion {
 		});
 	}
 
-	prueba(callback){
-		this._pool.getConnection(function(err, connection) {
-			if (err) {
-				connection.release();
-				callback(new Error("Error de conexion a la base de datos"));
-			}
-			else {
-				console.log("trans");
-				connection.query("INSERT INTO publicacion(Titulo, Cuerpo) VALUES (?, ?)", ['Tengo depresion','Hola necesito aiuda creo que tengo depresion alguien puede ayudarme porfiiiiis? Necesito saber lo que me pasa'],//Aquí va la query a la BD
-					function(err, rows) {
-						connection.release();
-						if (err) {
-							callback(new Error("Error de conexion a la base de datos"));
-						}
-						else {	
-							console.log("query correcta");
-							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el insert)
-							callback(null,true);
-						}
-					}
-				);
-			}
-		});
-	}
+	
 /*
 	listarPublicaciones(callback){
 		this._pool.getConnection(function(err, connection) {

@@ -2,6 +2,7 @@
 const DAOPublicacion = require("./DAOPublicacion");
 const DAOSeccion = require("./DAOSeccion");
 
+
 class SAPublicacion {
 	constructor(pool){
 		this._pool = pool;
@@ -9,10 +10,10 @@ class SAPublicacion {
     
 	agregarPublicacion(publicacion, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
 		
-		if(publicacion === undefined || publicacion === null || publicacion.titulo === undefined || publicacion.cuerpo === undefined || publicacion.cuerpo === undefined){
+		if(publicacion === undefined || publicacion === null || publicacion.titulo === undefined || publicacion.cuerpo === undefined || publicacion.cuerpo === undefined || publicacion.seccion === undefined){
 			callback("El objeto no es una publicacion");
 		}
-		else if(publicacion.titulo === "" || publicacion.cuerpo === ""){
+		else if(publicacion.titulo === "" || publicacion.cuerpo === "" || publicacion.seccion === ""){
 			callback("No puede haber campos vacios");
 		}
 		else if(publicacion.titulo.length > 50){
@@ -25,8 +26,24 @@ class SAPublicacion {
 			callback("La seccion no es correcta");
 		}
 		else{
-			let dao = new DAOPublicacion(this._pool);
-			dao.agregarPublicacion(publicacion, callback);
+			let pul = this._pool;
+			let daoS =new DAOSeccion(this._pool);
+			daoS.leerSeccion(publicacion.seccion,function(err,seccion){
+				if(err){
+					callback(err);
+				}
+				else{
+					if(seccion !== undefined){
+						let dao = new DAOPublicacion(pul);
+						dao.agregarPublicacion(publicacion, callback);
+					}
+					else{
+						callback("La seccion no es correcta");
+					}
+
+				}
+			});
+			
 		}
 	}
 

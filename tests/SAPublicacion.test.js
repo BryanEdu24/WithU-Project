@@ -8,7 +8,7 @@ const pool = mysql.createPool({
 	password: config.password,
 	database: config.database
 });
-jest.setTimeout(5000);
+jest.setTimeout(3000);
 const sa = new SAPublicacion(pool);
 
 const tituloCorrecto = "Prueba titulo correcto con menos de 50 caracteres";
@@ -110,7 +110,7 @@ test('Intentamos agregar una publicación con titulo ,etiqueta y cuerpo correcto
 test('Intentamos agregar una publicación con titulo ,etiqueta y cuerpo correctos y seccion undefined', done =>{
     function cb(err, ID){
         try{
-            expect(err).toBe("No puede haber campos vacios");
+            expect(err).toBe("El objeto no es una publicacion");
             done();
         }catch(error){
             done(error);
@@ -127,7 +127,7 @@ test('Intentamos agregar una publicación con titulo ,etiqueta y cuerpo correcto
 test('Intentamos agregar una publicación con titulo, etiqueta y cuerpo correctos y seccion null', done =>{
     function cb(err, ID){
         try{
-            expect(err).toBe("No puede haber campos vacios");
+            expect(err).toBe("La seccion no es correcta");
             done();
         }catch(error){
             done(error);
@@ -256,10 +256,10 @@ test('Leer datos de una publicación', done => {
     function callback(err, publicacion) { 
         try{
             expect(err).toBe(null);
-            expect(publicacion.titulo).toBe(tituloCorrecto);
-            expect(publicacion.cuerpo).toBe(cuerpoCorrecto);
-            expect(publicacion.seccion).toBe(seccionCorrecta);
-            expect(publicacion.etiqueta).toBe(etiquetaCorrecta);
+            expect(publicacion.Titulo).toBe(tituloCorrecto);
+            expect(publicacion.Cuerpo).toBe(cuerpoCorrecto);
+            expect(publicacion.Seccion).toBe(seccionCorrecta);
+           // expect(publicacion.Etiquetas).toBe(etiquetaCorrecta);
             done(); 
         }catch(error){
             done(error);

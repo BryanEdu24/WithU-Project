@@ -20,7 +20,10 @@ class DAOSeccion {
 						}
 						else {
 							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el insert)
-							let Seccion={ID:rows[0].ID,Nombre:rows[0].Nombre};
+							let Seccion;
+							if(rows[0]!==undefined){
+								Seccion={ID:rows[0].ID, Nombre:rows[0].Nombre};
+							}
 							callback(null,Seccion);
 						}
 					}
