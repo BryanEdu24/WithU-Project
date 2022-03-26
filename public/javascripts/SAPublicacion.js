@@ -1,5 +1,7 @@
 "use strict";
+const DAOEtiqueta = require("./DAOEtiqueta");
 const DAOPublicacion = require("./DAOPublicacion");
+const DAOPublicacionEtiqueta = require("./DAOPublicacionEtiqueta");
 const DAOSeccion = require("./DAOSeccion");
 
 
@@ -26,24 +28,97 @@ class SAPublicacion {
 			callback("La seccion no es correcta");
 		}
 		else{
-			let pul = this._pool;
-			let daoS =new DAOSeccion(this._pool);
-			daoS.leerSeccion(publicacion.seccion,function(err,seccion){
-				if(err){
-					callback(err);
-				}
-				else{
-					if(seccion !== undefined){
-						let dao = new DAOPublicacion(pul);
-						dao.agregarPublicacion(publicacion, callback);
-					}
-					else{
-						callback("La seccion no es correcta");
-					}
+			this._pool.getConnection(function(err,connection){
+				connection.beginTransaction(function(error){
+					let daoS =new DAOSeccion(this._pool);
+					daoS.leerSeccion(publicacion.seccion, function(err,seccion){
+						if(err){
+							connection.rollback();
+							callback(err);
+						}
+						else{
+							if(seccion === undefined){
+								connection.rollback();
+								callback("La seccion no es correcta");
+							}
+							else{
+								let dao = new DAOPublicacion(this._pool);
+								let daoE = new DAOEtiqueta(this._pool);
+								let daoEP = new DAOPublicacionEtiqueta(this._pool);
 
-				}
+								dao.agregarPublicacion(publicacion, function(err,idP){
+									if(err){
+										connection.rollback();
+										callback(err);
+									}
+									else{
+										publicacion.ID = idP;
+										let i = 0;
+										let error = false;
+										publicacion.etiquetas.forEach(function(et){
+											daoE.leerEtiquetaPorNombre(et, function(err, eti){
+												i++;
+												if(err){
+													error = true;
+													if(i === publicacion.etiquetas.length){
+														connection.rollback();
+														callback("Ha ocurrido un error durante la creacion de la publicacion. Intentelo de nuevo");
+													}
+												}else{
+													if(eti){
+														daoEP.agregarPublicacionEtiqueta(idP, eti.ID, function(err){
+															if(err){
+																error = true;
+															}
+															if(i === publicacion.etiquetas.length){
+																if(error){
+																	connection.rollback();
+																	callback("Ha ocurrido un error durante la creacion de la publicacion. Intentelo de nuevo");
+																}
+																else{
+																	connection.commit();
+																	callback(null, publicacion);
+																}
+															}
+														});
+													}
+													else{
+														daoE.agregarEtiqueta(eti, function(err, idEti){
+															if(err){
+																error = true;
+																if(i === publicacion.etiquetas.length){
+																	connection.rollback();
+																	callback("Ha ocurrido un error durante la creacion de la publicacion. Intentelo de nuevo");
+																}
+															}else{
+																daoEP.agregarPublicacionEtiqueta(idP, eti.ID, function(err){
+																	if(err){
+																		error = true;
+																	}
+																	if(i === publicacion.etiquetas.length){
+																		if(error){
+																			connection.rollback();
+																			callback("Ha ocurrido un error durante la creacion de la publicacion. Intentelo de nuevo");
+																		}
+																		else{
+																			connection.commit();
+																			callback(null, publicacion);
+																		}
+																	}
+																});
+															}
+														});
+													}
+												}
+											});
+										});
+									}
+								});
+							}
+						}
+					});
+				});
 			});
-			
 		}
 	}
 

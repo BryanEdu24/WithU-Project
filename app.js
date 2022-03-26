@@ -30,22 +30,39 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //Sesiones de usuarios (Para flash necesitamos un usuario invitado. Pasará a ser el usuario logueado cuando implementemos el login)
 const session = require("express-session");
-app.use(session({
-    secret: "miclavesecreta",
-    resave: false,
-    saveUninitialized: false
-}));
+const mysqlSession = require("express-mysql-session");
+const MySQLStore = mysqlSession(session);
 
+const sessionStore = new MySQLStore({
+	host: config.host,
+	user: config.user,
+	password: config.password,
+	database: config.database
+});
+
+const middleSession = session({
+    resave: false,
+	store: sessionStore,
+    saveUninitialized: false,
+    secret: "miclavesecreta",
+});
+app.use(middleSession);
 // Creacion y obtencion de flash (Vista)
 function middleFlash(request, response, next) {
-    response.setFlash = function(msg) {
-        request.session.flashMessage = msg;
-    };
-    response.locals.getFlash = function() {
+    response.setFlash = (str) => {
+        //request.flashMessage = str;
+        request.session.flashMessage = str;
+    }
+    response.locals.getFlash = () => {
+        /*
+		let mensaje = request.flashMessage;
+        delete request.flashMessage;
+        return mensaje;
+		*/
         let mensaje = request.session.flashMessage;
         delete request.session.flashMessage;
         return mensaje;
-    };
+    }
     next();
 }
 app.use(middleFlash);
