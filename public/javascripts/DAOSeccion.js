@@ -31,8 +31,8 @@ class DAOSeccion {
 			}
 		});
 	}
-/*
-	listarSeccion(callback){
+
+	leerTodas(callback){
 		this._pool.getConnection(function(err, connection) {
 			if (err) {
 				connection.release();
@@ -46,21 +46,22 @@ class DAOSeccion {
 							callback(new Error("Error de conexion a la base de datos"));
 						}
 						else {
-							let listaSecciones = Array.from(new Set(
-								rows.map(l => l.ID))).map(id => {
+							let secciones = Array.from(new Set(
+								rows.map( r => {
 									return {
-										ID: id, 
-										Nombre: rows.find(l => l.id === id).Nombre,
+										ID: r.ID, 
+										Nombre: r.Nombre,
 									}
-								});
-							callback(null,listaSecciones);
+								})));
+								console.log(secciones);
+							callback(null,secciones);
 						}
 					}
 				);
 			}
 		});
 	}
-*/
+
 }
 module.exports = DAOSeccion;
 

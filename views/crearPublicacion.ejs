@@ -45,13 +45,9 @@
                             <b>AÑADIR A LA SECCIÓN:</b><b class="asterisco">*</b> 
                             <select class="OpcionesSeccion" name="publicacion[seccion]">
                                 <option value="Valor Predefinido"> Seleccione una sección...</option>
-                                
-                                <option value="Familia">Familia</option>
-                                <option value="Amistades">Amistades</option>
-                                <option value="Estudios">Estudios</option>
-                                <option value="Relaciones">Relaciones</option>
-                                <option value="Sexualidad">Sexualidad</option>
-                                <option value="Trabajo">Trabajo</option>
+                                <% secciones.forEach( sec => { %>
+                                    <option value= "<%= sec.ID %>"><%= sec.Nombre %></option>
+                                <% }); %>
                             </select> 
                         </div>
                     </div>

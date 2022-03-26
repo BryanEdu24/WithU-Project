@@ -30,6 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //Sesiones de usuarios (Para flash necesitamos un usuario invitado. Pasará a ser el usuario logueado cuando implementemos el login)
 const session = require("express-session");
+const DAOSeccion = require("./public/javascripts/DAOSeccion");
 // const mysqlSession = require("express-mysql-session");
 // const MySQLStore = mysqlSession(session);
 
@@ -81,7 +82,6 @@ app.post('/crearPublicacion', multerFactory.none(), function (req, res) {
 			return item !== undefined && etiquetas.indexOf(item) === index;
 	});
 
-	console.log(publicacion.etiquetas)
 	let sa = new SAPublicacion(pool);
 	sa.agregarPublicacion(publicacion, function(err, id) {
 		if(err){
@@ -113,11 +113,24 @@ app.get("/leerPublicacion/:id", function(request, response){
 });
 
 app.get("/crearPublicacion", function(req,res){
-	res.render("crearPublicacion");
+	let daoSec = new DAOSeccion(pool);
+	try{
+		daoSec.leerTodas(function(err, sec){
+			console.log(sec);
+			if(sec === undefined){
+				sec = [];
+			}
+			res.render("crearPublicacion", {secciones: sec});
+		});
+	}catch(err){
+		let sec = [];
+		res.render("crearPublicacion", {secciones: sec});
+	}
+	
 });
 
 app.get("/", function(req,res){
-	res.render("crearPublicacion");
+	res.redirect("crearPublicacion");
 });
 
 
