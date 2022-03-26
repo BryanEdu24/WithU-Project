@@ -35,7 +35,6 @@ class DAOSeccion {
 	leerTodas(callback){
 		this._pool.getConnection(function(err, connection) {
 			if (err) {
-				connection.release();
 				callback(new Error("Error de conexion a la base de datos"));
 			}
 			else {
