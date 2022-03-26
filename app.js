@@ -30,19 +30,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //Sesiones de usuarios (Para flash necesitamos un usuario invitado. Pasará a ser el usuario logueado cuando implementemos el login)
 const session = require("express-session");
-const mysqlSession = require("express-mysql-session");
-const MySQLStore = mysqlSession(session);
+// const mysqlSession = require("express-mysql-session");
+// const MySQLStore = mysqlSession(session);
 
-const sessionStore = new MySQLStore({
-	host: config.host,
-	user: config.user,
-	password: config.password,
-	database: config.database
-});
+// const sessionStore = new MySQLStore({
+// 	host: config.host,
+// 	user: config.user,
+// 	password: config.password,
+// 	database: config.database
+// });
 
 const middleSession = session({
     resave: false,
-	store: sessionStore,
+	//store: sessionStore,
     saveUninitialized: false,
     secret: "miclavesecreta",
 });
@@ -74,6 +74,14 @@ app.post('/crearPublicacion', multerFactory.none(), function (req, res) {
 		cuerpo : req.body.publicacion.cuerpo,
 		seccion : req.body.publicacion.seccion
 	}
+	let etiquetas = [req.body.etiquetas.etiqueta1,req.body.etiquetas.etiqueta2,req.body.etiquetas.etiqueta3,
+	req.body.etiquetas.etiqueta4,req.body.etiquetas.etiqueta5];
+
+	publicacion.etiquetas = etiquetas.filter((item,index)=>{
+			return item !== undefined && etiquetas.indexOf(item) === index;
+	});
+
+	console.log(publicacion.etiquetas)
 	let sa = new SAPublicacion(pool);
 	sa.agregarPublicacion(publicacion, function(err, id) {
 		if(err){

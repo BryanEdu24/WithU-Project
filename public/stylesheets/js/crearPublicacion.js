@@ -6,6 +6,7 @@ let numEtiquetas = 0
 
 var añadirEtiqueta = function nuevaEtiqueta(){
 
+
     if(numEtiquetas < 5){
         numEtiquetas++
 
