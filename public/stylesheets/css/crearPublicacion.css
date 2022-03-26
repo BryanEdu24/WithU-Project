@@ -22,7 +22,7 @@ body {
 }
 
 .Cuerpo {
-    margin-top: 1%;
+    margin-top: 0.5%;
     color: black;
 }
 
@@ -31,7 +31,13 @@ body {
 }
 
 .AniadirSeccion {
-    margin-top: 1%;
+    margin-top: 0.5%;
+    font-size: 15px;
+    color: black;
+    margin-bottom: 1%;
+}
+
+.AniadirEtiqueta {
     font-size: 15px;
     color: black;
 }
@@ -40,14 +46,19 @@ body {
     display: inline;
 }
 
+.Parte4 p {
+    display: inline;
+}
+
 .OpcionesSeccion {
-    margin-left: 2%;
+    margin-left: 1%;
     border: 1px solid black;
     height: 30px;
     overflow: hidden;
     width: 220px;
     position: relative;
 }
+
 .titulo{
     margin-bottom: 0%;
 }
@@ -59,11 +70,7 @@ body {
 }
 
 .botonEtiqueta{
-    margin-left: 5%;
-}
-
-#columnaEtiquetas{
-    border: 1px solid #d8a2fc;
+    margin-left: 0.15%;
 }
 
 select {
@@ -73,7 +80,7 @@ select {
     width: 235px;
 }
 
- select:focus{ outline: none;}
+ select:focus { outline: none;}
 
  .asterisco {
     color:red;
@@ -81,23 +88,28 @@ select {
 
 .Textochiquito {
     font-size: 12px;
-    padding-left: 10px;
-    margin-top: 0.25%;
+    margin-top: 1%;
     color: red;
 }
 
-#Boton{
-    margin-top: 2%;
-    margin-bottom: 2%;
+#botonAñadirEtiqueta {
+    margin-top: -1.5%;
 }
+
+#nuevaEtiqueta {
+    margin-left: 1%;
+    border-color: black;
+}
+
 #textoEtiqueta{
-    width: 25%;
+    margin-top: -1.5%;
+    height: 30px;
+    width: 235px;
 }
 
 #listaEtiquetas{
-    border: 1px solid #d8a2fc;
-    border-radius: 10px;
+    border: 2px solid beige;
+    border-radius: 50px;
     max-height: 80%;
     height: 80%;
 }
-
