@@ -12,7 +12,7 @@ class SAPublicacion {
     
 	agregarPublicacion(publicacion, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
 		
-		if(publicacion === undefined || publicacion === null || publicacion.titulo === undefined || publicacion.cuerpo === undefined || publicacion.cuerpo === undefined || publicacion.seccion === undefined){
+		if(publicacion === undefined || publicacion === null || publicacion.titulo === undefined || publicacion.cuerpo === undefined || publicacion.cuerpo === undefined || publicacion.seccion === undefined || publicacion.etiquetas === undefined){
 			callback("El objeto no es una publicacion");
 		}
 		else if(publicacion.titulo === "" || publicacion.cuerpo === "" || publicacion.seccion === ""){
@@ -26,6 +26,9 @@ class SAPublicacion {
 		}
 		else if(isNaN(publicacion.seccion) && publicacion.seccion <= 0) {
 			callback("La seccion no es correcta");
+		}
+		else if(publicacion.etiquetas.length < 1 || publicacion.etiquetas.length > 5){
+			callback("Debe introducir entre 1 y 5 etiquetas");
 		}
 		else{
 			this._pool.getConnection(function(err,connection){
