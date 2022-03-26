@@ -12,7 +12,7 @@ class SAPublicacion {
     
 	agregarPublicacion(publicacion, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
 		
-		if(publicacion === undefined || publicacion === null || publicacion.titulo === undefined || publicacion.cuerpo === undefined || publicacion.cuerpo === undefined || publicacion.seccion === undefined || publicacion.etiquetas === undefined){
+		if(publicacion === undefined || publicacion === null || publicacion.titulo === undefined || publicacion.cuerpo === undefined || publicacion.seccion === undefined || publicacion.etiquetas === undefined){
 			callback("El objeto no es una publicacion");
 		}
 		else if(publicacion.titulo === "" || publicacion.cuerpo === "" || publicacion.seccion === ""){
