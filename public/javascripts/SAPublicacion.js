@@ -33,7 +33,6 @@ class SAPublicacion {
 			let daoS = new DAOSeccion(pool);
 			daoS.leerSeccion(publicacion.seccion, function(err,seccion){
 				if(err){
-					connection.release();
 					callback(err);
 				}
 				else{

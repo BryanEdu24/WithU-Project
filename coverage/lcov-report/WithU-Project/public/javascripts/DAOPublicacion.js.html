@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">64% </span>
+                <span class="strong">78.72% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>32/50</span>
+                <span class='fraction'>37/47</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">45% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>9/20</span>
+                <span class='fraction'>12/20</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>10/12</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">64% </span>
+                <span class="strong">78.72% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>32/50</span>
+                <span class='fraction'>37/47</span>
             </div>
         
             
@@ -204,10 +204,7 @@
 <a name='L139'></a><a href='#L139'>139</a>
 <a name='L140'></a><a href='#L140'>140</a>
 <a name='L141'></a><a href='#L141'>141</a>
-<a name='L142'></a><a href='#L142'>142</a>
-<a name='L143'></a><a href='#L143'>143</a>
-<a name='L144'></a><a href='#L144'>144</a>
-<a name='L145'></a><a href='#L145'>145</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L142'></a><a href='#L142'>142</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -236,24 +233,21 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -262,12 +256,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -379,26 +373,23 @@ class DAOPublicacion {
 									function(err, result) {
 										<span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
 <span class="cstat-no" title="statement not covered" >											connection.release();</span>
-<span class="cstat-no" title="statement not covered" >											console.log("1");</span>
 <span class="cstat-no" title="statement not covered" >											callback("Los datos no son correctos.");</span>
 										}
 										else{
 											i++;
-											<span class="missing-if-branch" title="if path not taken" >I</span>if(result.length === 0){
-<span class="cstat-no" title="statement not covered" >												connection.query("INSERT INTO etiqueta (Nombre) VALUES (?)" , [e], </span>
-<span class="fstat-no" title="function not covered" >												fu</span>nction(err, rows) {
-<span class="cstat-no" title="statement not covered" >													if (err) {</span>
+											if(result.length === 0){
+												connection.query("INSERT INTO etiqueta (Nombre) VALUES (?)" , [e], 
+												function(err, result) {
+													<span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
 <span class="cstat-no" title="statement not covered" >														connection.release();</span>
-<span class="cstat-no" title="statement not covered" >														console.log("1");</span>
 <span class="cstat-no" title="statement not covered" >														callback("Los datos no son correctos.");</span>
 													}
 													else {
-														let idE = <span class="cstat-no" title="statement not covered" >rows[0].ID;</span>
-<span class="cstat-no" title="statement not covered" >														connection.query("INSERT INTO publicacionetiqueta (IDPub, IDEti) VALUES (?, ?)" , [idP, idE], </span>
-<span class="fstat-no" title="function not covered" >														fu</span>nction(err, rows) {
-<span class="cstat-no" title="statement not covered" >															if (err) {</span>
+														let idE = result.insertId;
+														connection.query("INSERT INTO publicacionetiqueta (IDPub, IDEti) VALUES (?, ?)" , [idP, idE], 
+														function(err, rows) {
+															<span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
 <span class="cstat-no" title="statement not covered" >																connection.release();</span>
-<span class="cstat-no" title="statement not covered" >																console.log("1");</span>
 <span class="cstat-no" title="statement not covered" >																callback("Los datos no son correctos.");</span>
 															}
 														});
@@ -502,7 +493,7 @@ module.exports = DAOPublicacion;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sun Mar 27 2022 22:07:30 GMT+0200 (hora de verano de Europa central)
+                at Sun Mar 27 2022 22:18:48 GMT+0200 (hora de verano de Europa central)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

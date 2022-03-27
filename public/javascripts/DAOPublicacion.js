@@ -26,26 +26,23 @@ class DAOPublicacion {
 									function(err, result) {
 										if (err) {
 											connection.release();
-											console.log("1");
 											callback("Los datos no son correctos.");
 										}
 										else{
 											i++;
 											if(result.length === 0){
 												connection.query("INSERT INTO etiqueta (Nombre) VALUES (?)" , [e], 
-												function(err, rows) {
+												function(err, result) {
 													if (err) {
 														connection.release();
-														console.log("1");
 														callback("Los datos no son correctos.");
 													}
 													else {
-														let idE = rows[0].ID;
+														let idE = result.insertId;
 														connection.query("INSERT INTO publicacionetiqueta (IDPub, IDEti) VALUES (?, ?)" , [idP, idE], 
 														function(err, rows) {
 															if (err) {
 																connection.release();
-																console.log("1");
 																callback("Los datos no son correctos.");
 															}
 														});
