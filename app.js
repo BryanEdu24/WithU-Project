@@ -116,7 +116,6 @@ app.get("/crearPublicacion", function(req,res){
 	let daoSec = new DAOSeccion(pool);
 	try{
 		daoSec.leerTodas(function(err, sec){
-			console.log(sec);
 			if(sec === undefined){
 				sec = [];
 			}

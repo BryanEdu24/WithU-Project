@@ -12,10 +12,8 @@ class SAPublicacion {
     
 	agregarPublicacion(publicacion, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
 		
-		if(publicacion === undefined || publicacion === null || publicacion.titulo === undefined || publicacion.cuerpo === undefined || publicacion.seccion === undefined || publicacion.etiquetas === undefined){
-			callback("El objeto no es una publicacion");
-		}
-		else if(publicacion.titulo === "" || publicacion.cuerpo === "" || publicacion.seccion === ""){
+		if(publicacion === undefined || publicacion === null || publicacion.titulo === undefined || publicacion.cuerpo === undefined || publicacion.seccion === undefined 
+			|| publicacion.etiquetas === undefined || publicacion.etiquetas === null ||publicacion.titulo === "" || publicacion.cuerpo === "" || publicacion.seccion === ""){
 			callback("No puede haber campos vacios");
 		}
 		else if(publicacion.titulo.length > 50){
@@ -31,101 +29,76 @@ class SAPublicacion {
 			callback("Debe introducir entre 1 y 5 etiquetas");
 		}
 		else{
+			
 			let pool = this._pool;
 			this._pool.getConnection(function(err,connection){
 				if(err){
 					callback("Error al obtener la conexión")
 				}
 				else{
-					connection.beginTransaction(function(error){
-						let daoS = new DAOSeccion(pool);
-						daoS.leerSeccion(publicacion.seccion, function(err,seccion){
-							if(err){
-								connection.rollback();
-								callback(err);
-							}
-							else{
-								if(seccion === undefined){
-									connection.rollback();
-									callback("La seccion no es correcta");
+					connection.query("SET AUTOCOMMIT=1", [], function(err){
+						if(err){
+							connection.release();
+						  	callback(err);
+						}
+						else{
+							connection.beginTransaction(function(error){
+								if(err){
+									connection.release();
+									callback("Error al empezar la transaccion de datos")
 								}
 								else{
-									let dao = new DAOPublicacion(pool);
-									let daoE = new DAOEtiqueta(pool);
-									let daoEP = new DAOPublicacionEtiqueta(pool);
-	
-									dao.agregarPublicacion(publicacion, function(err,idP){
+									let daoS = new DAOSeccion(pool);
+									daoS.leerSeccion(publicacion.seccion, function(err,seccion){
 										if(err){
-											connection.rollback();
+											connection.release();
 											callback(err);
 										}
 										else{
-											publicacion.ID = idP;
-											let i = 0;
-											let error = false;
-											publicacion.etiquetas.forEach(function(et){
-												daoE.leerEtiquetaPorNombre(et, function(err, eti){
-													i++;
+											if(seccion === undefined){
+												connection.release();
+												callback("La seccion no es correcta");
+											}
+											else{
+												let dao = new DAOPublicacion(pool);
+												let daoE = new DAOEtiqueta(pool);
+												let daoEP = new DAOPublicacionEtiqueta(pool);
+				
+												dao.agregarPublicacion(publicacion, function(err,idP){
 													if(err){
-														error = true;
-														if(i === publicacion.etiquetas.length){
-															connection.rollback();
-															callback("Ha ocurrido un error durante la creacion de la publicacion. Intentelo de nuevo");
-														}
-													}else{
-														if(eti){
-															daoEP.agregarPublicacionEtiqueta(idP, eti.ID, function(err){
-																if(err){
-																	error = true;
-																}
-																if(i === publicacion.etiquetas.length){
-																	if(error){
-																		connection.rollback();
-																		callback("Ha ocurrido un error durante la creacion de la publicacion. Intentelo de nuevo");
-																	}
-																	else{
-																		connection.commit();
-																		callback(null, publicacion);
-																	}
-																}
-															});
-														}
-														else{
-															daoE.agregarEtiqueta(eti, function(err, idEti){
-																if(err){
-																	error = true;
-																	if(i === publicacion.etiquetas.length){
-																		connection.rollback();
-																		callback("Ha ocurrido un error durante la creacion de la publicacion. Intentelo de nuevo");
-																	}
-																}else{
-																	daoEP.agregarPublicacionEtiqueta(idP, eti.ID, function(err){
-																		if(err){
-																			error = true;
-																		}
-																		if(i === publicacion.etiquetas.length){
-																			if(error){
-																				connection.rollback();
-																				callback("Ha ocurrido un error durante la creacion de la publicacion. Intentelo de nuevo");
-																			}
-																			else{
-																				connection.commit();
-																				callback(null, publicacion);
-																			}
-																		}
-																	});
-																}
-															});
-														}
+														connection.rollback();
+														connection.release();
+														console.log(err);
+														callback(err);
+													}
+													else{
+														publicacion.ID = idP;
+														const promise = publicacion.etiquetas.map(async (et) => {
+															const p = await insertar( idP, et, daoE, daoEP);
+															return true;
+														});
+														Promise.all(promise).then(() =>{
+															if(error){
+																connection.rollback(() => console.log("rollback"));
+																connection.release();
+															}
+															else{
+																connection.commit();
+																connection.release();
+																callback(null, idP)
+															}
+															connection.query("SET AUTOCOMMIT=0", [], function(err){});
+														});
 													}
 												});
-											});
+											}
 										}
 									});
 								}
-							}
-						});
-					});
+								
+							});
+						}
+					  });
 				}
 			});
 		}
@@ -140,8 +113,25 @@ class SAPublicacion {
 			callback("El id no es mayor que 0");
 		}
 		else { //Si todo es correcto...
-			let DAO = new DAOPublicacion(this._pool);
-			DAO.leerPublicacion(id, callback);
+			let daoP = new DAOPublicacion(this._pool);
+			let daoPE = new DAOPublicacionEtiqueta(this._pool);
+			daoP.leerPublicacion(id, function(err, pub){
+				if(err){
+					console.log(err);
+					callback(error);
+				}
+				else{
+					daoPE.leerEtiquetaPorPublicacion(pub.ID, function(err, etiquetas){
+						if(err){
+							callback(err);
+						}
+						else{
+							pub.etiquetas = etiquetas;
+							callback(null, pub);
+						}
+					})
+				}
+			});
 		}
 	}
 
@@ -163,6 +153,56 @@ class SAPublicacion {
 		}
 	}
 
-}
 
+}
 module.exports = SAPublicacion;
+
+async function insertar( idP, et, daoE, daoEP){
+	let promesa1 = new Promise((resolve, reject) => {
+		daoE.leerEtiquetaPorNombre(et, function(err, eti){
+			if(err){
+				console.log(err);
+				resolve(err);
+			}else{
+				if(eti){
+					daoEP.agregarPublicacionEtiqueta(idP, eti.ID, function(err){
+						console.log
+						if(err){
+							console.log(err);
+							resolve(err);
+						}
+						else{
+							resolve();
+						}
+					});
+				}
+				else{
+					daoE.agregarEtiqueta(et, function(err, idEti){
+						if(err){
+							console.log(err);
+							resolve(err);
+						}else{
+							daoEP.agregarPublicacionEtiqueta(idP, idEti, function(err){
+								if(err){
+									console.log(err);
+									resolve(err);
+								}
+								else{
+									resolve();
+								}
+							});
+						}
+					});
+				}
+			}
+		});
+	});
+	promesa1.then((mensaje) => {
+		if(mensaje){
+			return true;
+		}
+		else{
+			return false;
+		}
+	});
+}

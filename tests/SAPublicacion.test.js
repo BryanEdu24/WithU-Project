@@ -8,7 +8,7 @@ const pool = mysql.createPool({
 	password: config.password,
 	database: config.database
 });
-jest.setTimeout(3000);
+//jest.setTimeout(5000);
 const sa = new SAPublicacion(pool);
 
 const tituloCorrecto = "Prueba titulo correcto con menos de 50 caracteres";
@@ -22,7 +22,7 @@ const etiquetaCorrecta = ["Emociones"];
 test('Intentamos agregar un objeto undefined', done =>{
     function cb(err, ID){
         try{
-            expect(err).toBe("El objeto no es una publicacion");
+            expect(err).toBe("No puede haber campos vacios");
             done();
         }catch(error){
             done(error);
@@ -40,7 +40,7 @@ test('Intentamos agregar un objeto undefined', done =>{
 test('Intentamos agregar un objeto null', done =>{
     function cb(err, ID){
         try{
-            expect(err).toBe("El objeto no es una publicacion");
+            expect(err).toBe("No puede haber campos vacios");
             done();
         }catch(error){
             done(error);
@@ -57,7 +57,7 @@ test('Intentamos agregar un objeto null', done =>{
 test('Intentamos agregar un objeto que no es una publicación', done =>{
     function cb(err, ID){
         try{
-            expect(err).toBe("El objeto no es una publicacion");
+            expect(err).toBe("No puede haber campos vacios");
             done();
         }catch(error){
             done(error);
@@ -83,7 +83,7 @@ test('Intentamos agregar una publicación con titulo, cuerpo, seccion y etiqueta
         }
     }
 
-    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion:seccionCorrecta, etiqueta: etiquetaCorrecta};
+    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiquetas: etiquetaCorrecta};
     try{
         sa.agregarPublicacion(publicacion, cb);
     }catch(error){
@@ -100,7 +100,7 @@ test('Intentamos agregar una publicación con titulo ,etiqueta y cuerpo correcto
         }
     }
 
-    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion:seccionIncorrecta, etiqueta: etiquetaCorrecta};
+    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion:seccionIncorrecta, etiquetas: etiquetaCorrecta};
     try{
         sa.agregarPublicacion(publicacion, cb);
     }catch(error){
@@ -110,14 +110,14 @@ test('Intentamos agregar una publicación con titulo ,etiqueta y cuerpo correcto
 test('Intentamos agregar una publicación con titulo ,etiqueta y cuerpo correctos y seccion undefined', done =>{
     function cb(err, ID){
         try{
-            expect(err).toBe("El objeto no es una publicacion");
+            expect(err).toBe("No puede haber campos vacios");
             done();
         }catch(error){
             done(error);
         }
     }
 
-    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion: undefined, etiqueta: etiquetaCorrecta};
+    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion: undefined, etiquetas: etiquetaCorrecta};
     try{
         sa.agregarPublicacion(publicacion, cb);
     }catch(error){
@@ -134,7 +134,7 @@ test('Intentamos agregar una publicación con titulo, etiqueta y cuerpo correcto
         }
     }
 
-    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto,seccion:null, etiqueta: etiquetaCorrecta};
+    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto,seccion:null, etiquetas: etiquetaCorrecta};
     try{
         sa.agregarPublicacion(publicacion, cb);
     }catch(error){
@@ -145,14 +145,14 @@ test('Intentamos agregar una publicación con titulo, etiqueta y cuerpo correcto
 test('Intentamos agregar una publicación con titulo, cuerpo, seccion correcta y etiqueta incorrecta', done =>{
     function cb(err, ID){
         try{
-            expect(err).toBe("Se debe añadir al menos una etiqueta");
+            expect(err).toBe("Debe introducir entre 1 y 5 etiquetas");
             done();
         }catch(error){
             done(error);
         }
     }
 
-    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiqueta: etiquetaIncorrecta};
+    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiquetas: etiquetaIncorrecta};
     try{
         sa.agregarPublicacion(publicacion, cb);
     }catch(error){
@@ -163,14 +163,14 @@ test('Intentamos agregar una publicación con titulo, cuerpo, seccion correcta y
 test('Intentamos agregar una publicación con titulo, cuerpo, seccion correcta y etiqueta null', done =>{
     function cb(err, ID){
         try{
-            expect(err).toBe("No puede haber campos vacíos");
+            expect(err).toBe("No puede haber campos vacios");
             done();
         }catch(error){
             done(error);
         }
     }
 
-    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiqueta: null};
+    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiquetas: null};
     try{
         sa.agregarPublicacion(publicacion, cb);
     }catch(error){
@@ -181,14 +181,14 @@ test('Intentamos agregar una publicación con titulo, cuerpo, seccion correcta y
 test('Intentamos agregar una publicación con titulo, cuerpo, seccion correcta y etiqueta undefined', done =>{
     function cb(err, ID){
         try{
-            expect(err).toBe("No puede haber campos vacíos");
+            expect(err).toBe("No puede haber campos vacios");
             done();
         }catch(error){
             done(error);
         }
     }
 
-    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiqueta: undefined};
+    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiquetas: undefined};
     try{
         sa.agregarPublicacion(publicacion, cb);
     }catch(error){
@@ -206,7 +206,7 @@ test('Intentamos agregar una publicación con titulo vacío', done =>{
         }    
     }
     
-    let publicacion = { titulo: "", cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiqueta: etiquetaCorrecta};
+    let publicacion = { titulo: "", cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiquetas: etiquetaCorrecta};
     try{
         sa.agregarPublicacion(publicacion, cb);
     }catch(error){
@@ -224,7 +224,7 @@ test('Intentamos agregar una publicación con cuerpo vacio', done =>{
         }    
     }
 
-    let publicacion = { titulo: tituloCorrecto, cuerpo: "" , seccion: seccionCorrecta, etiqueta: etiquetaCorrecta};
+    let publicacion = { titulo: tituloCorrecto, cuerpo: "" , seccion: seccionCorrecta, etiquetas: etiquetaCorrecta};
     try{
         sa.agregarPublicacion(publicacion, cb);
     }catch(error){
@@ -242,7 +242,7 @@ test('Intentamos agregar una publicación con titulo incorrecto', done =>{
         }    
     }
 
-    let publicacion = { titulo: tituloIncorrecto, cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiqueta: etiquetaCorrecta };
+    let publicacion = { titulo: tituloIncorrecto, cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiquetas: etiquetaCorrecta };
     try{
         sa.agregarPublicacion(publicacion, cb);
     }catch(error){
@@ -259,20 +259,17 @@ test('Leer datos de una publicación', done => {
             expect(publicacion.Titulo).toBe(tituloCorrecto);
             expect(publicacion.Cuerpo).toBe(cuerpoCorrecto);
             expect(publicacion.Seccion).toBe(seccionCorrecta);
-           // expect(publicacion.Etiquetas).toBe(etiquetaCorrecta);
+            expect(publicacion.etiquetas).toStrictEqual(etiquetaCorrecta);
             done(); 
         }catch(error){
             done(error);
         }  
     }
 
-    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiqueta: etiquetaCorrecta };
+    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiquetas: etiquetaCorrecta };
     
     try{
-        sa.agregarPublicacion(publicacion, function (err, ID) {
-            expect(err).toBe(null);
-            sa.leerPublicacion(ID, callback);
-        });
+        sa.leerPublicacion(1, callback);
     }catch(error){
         done(error);
     }

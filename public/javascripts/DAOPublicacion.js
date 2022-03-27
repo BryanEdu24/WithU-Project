@@ -43,7 +43,13 @@ class DAOPublicacion {
 						}
 						else {
 							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el insert)
-							let publicacion={ID:rows[0].ID,Titulo:rows[0].Titulo,Cuerpo:rows[0].Cuerpo,Seccion:rows[0].IDSec,Etiquetas:rows[0].Etiquetas};
+							let publicacion={
+								ID:rows[0].ID, 
+								Titulo: rows[0].Titulo, 
+								Cuerpo: rows[0].Cuerpo, 
+								Seccion: rows[0].IDSec, 
+								Etiquetas: rows[0].Etiquetas
+							};
 							callback(null,publicacion);
 						}
 					}

@@ -17,11 +17,40 @@ class DAOPublicacionEtiqueta {
 					function(err, result) {
 						connection.release();
 						if (err) {
+							console.log(err);
+							console.log("Los datos no son correctos: " + idP + idE);
 							callback("Los datos no son correctos.");
 						}
 						else {
 							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el instert)
+							console.log(result);
 							callback(null);
+						}
+					}
+				);
+			}
+		});
+	}
+
+	leerEtiquetaPorPublicacion(IDP, callback){
+		this._pool.getConnection(function(err, connection) {
+			if (err) {
+				connection.release();
+				callback("Error de conexion a la base de datos");
+			}
+			else {
+				connection.query("SELECT * FROM publicacionetiqueta pe JOIN etiqueta e ON (pe.IDEti = e.ID) WHERE pe.IDPub = ?",  [ IDP ],
+					function(err, rows) {
+						connection.release();
+						if (err) {
+							callback("Los datos no son correctos.");
+						}
+						else {
+							let etiquetas = Array.from(new Set(
+								rows.map( r => {
+									return r.Nombre;
+								})));
+							callback(null, etiquetas);
 						}
 					}
 				);
