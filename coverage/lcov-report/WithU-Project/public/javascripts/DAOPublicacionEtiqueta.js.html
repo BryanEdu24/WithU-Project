@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/25</span>
+                <span class='fraction'>10/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/8</span>
+                <span class='fraction'>2/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">62.5% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>8/8</span>
+                <span class='fraction'>5/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>17/25</span>
+                <span class='fraction'>10/25</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -128,28 +128,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -191,25 +191,25 @@ class DAOPublicacionEtiqueta {
 		this._pool = pool;
 	}
 &nbsp;
-	agregarPublicacionEtiqueta(idP, idE, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
-		this._pool.getConnection(function(err, connection) {
-			<span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="fstat-no" title="function not covered" >	ag</span>regarPublicacionEtiqueta(idP, idE, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
+<span class="cstat-no" title="statement not covered" >		this._pool.getConnection(<span class="fstat-no" title="function not covered" >fu</span>nction(err, connection) {</span>
+<span class="cstat-no" title="statement not covered" >			if (err) {</span>
 <span class="cstat-no" title="statement not covered" >				connection.release();</span>
 <span class="cstat-no" title="statement not covered" >				callback("Error de conexion a la base de datos");</span>
 			}
 			else {
-				connection.query("INSERT INTO publicacionetiqueta (IDPub, IDEti) VALUES (?, ?)",  [ idP, idE ], //Aquí va la query a la BD
-					function(err, result) {
-						connection.release();
-						<span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >				connection.query("INSERT INTO publicacionetiqueta (IDPub, IDEti) VALUES (?, ?)",  [ idP, idE ], //Aquí va la query a la BD</span>
+<span class="fstat-no" title="function not covered" >					fu</span>nction(err, result) {
+<span class="cstat-no" title="statement not covered" >						connection.release();</span>
+<span class="cstat-no" title="statement not covered" >						if (err) {</span>
 <span class="cstat-no" title="statement not covered" >							console.log(err);</span>
 <span class="cstat-no" title="statement not covered" >							console.log("Los datos no son correctos: " + idP + idE);</span>
 <span class="cstat-no" title="statement not covered" >							callback("Los datos no son correctos.");</span>
 						}
 						else {
 							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el instert)
-							console.log(result);
-							callback(null);
+<span class="cstat-no" title="statement not covered" >							console.log(result);</span>
+<span class="cstat-no" title="statement not covered" >							callback(null);</span>
 						}
 					}
 				);
@@ -250,7 +250,7 @@ module.exports = DAOPublicacionEtiqueta;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sun Mar 27 2022 17:23:00 GMT+0200 (hora de verano de Europa central)
+                at Sun Mar 27 2022 22:07:30 GMT+0200 (hora de verano de Europa central)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

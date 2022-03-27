@@ -29,76 +29,29 @@ class SAPublicacion {
 			callback("Debe introducir entre 1 y 5 etiquetas");
 		}
 		else{
-			
-			let pool = this._pool;
-			this._pool.getConnection(function(err,connection){
+			let pool = this._pool
+			let daoS = new DAOSeccion(pool);
+			daoS.leerSeccion(publicacion.seccion, function(err,seccion){
 				if(err){
-					callback("Error al obtener la conexión")
+					connection.release();
+					callback(err);
 				}
 				else{
-					connection.query("SET AUTOCOMMIT=1", [], function(err){
-						if(err){
-							connection.release();
-						  	callback(err);
-						}
-						else{
-							connection.beginTransaction(function(error){
-								if(err){
-									connection.release();
-									callback("Error al empezar la transaccion de datos")
-								}
-								else{
-									let daoS = new DAOSeccion(pool);
-									daoS.leerSeccion(publicacion.seccion, function(err,seccion){
-										if(err){
-											connection.release();
-											callback(err);
-										}
-										else{
-											if(seccion === undefined){
-												connection.release();
-												callback("La seccion no es correcta");
-											}
-											else{
-												let dao = new DAOPublicacion(pool);
-												let daoE = new DAOEtiqueta(pool);
-												let daoEP = new DAOPublicacionEtiqueta(pool);
-				
-												dao.agregarPublicacion(publicacion, function(err,idP){
-													if(err){
-														connection.rollback();
-														connection.release();
-														console.log(err);
-														callback(err);
-													}
-													else{
-														publicacion.ID = idP;
-														const promise = publicacion.etiquetas.map(async (et) => {
-															const p = await insertar( idP, et, daoE, daoEP);
-															return true;
-														});
-														Promise.all(promise).then(() =>{
-															if(error){
-																connection.rollback(() => console.log("rollback"));
-																connection.release();
-															}
-															else{
-																connection.commit();
-																connection.release();
-																callback(null, idP)
-															}
-															connection.query("SET AUTOCOMMIT=0", [], function(err){});
-														});
-													}
-												});
-											}
-										}
-									});
-								}
-								
-							});
-						}
-					  });
+					if(seccion === undefined){
+						callback("La seccion no es correcta");
+					}
+					else{
+						let dao = new DAOPublicacion(pool);
+						dao.agregarPublicacion(publicacion, function(err,idP){
+							if(err){
+								console.log(err);
+								callback(err);
+							}
+							else{
+								callback(null, idP);
+							}
+						});
+					}
 				}
 			});
 		}
@@ -206,3 +159,78 @@ async function insertar( idP, et, daoE, daoEP){
 		}
 	});
 }
+/*
+let p1 = new Promise((resolve, reject) => {
+	daoS.leerSeccion(publicacion.seccion, function(err, sec){
+		if(err){
+			reject(err);
+		}
+		else{
+			if(sec){
+				resolve();
+			}
+			else{
+				reject("La seccion no existe");
+			}
+		}
+	})
+}); 
+let p2 = new Promise((resolve, reject) => {
+	daoP.agregarPublicacion(publicacion, function(err, idP){
+		if(err){
+			reject(err);
+		}
+		else{
+			console.log(idP);
+			publicacion.ID = idP;
+			resolve();
+		}
+	})
+});
+let p3 = async () => {
+	return Promise.all(publicacion.etiquetas.map(e => {
+		daoE.leerEtiquetaPorNombre(e, function(err, eti){
+			if(err){
+				return Promise.reject(err);
+			}
+			else{
+				if(eti){
+					daoPE.agregarPublicacionEtiqueta(id1, eti.ID, function(err){
+						if(err){
+							return Promise.reject(err);
+						}
+						else{
+							return Promise.resolve();
+						}
+					});
+				}
+				else{
+					daoE.agregarEtiqueta(e, function(err,eti){
+						if(err){
+							return Promise.reject(err);
+						}
+						else{
+							daoPE.agregarPublicacionEtiqueta(id1, eti.ID, function(err){
+								if(err){
+									return Promise.reject(err);
+								}
+								else{
+									return Promise.resolve();
+								}
+							});
+						}
+					})
+				}
+			}
+		})
+	}))
+}
+Promise.all([p1,p2]).then(() => {
+	con.commit();
+	callback(null, publicacion.ID);
+})
+.catch((error) =>{
+	con.rollback();
+	callback(error);
+});
+*/

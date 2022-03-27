@@ -8,19 +8,69 @@ class DAOPublicacion {
 	
 	agregarPublicacion(publicacion, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
 		this._pool.getConnection(function(err, connection) {
-			connection.release();
 			if (err) {
-				callback("Error de conexion a la base de datos");
+				callback("Error de conexión a la base de datos");
 			}
 			else {
-				connection.query("INSERT INTO publicacion (Titulo, IDSec, Cuerpo ) VALUES (?, ?, ?)",  [ publicacion.titulo, publicacion.seccion, publicacion.cuerpo ], //Aquí va la query a la BD
+				connection.query("INSERT INTO publicacion (Titulo, IDSec, Cuerpo) VALUES (?, ?, ?)",  [ publicacion.titulo, publicacion.seccion, publicacion.cuerpo ], 
 					function(err, result) {
 						if (err) {
+							connection.release();
 							callback("Los datos no son correctos.");
 						}
 						else {
-							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el instert)
-							callback(null, result.insertId);
+							let idP = result.insertId;
+							let i = 0;
+							publicacion.etiquetas.forEach(e => 
+								connection.query("SELECT ID FROM etiqueta WHERE Nombre = ?" , [e], 
+									function(err, result) {
+										if (err) {
+											connection.release();
+											console.log("1");
+											callback("Los datos no son correctos.");
+										}
+										else{
+											i++;
+											if(result.length === 0){
+												connection.query("INSERT INTO etiqueta (Nombre) VALUES (?)" , [e], 
+												function(err, rows) {
+													if (err) {
+														connection.release();
+														console.log("1");
+														callback("Los datos no son correctos.");
+													}
+													else {
+														let idE = rows[0].ID;
+														connection.query("INSERT INTO publicacionetiqueta (IDPub, IDEti) VALUES (?, ?)" , [idP, idE], 
+														function(err, rows) {
+															if (err) {
+																connection.release();
+																console.log("1");
+																callback("Los datos no son correctos.");
+															}
+														});
+													}
+												})
+											}
+											else{
+												let idE = result.id;
+												connection.query("INSERT INTO publicacionetiqueta (IDPub, IDEti) VALUES (?, ?)" , [idP, idE], 
+												function(err, rows) {
+													if (err) {
+														connection.release();
+														callback("Los datos no son correctos.");
+													}
+												});
+											}
+											
+											if(i === publicacion.etiquetas.length){
+												connection.release();
+												callback(null, idP);
+											}
+										}
+									}
+								)
+							);
 						}
 					}
 				);

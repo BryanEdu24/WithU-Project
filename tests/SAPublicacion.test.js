@@ -11,6 +11,7 @@ const pool = mysql.createPool({
 //jest.setTimeout(5000);
 const sa = new SAPublicacion(pool);
 
+
 const tituloCorrecto = "Prueba titulo correcto con menos de 50 caracteres";
 const tituloIncorrecto = "Prueba titulo incorrecto con más de 50 caracteres. Debería fallar";
 const cuerpoCorrecto = "Este cuerpo tiene más de 90 caracteres: \n\nLorem ipsum dolor sit amet consectetur adipiscing elit aliquet est, facilisi nascetur nulla blandit malesuada varius fermentum hac, ultricies pulvinar cubilia platea massa fames enim iaculis. Ridiculus himenaeos lacinia nullam platea placerat netus sagittis habitasse sollicitudin ut viverra, tristique duis laoreet quam ad malesuada in iaculis magna nisl, leo quis facilisi congue mus odio proin feugiat dictum natoque. Ad dignissim nullam sed himenaeos vulputate inceptos rutrum molestie, pretium potenti tempor nibh porta cum hendrerit, at dictumst hac convallis tortor netus viverra.\n\nTempor enim dictum facilisi netus aliquam torquent justo bibendum pellentesque curae vestibulum massa eros ac ante, vehicula class erat leo inceptos luctus nibh maecenas diam libero dapibus felis ornare. Aenean maecenas metus ullamcorper lacinia nascetur aliquam justo vitae, suscipit arcu malesuada volutpat nulla class tristique facilisi, ultrices ante turpis commodo lectus hac rhoncus. Tortor neque velit montes interdum ridiculus eget arcu magna, urna dignissim cursus eleifend class varius venenatis, leo accumsan nulla maecenas at litora quis.";
@@ -18,6 +19,25 @@ const seccionCorrecta = 1;
 const seccionIncorrecta = 0;
 const etiquetaIncorrecta = [];
 const etiquetaCorrecta = ["Emociones"];
+
+test('Intentamos agregar una publicación con titulo, cuerpo, seccion y etiquetas correctas', done =>{
+    function cb(err, ID){
+        try{
+            expect(err).toBe(null);
+            expect(ID).toBeGreaterThan(0);
+            done();
+        }catch(error){
+            done(error);
+        }
+    }
+
+    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiquetas: etiquetaCorrecta};
+    try{
+        sa.agregarPublicacion(publicacion, cb);
+    }catch(error){
+        done(error);
+    }
+});
 
 test('Intentamos agregar un objeto undefined', done =>{
     function cb(err, ID){
@@ -72,25 +92,7 @@ test('Intentamos agregar un objeto que no es una publicación', done =>{
     }
 });
 
-test('Intentamos agregar una publicación con titulo, cuerpo, seccion y etiquetas correctas', done =>{
-    function cb(err, ID){
-        try{
-            expect(err).toBe(null);
-            expect(ID).toBeGreaterThan(0);
-            done();
-        }catch(error){
-            done(error);
-        }
-    }
-
-    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiquetas: etiquetaCorrecta};
-    try{
-        sa.agregarPublicacion(publicacion, cb);
-    }catch(error){
-        done(error);
-    }
-});
-test('Intentamos agregar una publicación con titulo ,etiqueta y cuerpo correctos y seccion incorrectas', done =>{
+test('Intentamos agregar una publicación con titulo, etiqueta y cuerpo correctos y seccion incorrecta', done =>{
     function cb(err, ID){
         try{
             expect(err).toBe("La seccion no es correcta");
@@ -107,6 +109,7 @@ test('Intentamos agregar una publicación con titulo ,etiqueta y cuerpo correcto
         done(error);
     }
 });
+
 test('Intentamos agregar una publicación con titulo ,etiqueta y cuerpo correctos y seccion undefined', done =>{
     function cb(err, ID){
         try{

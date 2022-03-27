@@ -75,8 +75,8 @@ app.post('/crearPublicacion', multerFactory.none(), function (req, res) {
 		cuerpo : req.body.publicacion.cuerpo,
 		seccion : req.body.publicacion.seccion
 	}
-	let etiquetas = [req.body.etiquetas.etiqueta1,req.body.etiquetas.etiqueta2,req.body.etiquetas.etiqueta3,
-	req.body.etiquetas.etiqueta4,req.body.etiquetas.etiqueta5];
+	let etiquetas = req.body.etiquetas ? [req.body.etiquetas.etiqueta1,req.body.etiquetas.etiqueta2,req.body.etiquetas.etiqueta3,
+req.body.etiquetas.etiqueta4,req.body.etiquetas.etiqueta5] : [];
 
 	publicacion.etiquetas = etiquetas.filter((item,index)=>{
 			return item !== undefined && etiquetas.indexOf(item) === index;
