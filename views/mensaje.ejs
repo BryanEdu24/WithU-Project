@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title> WithU </title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="/stylesheets/css/bootstrap-5.1.3.css"/>
+        <link rel="stylesheet" href="/stylesheets/css/mensaje.css"/>
+    </head>
+
+    <body>
+        <div class="section1 text-center">
+            <h1>Mensaje</h1>
+        </div>
+  
+
+        <div class="container">
+            <div class="d-flex justify-content-center <%=(mensaje.includes("Se ha creado"))  ? "goodmsg" : "badmsg" %>  " id="mensaje">
+                <div class="p-2">
+                    <%= mensaje %>
+                </div>
+                <div class="p-2">
+                    <a href="/crearPublicacion">Volver</a>
+                </div>
+                 
+            </div>
+        </div>       
+
+             
+    </body>
+</html>

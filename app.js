@@ -87,14 +87,16 @@ req.body.etiquetas.etiqueta4,req.body.etiquetas.etiqueta5] : [];
 		if(err){
 			console.log(err);
 			res.setFlash(err);
-			res.redirect("/crearPublicacion");
+			res.render("mensaje", {mensaje : err});
 		}
 		else{
-			res.setFlash("Se ha creado la publicación con éxito con id:" + id);
-			res.redirect("/crearPublicacion");
+			let msg= "Se ha creado la publicación con éxito con id:" + id;
+			res.render("mensaje", {mensaje : msg});
 		}
 	});
 });
+
+
 
 //Vista de datos básicos de publicación
 app.get("/leerPublicacion/:id", function(request, response){

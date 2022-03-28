@@ -1,0 +1,10 @@
+body{
+    color: black;
+    background: linear-gradient(to bottom, white, #52adf7); 
+}
+.badmsg{
+    background-color: #ff5e69;
+}
+.goodmsg{
+    background-color: #66ff8a;
+}
