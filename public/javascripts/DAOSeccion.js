@@ -12,7 +12,7 @@ class DAOSeccion {
 				callback(new Error("Error de conexion a la base de datos"));
 			}
 			else {
-				connection.query("SELECT * FROM Seccion WHERE ID=?" ,[ID] ,//Aquí va la query a la BD
+				connection.query("SELECT * FROM seccion WHERE ID=?" ,[ID] ,//Aquí va la query a la BD
 					function(err, rows) {
 						connection.release();
 						if (err) {
@@ -41,7 +41,7 @@ class DAOSeccion {
 				callback(new Error("Error de conexion a la base de datos"));
 			}
 			else {
-				connection.query("SELECT * FROM Seccion", //Aquí va la query a la BD
+				connection.query("SELECT * FROM seccion", //Aquí va la query a la BD
 					function(err, rows) {
 						connection.release();
 						if (err) {
