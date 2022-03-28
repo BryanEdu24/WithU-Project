@@ -9,65 +9,19 @@ class DAOPublicacion {
 	agregarPublicacion(publicacion, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
 		this._pool.getConnection(function(err, connection) {
 			if (err) {
-				callback("Error de conexión a la base de datos");
+				connection.release();
+				callback("Error de conexion a la base de datos");
 			}
 			else {
-				connection.query("INSERT INTO publicacion (Titulo, IDSec, Cuerpo) VALUES (?, ?, ?)",  [ publicacion.titulo, publicacion.seccion, publicacion.cuerpo ], 
+				connection.query("INSERT INTO publicacion (Titulo, Cuerpo) VALUES (?, ?)",  [ publicacion.titulo, publicacion.cuerpo ], //Aquí va la query a la BD
 					function(err, result) {
+						connection.release();
 						if (err) {
-							connection.release();
 							callback("Los datos no son correctos.");
 						}
 						else {
-							let idP = result.insertId;
-							let i = 0;
-							publicacion.etiquetas.forEach(e => 
-								connection.query("SELECT ID FROM etiqueta WHERE Nombre = ?" , [e], 
-									function(err, result) {
-										if (err) {
-											connection.release();
-											callback("Los datos no son correctos.");
-										}
-										else{
-											i++;
-											if(result.length === 0){
-												connection.query("INSERT INTO etiqueta (Nombre) VALUES (?)" , [e], 
-												function(err, result) {
-													if (err) {
-														connection.release();
-														callback("Los datos no son correctos.");
-													}
-													else {
-														let idE = result.insertId;
-														connection.query("INSERT INTO publicacionetiqueta (IDPub, IDEti) VALUES (?, ?)" , [idP, idE], 
-														function(err, rows) {
-															if (err) {
-																connection.release();
-																callback("Los datos no son correctos.");
-															}
-														});
-													}
-												})
-											}
-											else{
-												let idE = result.id;
-												connection.query("INSERT INTO publicacionetiqueta (IDPub, IDEti) VALUES (?, ?)" , [idP, idE], 
-												function(err, rows) {
-													if (err) {
-														connection.release();
-														callback("Los datos no son correctos.");
-													}
-												});
-											}
-											
-											if(i === publicacion.etiquetas.length){
-												connection.release();
-												callback(null, idP);
-											}
-										}
-									}
-								)
-							);
+							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el instert)
+							callback(null, result.insertId);
 						}
 					}
 				);
@@ -90,13 +44,7 @@ class DAOPublicacion {
 						}
 						else {
 							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el insert)
-							let publicacion={
-								ID:rows[0].ID, 
-								Titulo: rows[0].Titulo, 
-								Cuerpo: rows[0].Cuerpo, 
-								Seccion: rows[0].IDSec, 
-								Etiquetas: rows[0].Etiquetas
-							};
+							let publicacion={ID:rows[0].ID,Titulo:rows[0].Titulo,Cuerpo:rows[0].Cuerpo};
 							callback(null,publicacion);
 						}
 					}
@@ -105,7 +53,35 @@ class DAOPublicacion {
 		});
 	}
 
-	
+	leerPublicacionPorSeccion(IDSec, callback) {
+		this._pool.getConnection(function(err, connection) {
+			if (err) {
+				connection.release();
+				callback(new Error("Error de conexion a la base de datos"));
+			}
+			else {
+				connection.query("SELECT * FROM publicacion WHERE IDSec=?" ,[IDSec] ,//Aquí va la query a la BD
+					function(err, rows) {
+						connection.release();
+						if (err) {
+							callback(new Error("Error de conexion a la base de datos"));
+						}
+						else {
+							//Aquí se tratan los datos y llama al callback (Habría que devolver la coleccion de publicaciones)
+							let listaPublicaciones = new Array();
+							for (let i in rows) {
+								listaPublicaciones[i].ID = rows[i].ID;
+								listaPublicaciones[i].Titulo = rows[i].Titulo;
+								listaPublicaciones[i].Cuerpo = rows[i].Cuerpo;
+								listaPublicaciones[i].IDSec = rows[i].IDSec;
+							}
+							callback(null,listaPublicaciones);
+						}
+					}
+				);
+			}
+		})
+	}
 /*
 	listarPublicaciones(callback){
 		this._pool.getConnection(function(err, connection) {
@@ -139,3 +115,23 @@ class DAOPublicacion {
 */
 }
 module.exports = DAOPublicacion;
+
+/*const mysql = require("mysql");
+const pool = mysql.createPool({
+	host: "localhost",
+	user: "root",
+	password: "",
+	database: "withu"
+});
+function leer(){
+	let dao= new DAOPublicacion(pool);
+	dao.leerPublicacion(1,function(err,pub){
+		if(err){
+			console.log(err);
+		}
+		else{
+			console.log(pub);
+		}
+	});
+}
+leer();*/
