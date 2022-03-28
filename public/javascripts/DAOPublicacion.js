@@ -60,25 +60,32 @@ class DAOPublicacion {
 				callback(new Error("Error de conexion a la base de datos"));
 			}
 			else {
-				connection.query("SELECT * FROM publicacion WHERE IDSec=?" ,[IDSec] ,//Aquí va la query a la BD
+				connection.query("SELECT p.ID, p.Titulo, p.Cuerpo, e.Nombre " +
+				"FROM publicacion p JOIN publicacionetiqueta pe ON (p.ID = pe.IDPub) JOIN etiqueta e ON (e.ID = pe.IDEti) " +
+				"WHERE p.IDSec = ? " +
+				"ORDER BY p.id" , [IDSec],
 					function(err, rows) {
-						connection.release();
+						connection.release(); // devolver al pool la conexión
 						if (err) {
-							callback(new Error("Error de conexion a la base de datos"));
+							callback(err);
 						}
 						else {
-							//Aquí se tratan los datos y llama al callback (Habría que devolver la coleccion de publicaciones)
-							let listaPublicaciones = new Array();
-							for (let i in rows) {
-								listaPublicaciones[i].ID = rows[i].ID;
-								listaPublicaciones[i].Titulo = rows[i].Titulo;
-								listaPublicaciones[i].Cuerpo = rows[i].Cuerpo;
-								listaPublicaciones[i].IDSec = rows[i].IDSec;
-							}
-							callback(null,listaPublicaciones);
-						}
+							let publicacionesDistintas = Array.from(new Set(
+							rows.map(t => t.ID))).map(ID => {
+								return {
+									ID: ID,
+									Titulo: rows.find(t => t.ID === ID).Titulo,
+									Cuerpo: rows.find(t => t.ID === ID).Cuerpo,
+									IDSec: rows.find(t => t.ID === ID).IDSec,
+									Etiquetas: Array.from(rows.map(function(t){
+												if(t.ID === ID)
+													return t.Nombre;
+											})).filter(t => t!==undefined)
+								}
+						});
+						callback(null, publicacionesDistintas);
 					}
-				);
+				});
 			}
 		})
 	}

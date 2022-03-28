@@ -73,33 +73,5 @@ class DAOEtiqueta {
 			}
 		});
 	}
-
-	leerEtiquetasPorPublicacion(ID, callback) {
-		this._pool.getConnection(function(err, connection) {
-			if (err) {
-				connection.release();
-				callback("Error de conexion a la base de datos");
-			}
-			else {
-				connection.query("SELECT * FROM etiqueta JOIN publicacionetiqueta WHERE publicacionetiqueta.IDPub = ?",  [ID],
-					function(err, rows) {
-						connection.release();
-						if (err) {
-							callback("Los datos no son correctos.");
-						}
-						else {
-							let listaEtiquetas = new Array();
-							for (let i in rows) {
-								listaEtiquetas[i].IDPub = rows[i].IDPub;
-								listaEtiquetas[i].IDEti = rows[i].IDEti;
-								listaEtiquetas[i].Nombre = rows[i].Nombre;
-							}
-							callback(null,listaEtiquetas);
-						}
-					}
-				);
-			}
-		});
-	}
 }
 module.exports = DAOEtiqueta;
