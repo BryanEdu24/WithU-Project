@@ -91,7 +91,7 @@ req.body.etiquetas.etiqueta4,req.body.etiquetas.etiqueta5] : [];
 		}
 		else{
 			let msg= "Se ha creado la publicación con éxito con id:" + id;
-			res.render("mensaje", {mensaje : msg});
+			res.render("mensaje", {mensaje : msg, id : id});
 		}
 	});
 });

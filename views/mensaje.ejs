@@ -19,6 +19,11 @@
                 </div>
                 <div class="p-2">
                     <a href="/crearPublicacion">Volver</a>
+                    <% if(mensaje.includes("Se ha creado")){%>
+                        
+                     
+                    <a href="/leerPublicacion/<%= id %> "> Ver Publicacion</a>
+                    <% } %>
                 </div>
                  
             </div>
