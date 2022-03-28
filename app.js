@@ -128,6 +128,21 @@ app.get("/crearPublicacion", function(req,res){
 	
 });
 
+//Busqueda de publicacion por seccion
+app.get("/seccion/:id", function(request, response){
+	let SA = new SAPublicacion(pool);
+	let id = request.params.id;
+	SA.leerPublicacionesPorSeccion(id, function(err, result) {
+		if(err) {
+			console.log(err);
+			response.redirect("/crearPublicacion");
+		}
+		else {
+			response.render("verSeccion", {publicaciones: result});
+		}
+	});
+});
+
 app.get("/", function(req,res){
 	res.redirect("crearPublicacion");
 });
