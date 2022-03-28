@@ -16,7 +16,7 @@ class DAOEtiqueta {
 					function(err, result) {
 						connection.release();
 						if (err) {
-							callback(err);
+							callback("Los datos no son correctos.");
 						}
 						else {
 							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el instert)

@@ -63,6 +63,6 @@ test('Error al ejecutar la petición a la BBDD', done =>{
         }    
     }
     
-    let etiqueta = "Variable no valida";
+    let etiqueta = {error:"Variable no valida"};
     dao.agregarEtiqueta(etiqueta, cb);
 });
