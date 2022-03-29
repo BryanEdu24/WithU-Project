@@ -278,3 +278,27 @@ test('Leer datos de una publicación', done => {
     }
 
 });
+test('Leer datos por seccion de una publicacion', done => {
+    function callback(err, publicacion) { 
+        try{
+            expect(err).toBe(null);
+            expect(publicacion.Titulo).toBe(tituloCorrecto);
+            expect(publicacion.Cuerpo).toBe(cuerpoCorrecto);
+            expect(publicacion.Seccion).toBe(seccionCorrecta);
+            expect(publicacion.etiquetas).toStrictEqual(etiquetaCorrecta);
+            done(); 
+        }catch(error){
+            done(error);
+        }  
+    }
+
+    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiquetas: etiquetaCorrecta };
+    
+    try{
+        sa.leerPublicacionesPorSeccion(1, callback);
+    }catch(error){
+        done(error);
+    }
+
+});
+
