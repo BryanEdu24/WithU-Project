@@ -1,9 +1,12 @@
 <html>
     <%- include("head") %>
 
-    <body>
+    <body class="body">
+         <!-- Barra de navegacion para busqueda por seccion -->
+        <%- include("navbar") %>
+
         <div class="section1 text-center">
-            <h1>Creación de una publicación básica</h1>
+            <h1>Creación tu publicación🤡🐷😘</h1>
         </div>
   
         <% let mensaje = getFlash(); %>
@@ -18,21 +21,27 @@
 
                 <div class="Titulo d-flex justify-content-center flex-column">
                     <div class="Parte1 p-2">
-                        Titulo:<b class="asterisco">* </b>  
+                        <b>Titulo:</b><b class="asterisco">* </b>  
                     </div>
 
                     <div class="p-2">
-                        <input class="form-control" type="text" placeholder="Titulo de publicación" name="publicacion[titulo]">
+                        <input class="TituloTexto form-control" type="text" placeholder="Titulo de publicación" name="publicacion[titulo]" required minlength="3" maxlength="50">
+                        <div style='text-align:right'>
+                            <i>Entre 3-50 caracteres</i>
+                        </div>
                     </div>
                 </div>
 
                 <div class="Cuerpo d-flex justify-content-center flex-column">
                     <div class="Parte2 p-2">
-                        Cuerpo:<b class="asterisco">* </b>  
+                        <b>Cuerpo:</b><b class="asterisco">* </b>  
                     </div>
     
                     <div class="form-group p-2">
-                        <textarea class="form-control" type="text" rows="8" placeholder="Cuerpo de publicación" name="publicacion[cuerpo]" ></textarea>
+                        <textarea class="CuerpoTexto form-control" type="text" rows="8" placeholder="Cuerpo de publicación" name="publicacion[cuerpo]" required minlength="90"></textarea>
+                        <div style='text-align:right'>
+                            <i>Min. 90 caracteres</i>
+                        </div>
                     </div>
                 </div>
     
@@ -41,9 +50,9 @@
                     <!-- Aqui esta para elegir la seccion -->
                     <div class="AniadirSeccion flex-column">
                         <div class="Parte3 p-2">
-                            <b>AÑADIR A LA SECCIÓN:</b><b class="asterisco">*</b> 
+                            <b>Añadir a la sección:</b><b class="asterisco">*</b> 
                             <select class="OpcionesSeccion" name="publicacion[seccion]">
-                                <option value="Valor Predefinido"> Seleccione una sección...</option>
+                                <option value="Valor Predefinido">Elija una sección...</option>
                                 <% secciones.forEach( sec => { %>
                                     <option value= "<%= sec.ID %>"><%= sec.Nombre %></option>
                                 <% }); %>
@@ -54,9 +63,9 @@
                  <!-- Aqui es donde esta la seleccion de las etiquetas -->
                     <div class="AniadirEtiqueta d-flex flex-column" id="seleccion_etiquetas">
                         <div class="Parte4 d-flex p-2">
-                            <b>AÑADIR ETIQUETA:</b><b class="asterisco">*</b> 
+                            <b>Añadir etiquetas</b><i>(max. 5)</i><b>:</b><b class="asterisco">*</b> 
                         <div class="p-2" id="textoEtiqueta" >
-                            <input class="form-control" type="text" placeholder="Etiqueta" name="etiqueta" id="nuevaEtiqueta" style="background:beige;">
+                            <input class="form-control" type="text" placeholder="Etiqueta" name="etiqueta" id="nuevaEtiqueta" style="background: #FFF0C9;">
                         </div>
                         <div class="p-2" id="botonAñadirEtiqueta" >
                             <input type="button" class="btn btn-primary" value ="Añadir">                                 

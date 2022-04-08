@@ -1,6 +1,13 @@
-body {
-    color: black;
-    background: linear-gradient(to bottom, white, #52adf7); 
+#LogoNavBar {
+    position: absolute;
+    height: 60;
+    left: 0;
+    top: 0;
+}
+
+.body {
+    color:black;
+    background: linear-gradient(to bottom, #5271ff, black);
 }
 
 .section1 {
@@ -8,14 +15,20 @@ body {
 }
 
 .Container {
-    border:1px solid black;
+    border: black;
     border-radius: 10px;
+    background-color: white;
 }
 
 .Titulo {
     margin-top: 0.5%;
     margin-bottom: 0.5%;
     color: black;
+}
+
+.TituloTexto {
+    border-color: transparent;
+    background: #FFF0C9;
 }
 
 .Parte1 p {
@@ -25,6 +38,11 @@ body {
 .Cuerpo {
     margin-top: 0.5%;
     color: black;
+}
+
+.CuerpoTexto {
+    border-color: transparent;
+    background: #FFF0C9;
 }
 
 .Parte2 p {
@@ -52,14 +70,13 @@ body {
 }
 
 select {
-    background: beige;
+    background: #FFF0C9;
     height: 30px;
     font-size: 15px;
     width: 235px;
 }
 
  select:focus { outline: none;}
-
 
 .AniadirEtiqueta {
     font-size: 15px;
@@ -86,7 +103,7 @@ select {
 }
 
 #listaEtiquetas{
-    border: 2px solid beige;
+    border: 2px solid #7373e6;
     border-radius: 50px;
     max-height: 80%;
     height: 80%;
