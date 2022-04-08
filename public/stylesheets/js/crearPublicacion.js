@@ -120,3 +120,8 @@ function cambiarNumeros(e){
 
 botonAñadir.addEventListener("click", añadirEtiqueta)
 
+let titulo = document.getElementsByClassName("TituloTexto")
+
+titulo.addEventListener("blur", (event) => {
+   alert("Faltan tantos caracteres")
+  }, true)

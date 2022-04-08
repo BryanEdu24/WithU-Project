@@ -26,10 +26,11 @@
     color: black;
 }
 
-.TituloTexto {
+.TituloTexto, .TituloTexto:focus {
     border-color: transparent;
     background: #FFF0C9;
 }
+
 
 .Parte1 p {
     display:inline;
@@ -40,7 +41,7 @@
     color: black;
 }
 
-.CuerpoTexto {
+.CuerpoTexto, .CuerpoTexto:focus{
     border-color: transparent;
     background: #FFF0C9;
 }
@@ -128,4 +129,8 @@ select {
     font-size: 12px;
     margin-top: 1%;
     color: red;
+}
+
+.textoNav{
+    color: white;
 }

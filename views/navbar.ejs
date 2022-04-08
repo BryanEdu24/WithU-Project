@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <!--Va fuera cuando se ponga el for-->
-            <li class="nav-item active">
+            <!-- <li class="nav-item active">
                 <a class="nav-link" href="#">Estudios</a>
             </li>
             
@@ -22,12 +22,12 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="#">Relaciones</a>
-            </li>
+            </li> -->
             <!--Hasta aqui borrar-->
-            <!--El for de las secciones
+           <!-- El for de las secciones -->
             <% secciones.forEach( sec => { %>
-                <option value= "<%= sec.ID %>"><%= sec.Nombre %></option>
-            <% }); %>-->
+                <option value= "<%= sec.ID %>" class="textoNav"><%= sec.Nombre %></option>
+            <% }); %>
         </ul> 
     </div>
 
