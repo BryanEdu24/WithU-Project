@@ -1,34 +1,88 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
+<nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="#">
-        <img src="/images/LogoWithU.png" width="30" height="30" class="d-inline-block align-top" alt=""/>
-        WithU
+        <img src="/images/LogoWithU.png" width="40" height="40" class="d-inline-block align-top" alt=""/>
     </a>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <!--Va fuera cuando se ponga el for-->
-            <!-- <li class="nav-item active">
-                <a class="nav-link" href="#">Estudios</a>
-            </li>
-            
-            <li class="nav-item">
-                <a class="nav-link" href="#">Trabajo</a>
-            </li>
-            
-            <li class="nav-item">
-                <a class="nav-link" href="#">Familia</a>
-            </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="#">Relaciones</a>
-            </li> -->
-            <!--Hasta aqui borrar-->
-           <!-- El for de las secciones -->
-            <% secciones.forEach( sec => { %>
-                <option value= "<%= sec.ID %>" class="textoNav"><%= sec.Nombre %></option>
-            <% }); %>
-        </ul> 
-    </div>
+    <form class="form">
+        <input class="form-control mr-sm-2" type="search" placeholder="Palabra Clave" aria-label="Search">
+        <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>-->
+    </form>
+    
+</nav>
 
-  </nav>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #7373e6;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #7373e6;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 35px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+
+
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">Universidad y Estudios</a>
+  <a href="#">Trabajo</a>
+  <a href="#">Familia</a>
+  <a href="#">Relaciones</a>
+  <a href="#">Autoestima</a>
+  <a href="#">Otros</a>
+  <a href="#">Información</a>
+</div>
+
+<span style="font-size:25px;cursor:pointer" onclick="openNav()">&#9776; Secciones</span>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+   
+</body>
