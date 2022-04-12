@@ -1,112 +1,57 @@
-<nav class="navbar navbar-light" style="background-color: #5271ff;">
-    <a class="navbar-brand p-2" href="#">
-      <img src="/images/LogoBorde.png" width="35" height="35" class="d-inline-block align-top" alt=""/>
-    </a>
-
-
-  <div class="form">
-    <input class="form-control mr-sm-2" type="search" placeholder="Búsqueda por palabra clave" aria-label="Search">
-  </div>
-  <div>
-    Mi cuenta
-  </div>
-
-</nav>
-
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <style>
-  body {
-    font-family: "Lato", sans-serif;
-  }
-  
-  .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background: linear-gradient(to bottom, #5271ff, #B0CDDB);
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-  }
-  
-  .sidenav a {
-    padding: 15px 5px 10px 5px;
-    text-decoration: none;
-    font-size: 25px;
-    color: beige;
-    display: block;
-    transition: 0.3s;
-  }
-  
-  .sidenav a:hover {
-    color: black;
-  }
-  
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 35px;
-    margin-left: 50px;
-  }
-  
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  }
-  </style>
-  
-  
+<html>
+  <head>
+    <link href="/stylesheets/css/navbar.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
+
   <body>
-  
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">
-      <img src="/images/Estudios_Icon.png" width="40" height="40" class="d-inline-block align-top" alt=""/>
-      Universidad y Estudios
-    </a>
-    <a href="#">
-      <img src="/images/Trabajo_Icon.png" width="40" height="40" class="d-inline-block align-top" alt=""/>
-      Trabajo
-    </a>
-    <a href="#">
-      <img src="/images/Familia_Icon.png" width="40" height="40" class="d-inline-block align-top" alt=""/>
-      Familia
-    </a>
-    <a href="#">
-      <img src="/images/Relaciones_Icon.png" width="40" height="40" class="d-inline-block align-top" alt=""/>
-      Relaciones
-    </a>
-    <a href="#">
-      <img src="/images/Autoestima_Icon.png" width="40" height="40" class="d-inline-block align-top" alt=""/>
-      Autoestima
-    </a>
-    <a href="#">
-      <img src="/images/Otros_Icon.png" width="40" height="40" class="d-inline-block align-top" alt=""/>
-      Otros
-    </a>
-    <a href="#">
-      <img src="/images/Informacion_Icon.png" width="40" height="40" class="d-inline-block align-top" alt=""/>
-      Información
-    </a>
-  </div>
-  
-  <span style="font-size:25px;cursor:pointer" onclick="openNav()">&#9776; Secciones</span>
-  
-  <script>
-  function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-  }
-  
-  function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-  }
-  </script>
-     
+    <nav class="navbar navbar-light fixed-top" style="background-color: #5271ff;">
+      <a class="navbar-brand p-2" href="#">
+        <img src="/images/LogoBorde.png" width="35" height="35" class="d-inline-block align-top" alt=""/>
+      </a>
+      
+      <div class="form">
+        <input class="form-control mr-sm-2" type="search" placeholder="Búsqueda por palabra clave" aria-label="Search">
+      </div>
+      <div>
+        Mi cuenta
+      </div>
+    </nav>
+
+    <div class="espaciado">
+
+    </div>
+
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <!---
+      <% secciones.forEach( sec => { %>
+        <option value= "<%= sec.ID %>"><%= sec.Nombre %></option>
+      <% }); %>
+      -->
+      <div class="seccionesNav">
+        <% secciones.forEach( sec => { %>
+          <a href="/buscar/<%=sec.ID%>">
+            <img src="/images/<%= sec.Nombre %>.png" width="40" height="40" class="d-inline-block align-top" alt=""/>
+            <%= sec.Nombre %>
+          </a>
+        <% }); %>
+      </div>
+      
+    </div>
+    
+    <span style="font-size:25px;cursor:pointer;margin-left: 5px;" onclick="openNav()">&#9776; Secciones</span>
+    
+    <script>
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+      }  
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      }
+    </script>
+
   </body>
+</html>
+
+  
