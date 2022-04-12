@@ -6,13 +6,15 @@ let numEtiquetas = 0
 
 var añadirEtiqueta = function nuevaEtiqueta(){
 
+    let textEtiqueta = document.getElementById("nuevaEtiqueta")
 
-    if(numEtiquetas < 5){
+
+    if(numEtiquetas < 5 && textEtiqueta.value !== ''){
         numEtiquetas++
 
         let añadir = document.getElementById("listaEtiquetas")
 
-        let textEtiqueta = document.getElementById("nuevaEtiqueta")
+        
 
         const content = `
         <div class="d-flex p-2 filaEtiqueta jusify-content-left">
