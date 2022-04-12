@@ -14,8 +14,6 @@ var añadirEtiqueta = function nuevaEtiqueta(){
 
         let añadir = document.getElementById("listaEtiquetas")
 
-        
-
         const content = `
         <div class="d-flex p-2 filaEtiqueta jusify-content-left">
              <div class="p-2 nombreEtiqueta bd-highlight">               
