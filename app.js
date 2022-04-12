@@ -17,6 +17,7 @@ const mysql = require("mysql");
 const { append } = require("express/lib/response");
 const { hasUncaughtExceptionCaptureCallback } = require("process");
 const pool = mysql.createPool({
+	multipleStatements: true,
 	host: config.host,
 	user: config.user,
 	password: config.password,

@@ -12,63 +12,16 @@ class DAOPublicacion {
 				callback("Error de conexión a la base de datos");
 			}
 			else {
-				connection.query("INSERT INTO publicacion (Titulo, IDSec, Cuerpo) VALUES (?, ?, ?)",  [ publicacion.titulo, publicacion.seccion, publicacion.cuerpo ], 
-				function(err, result) {
+				connection.query("CALL crearPublicacion(?,?,?,?,@output)",  [ publicacion.titulo, publicacion.cuerpo, publicacion.seccion, publicacion.etiquetas ], 
+				function(err, rows) {
+					connection.release();
 					if (err) {
-						connection.release();
-						callback("Los datos no son correctos.");
+						callback("Ha ocurrido un error en la base de datos, por favor intentelo de nuevo más tarde");
 					}
 					else {
-						let idP = result.insertId;
-						let i = 0;
-						publicacion.etiquetas.forEach(e => 
-							connection.query("SELECT ID FROM etiqueta WHERE Nombre = ?" , [e], 
-								function(err, result) {
-									if (err) {
-										connection.release();
-										callback("Los datos no son correctos.");
-									}
-									else{
-										i++;
-										if(result.length === 0){
-											connection.query("INSERT INTO etiqueta (Nombre) VALUES (?)" , [e], 
-											function(err, result) {
-												if (err) {
-													connection.release();
-													callback("Los datos no son correctos.");
-												}
-												else {
-													let idE = result.insertId;
-													connection.query("INSERT INTO publicacionetiqueta (IDPub, IDEti) VALUES (?, ?)" , [idP, idE], 
-													function(err, rows) {
-														if (err) {
-															connection.release();
-															callback("Los datos no son correctos.");
-														}
-													});
-												}
-											})
-										}
-										else{
-											let idE = result.id;
-											connection.query("INSERT INTO publicacionetiqueta (IDPub, IDEti) VALUES (?, ?)" , [idP, idE], 
-											function(err, rows) {
-												if (err) {
-													connection.release();
-													callback("Los datos no son correctos.");
-												}
-											});
-										}
-										if(i === publicacion.etiquetas.length){
-											connection.release();
-											callback(null, idP);
-										}
-									}
-								}
-							));
-						}
+						callback(null, rows[0][0]['']);
 					}
-				);
+				});
 			}
 		});
 	}

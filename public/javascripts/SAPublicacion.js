@@ -40,6 +40,13 @@ class SAPublicacion {
 						callback("La seccion no es correcta");
 					}
 					else{
+						let etis = "";
+						publicacion.etiquetas.forEach(e => {
+							if(e !== undefined)
+								etis+= e + ",";
+						});
+						etis = etis.substring(0, etis.length-2);
+						publicacion.etiquetas = etis;
 						let dao = new DAOPublicacion(pool);
 						dao.agregarPublicacion(publicacion, function(err,idP){
 							if(err){
