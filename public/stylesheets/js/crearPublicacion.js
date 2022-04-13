@@ -17,7 +17,7 @@ var añadirEtiqueta = function nuevaEtiqueta(){
         const content = `
         <div class="d-flex p-2 filaEtiqueta jusify-content-left">
              <div class="p-2 nombreEtiqueta bd-highlight">               
-                <input class="form-control etiquetaNum" type="text" value= "`+ textEtiqueta.value +`" name = "etiquetas[etiqueta` + numEtiquetas +`]" id="etiquetaNum">
+                <input class="form-control etiquetaNum" type="text" readonly disabled value= "`+ textEtiqueta.value +`" name = "etiquetas[etiqueta` + numEtiquetas +`]" id="etiquetaNum">
             </div>
             <div class="p-2 botonEtiqueta">
                  <button type="button" class="btn btn-outline-danger delete">X</button>
@@ -35,6 +35,10 @@ var añadirEtiqueta = function nuevaEtiqueta(){
         textEtiqueta.value = ""
 
         fila.querySelector(".delete").addEventListener('click', eliminarEtiqueta)
+    }
+
+    if(numEtiquetas === 5){
+        textEtiqueta.disabled = true
     }
     
     
