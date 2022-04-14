@@ -109,8 +109,18 @@ app.get("/leerPublicacion/:id", function(request, response){
 			response.redirect("/crearPublicacion");
 		}
 		else {
-			let busq = "Vista de publicación";
-			response.render("verPublicacion", {publicacion: result});
+			let daoSec = new DAOSeccion(pool);
+			try{
+				daoSec.leerTodas(function(err, sec){
+					if(sec === undefined){
+						sec = [];
+					}
+					response.render("verPublicacion", {publicacion: result, secciones:sec});
+				});
+			}catch(err){
+				let sec = [];
+				response.render("verPublicacion", {publicacion: result, secciones:sec});
+			}
 		}
 	});
 });
@@ -141,13 +151,25 @@ app.get("/seccion/:id", function(request, response){
 			response.redirect("/crearPublicacion");
 		}
 		else {
-			response.render("verSeccion", {publicaciones: result});
+			let daoSec = new DAOSeccion(pool);
+			try{
+				daoSec.leerTodas(function(err, sec){
+					if(sec === undefined){
+						sec = [];
+					}
+					response.render("verSeccion", {publicacion: result, secciones:sec});
+				});
+			}catch(err){
+				let sec = [];
+				response.render("verSeccion", {publicacion: result, secciones:sec});
+			}
 		}
 	});
 });
 
+
 app.get("/", function(req,res){
-	res.redirect("crearPublicacion");
+	res.redirect("/leerPublicacion/2");
 });
 
 
