@@ -66,5 +66,53 @@ class SAUsuario {
             });
 		}
     }
+
+    buscarUsuario(user, password, callback){//User puede ser username o email
+        if(isNaN(user) || user === "" || user === undefined || user === null || password === "" 
+        || password === undefined || password === null || isNaN(password)){
+            callback("No puede haber campos vacios")
+        }
+        else if(password.length < 5 || password.length > 20){
+            callback("La longitud de la contraseña no es la correcta")
+        }
+        else{
+            let dao = new DAOUsuario(this._pool);
+            dao.leerUsuarioPorCorreo(user, function(err,user){
+                if(err){
+                    callback(err)
+                }
+                else{
+                    if(user){
+                        if(user.Password === password){
+                            callback(null, user)
+                        }
+                        else{
+                            callback("Contraseña incorrecta")
+                        }                        
+                    }
+                    else{
+                        dao.leerUsuarioPorUsername(user, function(err,user){
+                            if(err){
+                                callback(err);
+                            }
+                            else{
+                                if(user){
+                                    if(user.Password === password){
+                                        callback(null, user)
+                                    }
+                                    else{
+                                        callback("Contraseña incorrecta")
+                                    }
+                                }
+                                else{
+                                    callback("El usuario no existe")
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    }
 }
 module.exports = SAUsuario;
