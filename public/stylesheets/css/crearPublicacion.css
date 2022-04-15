@@ -1,6 +1,7 @@
 .body {
     color:black;
     background: linear-gradient(to bottom, white, #5271ff);
+    transition: margin-left 0.3s;
 }
 
 .section1 {
@@ -23,7 +24,6 @@
     border-color: transparent;
     background: #FFF0C9;
 }
-
 
 .Parte1 p {
     display:inline;
@@ -70,7 +70,7 @@ select {
     width: 235px;
 }
 
- select:focus { outline: none;}
+select:focus { outline: none;}
 
 .AniadirEtiqueta {
     font-size: 15px;
@@ -116,6 +116,7 @@ select {
    margin-left: -17px;
    margin-top: 1px;
 }
+
 .etiquetaNum {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -135,4 +136,6 @@ select {
     margin-top: 1%;
     color: red;
 }
+
+/*HASTA AQUI*/
 

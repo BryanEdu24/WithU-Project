@@ -1,57 +1,36 @@
-<html>
-  <head>
-    <link href="/stylesheets/css/navbar.css" rel="stylesheet" type="text/css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
+<head>
+  <link href="/stylesheets/css/navbar.css" rel="stylesheet" type="text/css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-  <body>
-    <nav class="navbar navbar-light fixed-top" style="background-color: #5271ff;">
-      <a class="navbar-brand p-2" href="#">
-        <img src="/images/LogoBorde.png" width="35" height="35" class="d-inline-block align-top" alt=""/>
-      </a>
-      
-      <div class="form">
-        <input class="form-control mr-sm-2" type="search" placeholder="Búsqueda por palabra clave" aria-label="Search">
-      </div>
-      <div>
-        Mi cuenta
-      </div>
-    </nav>
-
-    <div class="espaciado">
-
-    </div>
-
-    <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <!---
-      <% secciones.forEach( sec => { %>
-        <option value= "<%= sec.ID %>"><%= sec.Nombre %></option>
-      <% }); %>
-      -->
-      <div class="seccionesNav">
-        <% secciones.forEach( sec => { %>
-          <a href="/buscar/<%=sec.ID%>">
-            <img src="/images/<%= sec.Nombre %>.png" width="40" height="40" class="d-inline-block align-top" alt=""/>
-            <%= sec.Nombre %>
-          </a>
-        <% }); %>
-      </div>
-      
-    </div>
+<body>
+  <nav class="navbar navbar-light fixed-top" style="background-color: #5271ff;">
+    <a class="navbar-brand p-2" href="#">
+      <img src="/images/LogoBorde.png" width="35" height="35" class="d-inline-block align-top" alt=""/>
+    </a>
     
-    <span style="font-size:25px;cursor:pointer;margin-left: 5px;" onclick="openNav()">&#9776; Secciones</span>
-    
-    <script>
-      function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
-      }  
-      function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-      }
-    </script>
+    <div class="form">
+      <input class="form-control mr-sm-2" type="search" placeholder="Búsqueda por palabra clave" aria-label="Search">
+    </div>
+    <div>
+      Mi cuenta
+    </div>
+  </nav>
 
-  </body>
-</html>
-
+  <div class="espaciado"></div>
   
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="seccionesNav">
+      <% secciones.forEach( sec => { %>
+        <a href="/buscar/<%=sec.ID%>">
+          <img src="/images/<%= sec.Nombre %>.png" width="40" height="40" class="d-inline-block align-top" alt=""/>
+          <%= sec.Nombre %>
+        </a>
+      <% }); %>
+    </div>  
+  </div>
+  
+  <span style="font-size:35px;cursor:pointer;margin-left: 5px;" onclick="openNav()">&#9776; Secciones</span>
+
+</body>

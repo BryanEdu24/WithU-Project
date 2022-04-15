@@ -1,7 +1,7 @@
 <html>
     <%- include("head") %>
 
-    <body class="body">
+    <body class="body" id="main">
          <!-- Barra de navegacion para busqueda por seccion START -->
         <%- include("navbar") %>
        
@@ -34,18 +34,38 @@
                 </div>
 
                 <div class="Cuerpo d-flex justify-content-center flex-column">
-                    <div class="Parte2 p-2">
+                    <div class="Parte2 p-2">    
                         <b>Cuerpo:</b><b class="asterisco">* </b>  
                     </div>
     
                     <div class="form-group p-2">
-                        <textarea class="CuerpoTexto form-control" type="text" rows="8" placeholder="Cuerpo de publicación" name="publicacion[cuerpo]" required minlength="90"></textarea>
+                        <textarea class="CuerpoTexto form-control" type="text" rows="8" placeholder="Cuerpo de publicación" name="publicacion[cuerpo]" required minlength="90" maxlength="1000" id="mensaje"></textarea>
                         <div style='text-align:right'>
+                            <a id="contador">Contador caracteres: 0/1000 </a>
                             <i>Min. 90 caracteres</i>
                         </div>
                     </div>
                 </div>
-    
+                <!--LLevate el script de aqui abajo + maxlength="1000" id="mensaje" + linea 44 (<a></a>)-->
+                <script>
+                    const mensaje = document.getElementById('mensaje');
+                    const contador = document.getElementById('contador');
+                    mensaje.addEventListener('input', function(e) {
+                        const target = e.target;
+                        const longitudMax = target.getAttribute('maxlength');
+                        const longitudAct = target.value.length;
+                        contador.innerHTML = `Contador caracteres: ${longitudAct}/${longitudMax}`;
+                    });
+                    function openNav() {
+                        document.getElementById("mySidenav").style.width = "235px";
+                        document.getElementById("main").style.marginLeft = "235px";
+                    }  
+                    function closeNav() {
+                        document.getElementById("mySidenav").style.width = "0";
+                        document.getElementById("main").style.marginLeft= "0";
+                    }
+                </script>
+
                 <div class="d-flex p-2 flex-column justify-content-between">
 
                     <!-- Aqui esta para elegir la seccion -->
@@ -88,8 +108,11 @@
                 </div>
 
             </div>
-        </form>        
+        </form>    
     </body>
 
+    <!--ESTO VA APARTE IGNORAAARR-->
+
     <script src="/stylesheets/js/crearPublicacion.js"></script>
+
 </html>

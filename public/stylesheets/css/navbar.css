@@ -1,6 +1,6 @@
-  body {
-    font-family: "Lato", sans-serif;
-  }
+body {
+  font-family: "Lato", sans-serif;
+}
 
 .navbarFixed{
   position: fixed;
@@ -11,45 +11,45 @@
   margin-top: 65px;
 }
 
-  .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 65px;
-    left: 0;
-    background: linear-gradient(to bottom, #5271ff, #B0CDDB);
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-  }
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 65px;
+  left: 0;
+  background: linear-gradient(to bottom, #5271ff, #B0CDDB);
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px;
+}
   
-  .sidenav a {
-    padding: 15px 5px 10px 5px;
-    text-decoration: none;
-    font-size: 25px;
-    color: beige;
-    display: block;
-    transition: 0.3s;
-  }
+.sidenav a {
+  padding: 15px 5px 15px 5px;
+  text-decoration: none;
+  font-size: 25px;
+  color: beige;
+  display: block;
+  transition: 0s;
+}
   
-  .sidenav a:hover {
-    color: black;
-  }
+.sidenav a:hover {
+  color: black;
+}
 
-  .seccionesNav {
-    margin-top: -30px;
-  }
-  
-  .sidenav .closebtn {
-    position: absolute;
-    color: #106a6b;
-    top: -5%;
-    right: 15px;
-    font-size: 45px;
-  }
-  
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  }
+.seccionesNav {
+  margin-top: -30px;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  color: white;
+  top: -5%;
+  right: 15px;
+  font-size: 45px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
