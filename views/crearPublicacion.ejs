@@ -26,9 +26,9 @@
                     </div>
 
                     <div class="p-2">
-                        <input class="TituloTexto form-control" type="text" placeholder="Titulo de publicación" name="publicacion[titulo]" required minlength="3" maxlength="50">
+                        <input class="TituloTexto form-control" type="text" placeholder="Titulo de publicación" name="publicacion[titulo]" required minlength="3" maxlength="90">
                         <div style='text-align:right'>
-                            <i>Entre 3-50 caracteres</i>
+                            <i>Entre 3-90 caracteres</i>
                         </div>
                     </div>
                 </div>
@@ -39,10 +39,10 @@
                     </div>
     
                     <div class="form-group p-2">
-                        <textarea class="CuerpoTexto form-control" type="text" rows="8" placeholder="Cuerpo de publicación" name="publicacion[cuerpo]" required minlength="90" maxlength="1000" id="mensaje"></textarea>
+                        <textarea class="CuerpoTexto form-control" type="text" rows="8" placeholder="Cuerpo de publicación" name="publicacion[cuerpo]" required minlength="200" maxlength="" id="mensaje"></textarea>
                         <div style='text-align:right'>
-                            <a id="contador">Contador caracteres: 0/1000 </a>
-                            <i>Min. 90 caracteres</i>
+                            <a id="contador">Contador caracteres: 0 </a>
+                            <i>Min. 200 caracteres</i>
                         </div>
                     </div>
                 </div>
@@ -54,16 +54,8 @@
                         const target = e.target;
                         const longitudMax = target.getAttribute('maxlength');
                         const longitudAct = target.value.length;
-                        contador.innerHTML = `Contador caracteres: ${longitudAct}/${longitudMax}`;
+                        contador.innerHTML = `Contador caracteres: ${longitudAct}`;
                     });
-                    function openNav() {
-                        document.getElementById("mySidenav").style.width = "235px";
-                        document.getElementById("main").style.marginLeft = "235px";
-                    }  
-                    function closeNav() {
-                        document.getElementById("mySidenav").style.width = "0";
-                        document.getElementById("main").style.marginLeft= "0";
-                    }
                 </script>
 
                 <div class="d-flex p-2 flex-column justify-content-between">

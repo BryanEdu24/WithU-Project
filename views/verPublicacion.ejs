@@ -1,29 +1,35 @@
 <html>
     <%- include("head") %>
        
-    <body class="body" id="main">
+    <body class="bodyVerPublicacion" id="main">
         
         <%- include("navbar") %>
         
-		<div class="container">
-            <div class="d-flex" id="titulo">               
-                <h1><%= publicacion.Titulo %></h1>              
-            </div> 
-            <div class="d-flex" id="publicacion">               
+		<div class="container noBordes">
+            <div class="d-flex" id="publicacion">
                 <div class="d-flex align-items-start flex-column" id="columnaInfo">
                     <div class="p-2 align-self-stretch" id="usuario">
                         <img src="https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png" id="userImage">
                         <h5 id="userName">Anonimo</h5>
                     </div>
-                    <div class="p-2 align-self-stretch" id="info">
-                        <h4>Informacion</h4>
-                        <p>Informacion referente a la publicacion</p>
+                    <div class="p-2 justify-content-center" id="info">
+                        <h4>Información</h4>
+                        <p>Información de la publicacion (Etiquetas)</p>
                     </div>
                 </div>
-                <div class="align-self-stretch" id="cuerpo">
-                    <p><%= publicacion.Cuerpo %></p>
-                </div>                  
-            </div>            
+            
+                <div class="flex-column TituloCuerpo">
+                    <div class="text-center miniTitulo">               
+                        <h1><%= publicacion.Titulo %></h1>           
+                    </div>
+                    <div class="container-fluid">
+                        <div class="cuerpoLimitado">
+                            <h4><%= publicacion.Cuerpo %></h4>
+                        </div>
+                    </div>
+                </div>     
+
+            </div>         
 		</div>
     </body>
 </html>

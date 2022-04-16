@@ -1,9 +1,5 @@
-<head>
-  <link href="/stylesheets/css/navbar.css" rel="stylesheet" type="text/css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
 
-<body>
+
   <nav class="navbar navbar-light fixed-top" style="background-color: #5271ff;">
     <a class="navbar-brand p-2" href="#">
       <img src="/images/LogoBorde.png" width="35" height="35" class="d-inline-block align-top" alt=""/>
@@ -23,7 +19,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <div class="seccionesNav">
       <% secciones.forEach( sec => { %>
-        <a href="/buscar/<%=sec.ID%>">
+        <a href="/seccion/<%=sec.ID%>">
           <img src="/images/<%= sec.Nombre %>.png" width="40" height="40" class="d-inline-block align-top" alt=""/>
           <%= sec.Nombre %>
         </a>
@@ -31,6 +27,16 @@
     </div>  
   </div>
   
-  <span style="font-size:35px;cursor:pointer;margin-left: 5px;" onclick="openNav()">&#9776; Secciones</span>
+  <span style="font-size:25px;cursor:pointer;margin-left: 5px;" onclick="openNav()">&#9776; Secciones</span>
 
-</body>
+  <script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "235px";
+        document.getElementById("main").style.marginLeft = "235px";
+    }  
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft= "0";
+    } 
+</script>
+

@@ -28,6 +28,7 @@ class DAOPublicacion {
 
 
 	leerPublicacion(ID,callback) {
+		console.log(ID);
 		this._pool.getConnection(function(err, connection) {
 			if (err) {
 				connection.release();
@@ -42,8 +43,14 @@ class DAOPublicacion {
 						}
 						else {
 							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el insert)
-							let publicacion={ID:rows[0].ID,Titulo:rows[0].Titulo,Cuerpo:rows[0].Cuerpo};
-							callback(null,publicacion);
+							let publicacion;
+							if (rows[0]) {
+								publicacion={ID:rows[0].ID,Titulo:rows[0].Titulo,Cuerpo:rows[0].Cuerpo};
+								callback(null,publicacion);
+							}
+							else {
+								callback("La publicación no existe");
+							}
 						}
 					}
 				);
@@ -51,7 +58,7 @@ class DAOPublicacion {
 		});
 	}
 
-	leerPublicacionPorSeccion(IDSec, callback) {
+	leerPublicacionesPorSeccion(IDSec, callback) {
 		this._pool.getConnection(function(err, connection) {
 			if (err) {
 				connection.release();
@@ -87,6 +94,9 @@ class DAOPublicacion {
 			}
 		})
 	}
+
+	
+
 /*
 	listarPublicaciones(callback){
 		this._pool.getConnection(function(err, connection) {

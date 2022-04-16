@@ -77,7 +77,7 @@ class SAPublicacion {
 			daoP.leerPublicacion(id, function(err, pub){
 				if(err){
 					console.log(err);
-					callback(error);
+					callback(err);
 				}
 				else{
 					daoPE.leerEtiquetaPorPublicacion(pub.ID, function(err, etiquetas){
@@ -99,13 +99,14 @@ class SAPublicacion {
 			callback("Error al seleccionar la publicacion");
 		}
 		else {
+			let pool = this._pool;
 			let daoSec = new DAOSeccion(this._pool);
-			daoSec.leerSeccion(idSec, function(sec){
+			daoSec.leerSeccion(idSec, function(err, sec){
 				if(err){
 					callback("La seccion no existe");
 				}
 				else{
-					let daoPub = new DAOPublicacion(this._pool);
+					let daoPub = new DAOPublicacion(pool);
 					daoPub.leerPublicacionesPorSeccion(idSec,callback);
 				}
 			});

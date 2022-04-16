@@ -106,7 +106,7 @@ app.get("/leerPublicacion/:id", function(request, response){
 	SA.leerPublicacion(id, function(err, result) {
 		if(err) {
 			console.log(err);
-			response.redirect("/crearPublicacion");
+			response.redirect("/error404");
 		}
 		else {
 			let daoSec = new DAOSeccion(pool);
@@ -123,6 +123,7 @@ app.get("/leerPublicacion/:id", function(request, response){
 			}
 		}
 	});
+	
 });
 
 app.get("/crearPublicacion", function(req,res){
@@ -148,7 +149,7 @@ app.get("/seccion/:id", function(request, response){
 	SA.leerPublicacionesPorSeccion(id, function(err, result) {
 		if(err) {
 			console.log(err);
-			response.redirect("/crearPublicacion");
+			response.redirect("/error404");
 		}
 		else {
 			let daoSec = new DAOSeccion(pool);
@@ -157,11 +158,11 @@ app.get("/seccion/:id", function(request, response){
 					if(sec === undefined){
 						sec = [];
 					}
-					response.render("verSeccion", {publicacion: result, secciones:sec});
+					response.render("buscarPorSeccion", {publicaciones: result, secciones:sec});
 				});
 			}catch(err){
 				let sec = [];
-				response.render("verSeccion", {publicacion: result, secciones:sec});
+				response.render("buscarPorSeccion", {publicaciones: result, secciones:sec});
 			}
 		}
 	});
@@ -172,6 +173,9 @@ app.get("/", function(req,res){
 	res.redirect("/leerPublicacion/2");
 });
 
+app.get("*", function(req,res){
+	res.render("error404");
+});
 
 app.listen(3000, () => {
     console.log("Escuchando en el puerto 3000");
