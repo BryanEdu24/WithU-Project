@@ -43,6 +43,10 @@
     display:inline;
 }
 
+#espacioLinea {
+    color: transparent;
+}
+
 .AniadirSeccion {
     margin-top: 0.5%;
     font-size: 15px;

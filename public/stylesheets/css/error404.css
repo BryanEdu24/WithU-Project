@@ -1,0 +1,13 @@
+.pagError {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tituloError {
+    margin-top: 1%;
+}
+
+#advertencia {
+    color: red;
+}

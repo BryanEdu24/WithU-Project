@@ -40,13 +40,14 @@
     
                     <div class="form-group p-2">
                         <textarea class="CuerpoTexto form-control" type="text" rows="8" placeholder="Cuerpo de publicación" name="publicacion[cuerpo]" required minlength="200" maxlength="" id="mensaje"></textarea>
-                        <div style='text-align:right'>
-                            <a id="contador">Contador caracteres: 0 </a>
+                        <div style='text-align:left'>
+                            <i id="contador">Contador caracteres: 0 </i>   
+                            <i id="espacioLinea"> ◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦</i>
                             <i>Min. 200 caracteres</i>
                         </div>
                     </div>
                 </div>
-                <!--LLevate el script de aqui abajo + maxlength="1000" id="mensaje" + linea 44 (<a></a>)-->
+                
                 <script>
                     const mensaje = document.getElementById('mensaje');
                     const contador = document.getElementById('contador');
