@@ -1,52 +1,41 @@
 <html>
     <%- include("head") %>
        
-    <body class="bodyVerPublicacion" id="main">
+    <body class="bodyVerPublicaciones" id="main">
         
         <%- include("navbar") %>
-       
-
-            <div class="Container MegaContainer">
+        <div class="container superContainer">
+            <div class="container-fluid">
                 <% publicaciones.forEach(function(publicacion) { %>
-                <div class="container">
-                    <div class="d-flex" id="publicacion">
-                    
-                        <div class="flex-column TituloCuerpo">
-                            <div class="text-center miniTitulo">               
-                                <h2><%= publicacion.Titulo %></h2>              
+                    <div class="d-flex" id="publicacionDrch">
+                        <div class="flex-column tituloYcuerpo">
+                            <div class="text-center miniTitulos">               
+                                <h2><%= publicacion.Titulo %></h2>           
                             </div>
+                            
                             <div class="container-fluid">
-                                <div class="cuerpoLimitado">
-                                    <p><%= publicacion.Cuerpo.substr(0, 200) + "..." %></p>
+                                <div class="cuerpoLimitSecciones">
+                                    <h4><%= publicacion.Cuerpo.substr(0, 200) + "..." %></h4>
+                                </div>
+                                <div id="etiquetasInfo">
+                                    📝<i style="color: black;">ETIQUETAS: </i>
+                                    <%= publicacion.Etiquetas %>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="d-flex flex-row" id="columnaInfo">
-                                <!-- <div class="p-2 align-self-stretch" id="usuario">
-                                    <img src="https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png" id="userImage">
-                                    <h5 id="userName">Anonimo</h5>
-                                </div> -->
-                                <div class="p-2" id="info">
-                                    <h4>Informacion1</h4>
-                                    <p>Informacion2</p>
-                                    <p>Informacion3</p>
-                                    <p>Informacion4</p>
-                                    <p>Informacion5</p>
-                                </div>
+                        <div class="d-flex align-items-start flex-column" id="columnaDrchInfo">
+                            <div class="p-2 align-self-stretch" id="usuarioInfo">
+                                <img src="https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png" id="usuarioImage">
+                                <h5 id="usuarioName">Anonimo</h5>
                             </div>
+                        </div>
+                    </div>
 
-                        </div>     
+                    <hr size="4px"/>
 
-                        
-        
-                    </div>      
-                    <hr size="4px" /> 
-                </div>
                 <% }); %>
             </div>
-            
-    
-
-        
+        </div>            
     </body>
 </html>

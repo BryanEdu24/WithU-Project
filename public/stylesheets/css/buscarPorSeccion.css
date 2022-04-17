@@ -1,0 +1,62 @@
+.bodyVerPublicaciones {
+    color: black;
+    background: linear-gradient(to bottom, white, #5271ff);
+    transition: margin-left 0.3s;
+}
+
+.bordesOut {
+    background-color: transparent!important
+}
+
+.superContainer {
+    background-color: white;
+}
+
+.tituloYcuerpo{
+    background-color: white;
+}
+
+.miniTitulos {
+    background-color: white;
+    color: black;
+}
+
+.cuerpoLimitSecciones {
+    background-color: white;
+}
+
+#publicacionDrch {
+    margin-top: 2%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#columnaDrchInfo{
+    min-width: 17%;
+    max-width: 17%;
+}
+
+#usuarioInfo{
+    text-align: center;
+    max-height: 300px;
+    min-height: 100px;
+    color:#d8a2fc
+}
+
+#etiquetasInfo{
+    color:#5271ff;
+    text-align: left;
+}
+
+#usuarioImage{
+    margin-top: 2%;
+    max-width: 70%;
+    max-height: 70%;
+}
+
+#usuarioName {
+    color: grey;
+    margin-top: 4%;
+}
