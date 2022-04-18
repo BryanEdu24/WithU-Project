@@ -115,7 +115,7 @@ app.post("/registrarUsuario", multerFactory.none(), function(req, res) {
 			res.render("mensaje", {mensaje : err});
 		}
 		else{
-			let msg= "Se ha creado el usuario correctamente con id: " + id + " y nombre de usuario: " + username;
+			let msg= "Se ha creado el usuario correctamente con id: " + id + " y nombre de usuario: " + usuario.username;
 			res.render("mensaje", {mensaje : msg, id : id});
 		}
 	});
