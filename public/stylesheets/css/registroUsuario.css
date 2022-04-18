@@ -21,12 +21,16 @@
     background-color: #FFF0C9;
 }
 
-.eMail {
-    margin-top: 2%;
-}
-
 .eMailCuadro {
     background-color: #FFF0C9;
+}
+
+.ocultar {
+    display: none;
+}
+
+.mostrar {
+    display: block;
 }
 
 .contrasenia1 {
@@ -35,10 +39,6 @@
 
 .contrasenia1Cuadro {
     background-color: #FFF0C9;
-}
-
-.contrasenia2 {
-    margin-top: 2%;
 }
 
 .contrasenia2Cuadro {
