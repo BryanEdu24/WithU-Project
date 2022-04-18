@@ -4,38 +4,51 @@
     <body id="main">
         
         <%- include("navbar") %>
-        
-		<div class="container noBordes " id="containerInicio">
-            <div class="d-flex" id="cabecera">
-                <div class="p-2">
-                        <h2>  </h2>
-                </div>
-            </div>
+
+		<div class="container containerInicio">
+  
             <div class="d-flex flex-column justify-content-center align-content-stretch" id="inicio">
-                <div class="p-2">
+                <div class="imagenInicio">
                     <img src="/images/LogoWithU.png" width="170" height="170" class="d-inline-block align-top" alt=""/>
+                </div> 
+                
+                <div class="tituloInicioSesion text-center">
+                    <h1>¡Inicia Sesión ahora!</h1>
                 </div>
-                <div class="d-flex p-2 align-self-center ">
-                    <div class="p-2 centrarVertical">
-                      Username
+
+                <div class="container col-4 align-self-center">
+                    <div class="d-flex divUser">
+                        <label for="formNick" class="centrarVertical"><b>Username: </b></label>
+                        <div>
+                            <input class="form-control" type="text" placeholder="Username" name="username" id="username" style="background: #FFF0C9;">
+                        </div>
                     </div>
-                    <div class="p-2">
-                        <input class="form-control" type="text" placeholder="Username" name="username" id="username" style="background: #FFF0C9;">
+
+                    <div class="d-flex divPassword">
+                        <!-- Password  -->
+                        <label for="formContrasena" class="centrarVertical"><b>Contraseña: </b></label>
+                        <div>
+                            <input class="form-control" type="password" placeholder="Contaseña" name="password" id="password" style="background: #FFF0C9;">
+                        </div>
                     </div>
+
+                    <div class="d-flex justify-content-center" id="BotonInicioSesion">
+                        <input type="submit" class="btn btn-primary" value="Iniciar Sesion" style="background: #5271FF">
+                    </div>
+
+                    <hr size="5px" style="color: blue;">
+
+                    <div>
+                        <p class="text-center">
+                            ¿Todavía no tienes una cuenta?
+                            <a data-testid="log-in-link" href="/registroUser" tabindex="0">
+                                Registrate
+                            </a>
+                        </p>
+                    </div>
+
                 </div>
-                <div class="d-flex p-2 align-self-center ">
-                    <div class="p-2 centrarVertical">
-                        Password 
-                    </div>
-                    <div class="p-2">
-                        <input class="form-control" type="password" placeholder="Password" name="password" id="password" style="background: #FFF0C9;">
-                    </div>
-                </div>
-                <div class="d-flex p-2 align-self-center">
-                    <div class="p-2">
-                        <input type="submit" class="btn btn-primary" value ="Iniciar Sesion" style="background: #5271FF">
-                    </div>
-                </div>
+                
             </div>
 		</div>
     </body>

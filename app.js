@@ -206,6 +206,22 @@ app.get("/login", function(req,res){
 				res.render("inicioSesion", {secciones:sec});
 			}
 });
+
+app.get("/registroUser", function(req,res){
+	let daoSec = new DAOSeccion(pool);
+			try {
+				daoSec.leerTodas(function(err, sec){
+					if(sec === undefined){
+						sec = [];
+					}
+					res.render("registroUsuario", {secciones:sec});
+				});
+			}catch(err){
+				let sec = [];
+				res.render("registroUsuario", {secciones:sec});
+			}
+});
+
 app.get("/", function(req,res){
 	res.redirect("/login");
 });

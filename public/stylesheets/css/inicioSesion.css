@@ -1,10 +1,31 @@
-#containerInicio{
-    text-align: center;
+.tituloInicioSesion {
+    margin-bottom: 1%;
 }
+
+.imagenInicio {
+    margin-bottom: 2%;
+}
+
+.containerInicio{
+    text-align: center;
+    background-color: transparent;
+}
+
+.divUser {
+    margin-top: 2%;
+}
+
+.divPassword {
+    margin-top: 3%;
+}
+
 .centrarVertical{
     text-align: center;
     margin:auto;
+    display: inline-flexbox;
 }
-.texto{
-    height: 20px;
+
+#BotonInicioSesion {
+    margin-top: 5%;
+    margin-bottom: 2%;
 }
