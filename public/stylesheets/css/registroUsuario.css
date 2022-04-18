@@ -1,0 +1,59 @@
+.paginaRegistro {
+    background: linear-gradient(to bottom, white, #5271ff);
+}
+
+.tituloRegistro {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.formulario {
+    /* background-image: url("/images/fondo.jpg");
+    background-size: 70rem;  */
+    background-color: transparent;
+}
+
+.userName {
+    margin-top: 2%;
+}
+
+.userNameCuadro {
+    background-color: #FFF0C9;
+}
+
+.eMailCuadro {
+    background-color: #FFF0C9;
+}
+
+.ocultar {
+    display: none;
+}
+
+.mostrar {
+    display: block;
+}
+
+.contrasenia1 {
+    margin-top: 2%;
+}
+
+.contrasenia1Cuadro {
+    background-color: #FFF0C9;
+}
+
+.contrasenia2Cuadro {
+    background-color: #FFF0C9;
+}
+
+#BotonCrearCuenta {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.pregunta {
+    text-align: center;
+}
+
+.asterisco {
+    color:red;
+}
