@@ -1,0 +1,42 @@
+<html>
+    <%- include("head") %>
+       
+    <body id="main">
+        
+        <%- include("navbar") %>
+        
+		<div class="container noBordes " id="containerInicio">
+            <div class="d-flex" id="cabecera">
+                <div class="p-2">
+                        <h2> Inicio Sesion </h2>
+                </div>
+            </div>
+            <div class="d-flex flex-column justify-content-center align-content-stretch" id="inicio">
+                <div class="p-2">
+                    <img src="/images/LogoWithU.png" width="120" height="120" class="d-inline-block align-top" alt=""/>
+                </div>
+                <div class="d-flex p-2 align-self-center ">
+                    <div class="p-2">
+                        <p> Username </p>
+                    </div>
+                    <div class="p-2">
+                        <input class="form-control" type="text" placeholder="Username" name="username" id="username" style="background: #FFF0C9;">
+                    </div>
+                </div>
+                <div class="d-flex p-2 align-self-center">
+                    <div class="p-2">
+                        <p> Password </p>
+                    </div>
+                    <div class="p-2">
+                        <input class="form-control" type="text" placeholder="Password" name="password" id="password" style="background: #FFF0C9;">
+                    </div>
+                </div>
+                <div class="d-flex p-2 align-self-center">
+                    <div class="p-2">
+                        <input type="submit" class="btn btn-primary" value ="Iniciar Sesion">
+                    </div>
+                </div>
+            </div>
+		</div>
+    </body>
+</html>
