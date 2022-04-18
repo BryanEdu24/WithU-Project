@@ -5,7 +5,7 @@ class DAOUsuario {
 		this._pool = pool;
 	}
 
-    async añadirUsuario(usuario, callback){//El usuario es: username, password, email
+    async agregarUsuario(usuario, callback){//El usuario es: username, password, email
         let conexion
         try {
             conexion = await this._pool.getConnection();
