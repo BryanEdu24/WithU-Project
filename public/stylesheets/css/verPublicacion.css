@@ -9,21 +9,44 @@
     background-color: white;
 }
 
+#Respuestas {  
+    margin-top: 10%;
+    background-color: white;
+}
+
 .noBordes {
     background-color: transparent!important
 }
 
-.TituloCuerpo{
-    background-color: beige;
+.TituloCuerpoRespuesta{
+    background-color: white;
 }
 
 .miniTitulo {
-    background-color: #5271ff;
-    color: white;
+    background-color: white;
+    color: #5271ff;
+}
+
+.tituloRespuestas {
+    background-color: white;
+    color: #5271ff;
 }
 
 .cuerpoLimitado {
-    background-color: beige;
+    background-color: white;
+    min-height: 100px;
+}
+
+.Respuestas {
+    background-color: white;
+    min-height: 350px;
+}
+
+.conjuntoRespuestas {
+    display:block;
+    width: 1000px;
+    height: 320px;
+    overflow:scroll;
 }
 
 #columnaIzqInfo{

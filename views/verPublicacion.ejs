@@ -4,32 +4,33 @@
     <body class="bodyVerPublicacion" id="main">
         
         <%- include("navbar") %>
-        
-		<div class="container noBordes">
+
+        <div class="container noBordes">
             <div class="d-flex" id="publicacionIzq">
-                <div class="d-flex align-items-start flex-column" id="columnaIzqInfo">
-                    <div class="p-2 align-self-stretch" id="usuario">
-                        <img src="https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png" id="userImage">
-                        <h5 id="userName">Anonimo</h5>
-                    </div>
-                    <div class="p-2 justify-content-center" id="info">
-                        <h4>Información</h4>
-                        <p style='text-align:left; color: black;'>Información de la publicacion (Etiquetas)</p>
-                    </div>
-                </div>
-            
-                <div class="flex-column TituloCuerpo">
-                    <div class="text-center miniTitulo">               
+                <div class="flex-column TituloCuerpoRespuesta">
+                    <div class="p-3 text-left miniTitulo">               
                         <h1><%= publicacion.Titulo %></h1>           
                     </div>
                     <div class="container-fluid">
-                        <div class="cuerpoLimitado">
+                        <div class="p-2 cuerpoLimitado">
                             <h4><%= publicacion.Cuerpo %></h4>
                         </div>
                     </div>
-                </div>     
-
-            </div>         
-		</div>
+                </div>
+                
+                <div class="d-flex align-items-start flex-column" id="columnaIzqInfo">
+                    <div class="p-3 align-self-stretch" id="usuario">
+                        <img src="https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png" id="userImage">
+                        <h5 id="userName">Anonimo</h5>
+                    </div>
+                    <div id="etiquetasInfo">
+                        📝<i style="color: black;">ETIQUETAS: </i>
+                        <%= publicacion.Etiquetas %>
+                    </div>
+                </div>
+                
+            </div>
+              
+        </div>
     </body>
 </html>
