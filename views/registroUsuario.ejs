@@ -1,0 +1,107 @@
+<html>
+    <%- include("head") %>
+
+    <body class="paginaRegistro">
+        <div class="tituloRegistro text-center">
+            <h1>¡Registrate en WithU!</h1>
+        </div>
+
+        <div class="container formulario">
+            <div class="row justify-content-center">
+
+                <!-- Mensajes de Verificación -->
+                <div id="error" class="alert alert-danger ocultar" role="alert">
+                    Las Contraseñas no coinciden, <b>vuelve a intentarlo.</b>
+                </div>
+                <div id="ok" class="alert alert-success ocultar" role="alert">
+                    Las Contraseñas coinciden <b>(Procesando formulario ... )</b>                          
+                </div>
+                <!-- Fin Mensajes de Verificación -->
+
+                <div class="container col-6">
+
+                    <form method="POST" action="crearCuenta"onsubmit="verificarPasswords(); return false">
+                        
+                        <div class="form-group userName">
+                            <label for="formNick"><b>Nombre de Usuario:</b><b class="asterisco"> *</b></label>
+                            <input type="text" class="userNameCuadro form-control" placeholder="NombreUsuario01" name="usuario[nick]" required="" minlength="3" maxlength="15">
+                            <div style="text-align:right">
+                                <i>Entre 3-15 caracteres</i>
+                            </div>
+                        </div>
+
+                        <div class="form-group eMail">
+                          <label for="formCorreo"><b>Correo electronico:</b><b class="asterisco"> *</b></label>
+                          <input type="text" class="form-control eMailCuadro" placeholder="ejemplo@correo.com" name="usuario[correo]">
+                        </div>
+
+                        <div class="form-group contrasenia1">
+                          <label for="formContrasena"><b>Contraseña:</b><b class="asterisco"> *</b></label>
+                          <input type="password" class="contrasenia1Cuadro form-control" id="pass1" placeholder="contraseña_123" name="usuario[contrasena]" required="" minlength="5" maxlength="20">
+                          <div style="text-align:right">
+                            <i>Entre 5-20 caracteres</i>
+                        </div>
+                        </div>
+
+                        <div class="form-group contrasenia2">
+                            <label for="formConfirmaContrasena"><b>Repetir contraseña:</b><b class="asterisco"> *</b></label>
+                            <input type="password" class="contrasenia2Cuadro form-control" id="pass2" placeholder="contraseña_123" name="usuario[contrasena]" required="" minlength="5" maxlength="20">
+                            <div style="text-align:right">
+                                <i>Entre 5-20 caracteres</i>
+                            </div>
+                        </div>
+
+                        <div class="Textochiquito">
+                            <b>Todos los campos con * son obligatorios </b>
+                        </div>
+
+                        <div class="d-flex justify-content-center" id="BotonCrearCuenta">
+                            <input type="submit" class="btn btn-primary" value="Crear cuenta">
+                        </div>
+
+                        <hr size="5px" style="color: blue;">
+
+                        <div>
+                            <p class="pregunta">
+                                ¿Tienes ya una cuenta? 
+                                <a data-testid="log-in-link" href="/crearPublicacion" tabindex="0">
+                                    Iniciar Sesión
+                                </a>
+                            </p>
+                        </div>
+
+                        <script>
+                            function verificarPasswords() {
+                                pass1 = document.getElementById('pass1');
+                                pass2 = document.getElementById('pass2');
+
+                                if (pass1.value != pass2.value) {
+                                    document.getElementById("error").classList.add("mostrar")
+
+                                    setTimeout(function() {
+                                        location.reload();
+                                    }, 3000);
+                                    
+                                    return false;
+                                } 
+                                else {
+                                    document.getElementById("error").classList.remove("mostrar");
+                                    document.getElementById("ok").classList.remove("ocultar");
+                                    document.getElementById("BotonCrearCuenta").disabled = true;
+
+                                    setTimeout(function() {
+                                        location.reload();
+                                    }, 3000);
+
+                                    return true;
+                                }
+                            }
+                        </script>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
