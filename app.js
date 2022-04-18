@@ -32,6 +32,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //Sesiones de usuarios (Para flash necesitamos un usuario invitado. Pasará a ser el usuario logueado cuando implementemos el login)
 const session = require("express-session");
 const DAOSeccion = require("./public/javascripts/DAOSeccion");
+const SAUsuario = require("./public/javascripts/SAUsuario");
 // const mysqlSession = require("express-mysql-session");
 // const MySQLStore = mysqlSession(session);
 
@@ -97,6 +98,28 @@ req.body.etiquetas.etiqueta4,req.body.etiquetas.etiqueta5] : [];
 	});
 });
 
+//Registrar un usuario
+app.post("/registrarUsuario", multerFactory.none(), function(req, res) {
+	let usuario = {
+		email: request.body.usuario.email,
+		username: request.body.usuario.username,
+		password: request.body.usuario.password,
+		confirmPassword: request.body.usuario.confirmPassword,
+	};
+
+	let sa = new SAUsuario(pool);
+	sa.agregarUsuario(usuario, function(err, id){
+		if(err){
+			console.log(err);
+			res.setFlash(err);
+			res.render("mensaje", {mensaje : err});
+		}
+		else{
+			let msg= "Se ha creado el usuario correctamente con id: " + id + " y nombre de usuario: " + usuario.username;
+			res.render("mensaje", {mensaje : msg, id : id});
+		}
+	});
+});
 
 
 //Vista de datos básicos de publicación
