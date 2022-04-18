@@ -3,7 +3,7 @@
 module.exports = {
 	host: "localhost",
 	user: "root",
-	password: "Zurdo 24",
+	password: "",
 	database: "withu"
 }
 // Si no funciona

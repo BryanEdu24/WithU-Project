@@ -192,8 +192,22 @@ app.get("/seccion/:id", function(request, response){
 });
 
 
+app.get("/login", function(req,res){
+	let daoSec = new DAOSeccion(pool);
+			try{
+				daoSec.leerTodas(function(err, sec){
+					if(sec === undefined){
+						sec = [];
+					}
+					res.render("inicioSesion", {secciones:sec});
+				});
+			}catch(err){
+				let sec = [];
+				res.render("inicioSesion", {secciones:sec});
+			}
+});
 app.get("/", function(req,res){
-	res.redirect("/leerPublicacion/2");
+	res.redirect("/login");
 });
 
 app.get("*", function(req,res){
