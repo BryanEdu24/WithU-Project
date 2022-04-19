@@ -18,7 +18,8 @@
 
 .miniTitulos {
     background-color: white;
-    color: black;
+    margin-left: 2px;
+    color: #5271ff;
 }
 
 .cuerpoLimitSecciones {

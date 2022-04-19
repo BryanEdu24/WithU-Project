@@ -2,6 +2,11 @@
     margin-bottom: 1%;
 }
 
+#main {
+    background: linear-gradient(to bottom, white, #5271ff);
+
+}
+
 .imagenInicio {
     margin-bottom: 2%;
 }
