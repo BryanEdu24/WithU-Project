@@ -9,13 +9,6 @@
         <div class="section1 text-center">
             <h1>Crea tu publicación</h1>
         </div>
-  
-        <% let mensaje = getFlash(); %>
-        <% if (mensaje) { %>
-            <div class="row <%= mensaje.includes("Se ha creado la publicación con éxito") ? "alert alert-success" : "alert alert-danger" %>">
-                <%= mensaje %>
-            </div>
-        <% } %>
 
         <form method="POST" action="crearPublicacion" enctype="multipart/form-data">
             <div class="Container">

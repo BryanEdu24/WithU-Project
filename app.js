@@ -14,8 +14,8 @@ const bodyParser = require("body-parser");
 const path = require("path");
 //Constantes para la base de datos
 const mysql = require("mysql");
-const { append } = require("express/lib/response");
-const { hasUncaughtExceptionCaptureCallback } = require("process");
+// const { append } = require("express/lib/response");
+// const { hasUncaughtExceptionCaptureCallback } = require("process");
 const pool = mysql.createPool({
 	multipleStatements: true,
 	host: config.host,
@@ -68,21 +68,6 @@ app.use(session({
 	// 	sameSite: true
 	// }
 }))
-/* 
-// Creacion y obtencion de flash (Vista)
-function middleFlash(request, response, next) {
-    response.setFlash = (str) => {
-        request.session.flashMessage = str;
-    }
-    response.locals.getFlash = () => {
-        let mensaje = request.session.flashMessage;
-        delete request.session.flashMessage;
-        return mensaje;
-    }
-    next();
-}
-app.use(middleFlash);
- */
 
 function middleSecciones(req,res,next){
 	let daoSec = new DAOSeccion(pool);
@@ -156,10 +141,10 @@ req.body.etiquetas.etiqueta4,req.body.etiquetas.etiqueta5] : [];
 //Registrar un usuario
 app.post("/registrarUsuario", multerFactory.none(), function(req, res) {
 	let usuario = {
-		email: request.body.usuario.email,
-		username: request.body.usuario.username,
-		password: request.body.usuario.password,
-		confirmPassword: request.body.usuario.confirmPassword,
+		email: req.body.usuario.email,
+		username: req.body.usuario.username,
+		password: req.body.usuario.password,
+		confirmPassword: req.body.usuario.confirmPassword,
 	};
 
 	let sa = new SAUsuario(pool);
@@ -178,36 +163,36 @@ app.post("/registrarUsuario", multerFactory.none(), function(req, res) {
 
 
 //Vista de datos básicos de publicación
-app.get("/leerPublicacion/:id", function(request, response){
+app.get("/leerPublicacion/:id", function(req, res){
 	let SA = new SAPublicacion(pool);
-	let id = request.params.id;
+	let id = req.params.id;
 	SA.leerPublicacion(id, function(err, result) {
 		if(err) {
 			console.log(err);
-			response.redirect("/error404");
+			res.redirect("/error404");
 		}
 		else {
-			response.render("verPublicacion", {publicacion: result, secciones:sections});
+			res.render("verPublicacion", {publicacion: result, secciones:sections});
 		}
 	});
 	
 });
 
 app.get("/crearPublicacion", middleLogueado, function(req,res){
-	response.render("crearPublicacion", {publicacion: result, secciones:sections});
+	res.render("crearPublicacion",{secciones:sections});
 });
 
 //Busqueda de publicacion por seccion
-app.get("/seccion/:id", function(request, response){
+app.get("/seccion/:id", function(req, res){
 	let SA = new SAPublicacion(pool);
-	let id = request.params.id;
+	let id = req.params.id;
 	SA.leerPublicacionesPorSeccion(id, function(err, result) {
 		if(err) {
 			console.log(err);
-			response.redirect("/error404");
+			res.redirect("/error404");
 		}
 		else {
-			response.render("buscarPorSeccion", {publicaciones: result, secciones:sections});
+			res.render("buscarPorSeccion", {publicaciones: result, secciones:sections});
 		}
 	});
 });
