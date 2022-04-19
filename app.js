@@ -40,12 +40,12 @@ const MySQLStore = mysqlSession(session);
 const sessionStore = new MySQLStore({
 	host: config.host,
 	user: config.user,
-	password: config.password
+	password: config.password,
 	// createDatabaseTable: false,
 	// clearExpired: true,
 	// checkExpirationInterval: 30000,
 	// expiration: 1000,
-	// database: config.database,
+	database: config.database
 	// schema: {
 	// 	tableName: "sessions",
 	// 	columnNames: {
@@ -225,7 +225,7 @@ app.post("/login", multerFactory.none(), function(req,res){
 				res.render("inicioSesion", {secciones:sections, exito: false});						
 			}
 			else{
-				req.session.user = usr.username						
+				req.session.user = usr.Username						
 				res.redirect("/seccion/1")
 			}
 		});
