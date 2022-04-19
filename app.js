@@ -114,7 +114,7 @@ function middleLogueado(req, res, next){
 	if(req.session.user){
 		next()
 	}
-	else req.redirect("/login")
+	else res.redirect("/login")
 }
 
 function middleNoLogueado(req, res, next){
@@ -122,7 +122,7 @@ function middleNoLogueado(req, res, next){
 	if(!req.session.user){
 		next()
 	}
-	else req.redirect("/seccion/1")
+	else res.redirect("/seccion/1")
 }
 
 // Crear una publicacion
