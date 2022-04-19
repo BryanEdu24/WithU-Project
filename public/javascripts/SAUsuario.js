@@ -68,8 +68,9 @@ class SAUsuario {
     }
 
     buscarUsuario(user, password, callback){//User puede ser username o email
-        if(isNaN(user) || user === "" || user === undefined || user === null || password === "" 
-        || password === undefined || password === null || isNaN(password)){
+        if(user === "" || user === undefined || user === null || password === "" 
+        || password === undefined || password === null){
+            console.log(user + password)
             callback("No puede haber campos vacios")
         }
         else if(password.length < 5 || password.length > 20){

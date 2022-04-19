@@ -33,23 +33,41 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const session = require("express-session");
 const DAOSeccion = require("./public/javascripts/DAOSeccion");
 const SAUsuario = require("./public/javascripts/SAUsuario");
-// const mysqlSession = require("express-mysql-session");
-// const MySQLStore = mysqlSession(session);
 
-// const sessionStore = new MySQLStore({
-// 	host: config.host,
-// 	user: config.user,
-// 	password: config.password,
-// 	database: config.database
-// });
-
-const middleSession = session({
-    resave: false,
-	//store: sessionStore,
-    saveUninitialized: false,
-    secret: "miclavesecreta",
+const mysqlSession = require("express-mysql-session");
+const MySQLStore = mysqlSession(session);
+const sessionStore = new MySQLStore({
+host: config.host,
+user: config.user,
+password: config.password,
+createDatabaseTable: false,
+clearExpired: true,
+checkExpirationInterval: 30000,
+expiration: 1000,
+database: config.database,
+schema: {
+	tableName: "sessions",
+	columnNames: {
+	   session_id: "session_id",
+	   expires: "expires",
+		data: "data"
+	   //user: "user"
+   }
+}
 });
-app.use(middleSession);
+
+app.use(session({
+    name: "session-id",
+    secret: "GFGEnter", // Secret key,
+    saveUninitialized: false,
+    resave: false,
+	store: sessionStore
+	// cookie: {
+	// 	maxAge: 3600000,
+	// 	sameSite: true
+	// }
+}))
+
 // Creacion y obtencion de flash (Vista)
 function middleFlash(request, response, next) {
     response.setFlash = (str) => {
@@ -69,6 +87,22 @@ function middleFlash(request, response, next) {
     next();
 }
 app.use(middleFlash);
+
+function middleLogueado(req, res, next){
+	//if usuario loggueado, next
+	if(req.session.user){
+		next()
+	}
+	else req.redirect("/login")
+}
+
+function middleNoLogueado(req, res, next){
+	//if usuario loggueado, next
+	if(!req.session.user){
+		next()
+	}
+	else req.redirect("/seccion/1")
+}
 
 // Crear una publicacion
 app.post('/crearPublicacion', multerFactory.none(), function (req, res) {
@@ -149,7 +183,7 @@ app.get("/leerPublicacion/:id", function(request, response){
 	
 });
 
-app.get("/crearPublicacion", function(req,res){
+app.get("/crearPublicacion", middleLogueado, function(req,res){
 	let daoSec = new DAOSeccion(pool);
 	try{
 		daoSec.leerTodas(function(err, sec){
@@ -191,19 +225,42 @@ app.get("/seccion/:id", function(request, response){
 	});
 });
 
+app.post("/login", multerFactory.none(), function(req,res){
+	let saUsuario = new SAUsuario(pool)
+			try{
+				let user = {
+					username: req.body.user.username,
+					password: req.body.user.password
+				}				
+				saUsuario.buscarUsuario(user.username, user.password, function(err, usr){
+					console.log(err)
+					if(err){						
+						res.render("inicioSesion", {secciones:sec, exito: false});						
+					}
+					else{
+						req.session.user = usr.username						
+						res.redirect("/seccion/1")
+					}
+				});
+			}catch(err){
+				let sec = [];
+				res.render("inicioSesion", {secciones:sec, exito: true});
+			}
+});
 
-app.get("/login", function(req,res){
+
+app.get("/login", middleNoLogueado, function(req,res){
 	let daoSec = new DAOSeccion(pool);
 			try{
 				daoSec.leerTodas(function(err, sec){
 					if(sec === undefined){
 						sec = [];
 					}
-					res.render("inicioSesion", {secciones:sec});
+					res.render("inicioSesion", {secciones:sec, exito: true});
 				});
 			}catch(err){
 				let sec = [];
-				res.render("inicioSesion", {secciones:sec});
+				res.render("inicioSesion", {secciones:sec, exito: true});
 			}
 });
 app.get("/", function(req,res){
