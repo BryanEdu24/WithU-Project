@@ -33,27 +33,28 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const session = require("express-session");
 const DAOSeccion = require("./public/javascripts/DAOSeccion");
 const SAUsuario = require("./public/javascripts/SAUsuario");
+var sections = [];
 
 const mysqlSession = require("express-mysql-session");
 const MySQLStore = mysqlSession(session);
 const sessionStore = new MySQLStore({
-host: config.host,
-user: config.user,
-password: config.password,
-createDatabaseTable: false,
-clearExpired: true,
-checkExpirationInterval: 30000,
-expiration: 1000,
-database: config.database,
-schema: {
-	tableName: "sessions",
-	columnNames: {
-	   session_id: "session_id",
-	   expires: "expires",
-		data: "data"
-	   //user: "user"
-   }
-}
+	host: config.host,
+	user: config.user,
+	password: config.password
+	// createDatabaseTable: false,
+	// clearExpired: true,
+	// checkExpirationInterval: 30000,
+	// expiration: 1000,
+	// database: config.database,
+	// schema: {
+	// 	tableName: "sessions",
+	// 	columnNames: {
+	// 	   session_id: "session_id",
+	// 	   expires: "expires",
+	// 		data: "data"
+	// 	   //user: "user"
+	//    }
+	// }
 });
 
 app.use(session({
@@ -67,19 +68,13 @@ app.use(session({
 	// 	sameSite: true
 	// }
 }))
-
+/* 
 // Creacion y obtencion de flash (Vista)
 function middleFlash(request, response, next) {
     response.setFlash = (str) => {
-        //request.flashMessage = str;
         request.session.flashMessage = str;
     }
     response.locals.getFlash = () => {
-        /*
-		let mensaje = request.flashMessage;
-        delete request.flashMessage;
-        return mensaje;
-		*/
         let mensaje = request.session.flashMessage;
         delete request.session.flashMessage;
         return mensaje;
@@ -87,6 +82,26 @@ function middleFlash(request, response, next) {
     next();
 }
 app.use(middleFlash);
+ */
+
+function middleSecciones(req,res,next){
+	let daoSec = new DAOSeccion(pool);
+	try{
+		daoSec.leerTodas(function(err, secciones){
+			if(err)
+				sections = [];
+			else {
+				sections = secciones;
+			}
+			console.lo
+			next();
+		});
+	}catch(err){
+		sections = [];
+		next();
+	}
+}
+app.use(middleSecciones);
 
 function middleLogueado(req, res, next){
 	//if usuario loggueado, next
@@ -166,37 +181,14 @@ app.get("/leerPublicacion/:id", function(request, response){
 			response.redirect("/error404");
 		}
 		else {
-			let daoSec = new DAOSeccion(pool);
-			try{
-				daoSec.leerTodas(function(err, sec){
-					if(sec === undefined){
-						sec = [];
-					}
-					response.render("verPublicacion", {publicacion: result, secciones:sec});
-				});
-			}catch(err){
-				let sec = [];
-				response.render("verPublicacion", {publicacion: result, secciones:sec});
-			}
+			response.render("verPublicacion", {publicacion: result, secciones:sections});
 		}
 	});
 	
 });
 
 app.get("/crearPublicacion", middleLogueado, function(req,res){
-	let daoSec = new DAOSeccion(pool);
-	try{
-		daoSec.leerTodas(function(err, sec){
-			if(sec === undefined){
-				sec = [];
-			}
-			res.render("crearPublicacion", {secciones: sec});
-		});
-	}catch(err){
-		let sec = [];
-		res.render("crearPublicacion", {secciones: sec});
-	}
-	
+	response.render("crearPublicacion", {publicacion: result, secciones:sections});
 });
 
 //Busqueda de publicacion por seccion
@@ -209,59 +201,36 @@ app.get("/seccion/:id", function(request, response){
 			response.redirect("/error404");
 		}
 		else {
-			let daoSec = new DAOSeccion(pool);
-			try{
-				daoSec.leerTodas(function(err, sec){
-					if(sec === undefined){
-						sec = [];
-					}
-					response.render("buscarPorSeccion", {publicaciones: result, secciones:sec});
-				});
-			}catch(err){
-				let sec = [];
-				response.render("buscarPorSeccion", {publicaciones: result, secciones:sec});
-			}
+			response.render("buscarPorSeccion", {publicaciones: result, secciones:sections});
 		}
 	});
 });
 
 app.post("/login", multerFactory.none(), function(req,res){
 	let saUsuario = new SAUsuario(pool)
-			try{
-				let user = {
-					username: req.body.user.username,
-					password: req.body.user.password
-				}				
-				saUsuario.buscarUsuario(user.username, user.password, function(err, usr){
-					console.log(err)
-					if(err){						
-						res.render("inicioSesion", {secciones:sec, exito: false});						
-					}
-					else{
-						req.session.user = usr.username						
-						res.redirect("/seccion/1")
-					}
-				});
-			}catch(err){
-				let sec = [];
-				res.render("inicioSesion", {secciones:sec, exito: true});
+	try{
+		let user = {
+			username: req.body.user.username,
+			password: req.body.user.password
+		}				
+		saUsuario.buscarUsuario(user.username, user.password, function(err, usr){
+			console.log(err)
+			if(err){						
+				res.render("inicioSesion", {secciones:sections, exito: false});						
 			}
+			else{
+				req.session.user = usr.username						
+				res.redirect("/seccion/1")
+			}
+		});
+	}catch(err){
+		res.render("inicioSesion", {secciones:sections, exito: true});
+	}
 });
 
 
 app.get("/login", middleNoLogueado, function(req,res){
-	let daoSec = new DAOSeccion(pool);
-			try{
-				daoSec.leerTodas(function(err, sec){
-					if(sec === undefined){
-						sec = [];
-					}
-					res.render("inicioSesion", {secciones:sec, exito: true});
-				});
-			}catch(err){
-				let sec = [];
-				res.render("inicioSesion", {secciones:sec, exito: true});
-			}
+	res.render("inicioSesion", {secciones:sections, exito: true});
 });
 app.get("/", function(req,res){
 	res.redirect("/login");
