@@ -86,20 +86,26 @@ app.use(middleFlash);
 
 function middleSecciones(req,res,next){
 	let daoSec = new DAOSeccion(pool);
-	try{
-		daoSec.leerTodas(function(err, secciones){
-			if(err)
-				sections = [];
-			else {
-				sections = secciones;
-			}
-			console.lo
+	if(sections === []){
+		try{
+			daoSec.leerTodas(function(err, secciones){
+				if(err)
+					sections = [];
+				else {
+					sections = secciones;
+				}
+				console.lo
+				next();
+			});
+		}catch(err){
+			sections = [];
 			next();
-		});
-	}catch(err){
-		sections = [];
-		next();
+		}
 	}
+	else{
+		next()
+	}
+	
 }
 app.use(middleSecciones);
 
