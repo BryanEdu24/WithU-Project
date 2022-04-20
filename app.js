@@ -127,7 +127,6 @@ req.body.etiquetas.etiqueta4,req.body.etiquetas.etiqueta5] : [];
 	sa.agregarPublicacion(publicacion, function(err, id) {
 		if(err){
 			console.log(err);
-			res.setFlash(err);
 			res.render("mensaje", {mensaje : err});
 		}
 		else{
