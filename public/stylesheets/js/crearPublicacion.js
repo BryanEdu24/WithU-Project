@@ -1,8 +1,8 @@
 let botonAñadir = document.getElementById("botonAñadirEtiqueta")
 
 let numEtiquetas = 0
-
 const textEtiqueta = document.getElementById("nuevaEtiqueta")
+
 
 var añadirEtiqueta = function nuevaEtiqueta(){
 
@@ -94,6 +94,7 @@ var eliminarEtiqueta = function quitarEtiqueta(e){
     numEtiquetas--;
     textEtiqueta.removeAttribute('disabled')
     
+    
 
 }
 
@@ -126,7 +127,3 @@ function cambiarNumeros(e){
 botonAñadir.addEventListener("click", añadirEtiqueta)
 
 let titulo = document.getElementsByClassName("TituloTexto")
-
-titulo.addEventListener("blur", (event) => {
-   alert("Faltan tantos caracteres")
-  }, true)
