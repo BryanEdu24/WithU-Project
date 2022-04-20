@@ -71,7 +71,7 @@ app.use(session({
 
 function middleSecciones(req,res,next){
 	let daoSec = new DAOSeccion(pool);
-	if(sections === []){
+	if(sections.length === 0){
 		try{
 			daoSec.leerTodas(function(err, secciones){
 				if(err)
@@ -79,7 +79,6 @@ function middleSecciones(req,res,next){
 				else {
 					sections = secciones;
 				}
-				console.lo
 				next();
 			});
 		}catch(err){
