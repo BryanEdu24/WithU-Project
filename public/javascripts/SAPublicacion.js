@@ -19,7 +19,7 @@ class SAPublicacion {
 		else if(publicacion.titulo.length > 50){
 			callback("El titulo tiene más de 50 caracteres");
 		}
-		else if(publicacion.cuerpo.length < 90){
+		else if(publicacion.cuerpo.length < 200){
 			callback("El cuerpo debe tener más de 90 caracteres");
 		}
 		else if(isNaN(publicacion.seccion) && publicacion.seccion <= 0) {
