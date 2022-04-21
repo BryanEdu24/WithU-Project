@@ -1,10 +1,10 @@
 .tituloInicioSesion {
     margin-bottom: 1%;
+    color: white;
 }
 
 #main {
-    background: linear-gradient(to bottom, white, #5271ff);
-
+    background: linear-gradient(to bottom, #5271ff, #B0CDDB);
 }
 
 .imagenInicio {

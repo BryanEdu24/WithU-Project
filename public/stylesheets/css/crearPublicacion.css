@@ -1,11 +1,12 @@
 body {
     color:black;
-    background: linear-gradient(to bottom, white, #5271ff);
+    background: linear-gradient(to bottom, #5271ff, #B0CDDB);
     transition: margin-left 0.3s;
 }
 
 .section1 {
     margin-bottom: 1.5%;
+    color: white;
 }
 
 .Container {
