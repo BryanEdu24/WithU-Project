@@ -49,10 +49,14 @@ body {
 
 .sidenav .closebtn {
   position: absolute;
-  color: #0c0753;
+  color: white;
   top: -5%;
   right: 15px;
   font-size: 45px;
+}
+
+.closebtn {
+  margin-top: 2%;
 }
 
 @media screen and (max-height: 450px) {
