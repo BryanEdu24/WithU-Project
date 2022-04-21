@@ -1,10 +1,11 @@
 .paginaRegistro {
-    background: linear-gradient(to bottom, white, #5271ff);
+    background: linear-gradient(to bottom, #5271ff, #B0CDDB);
 }
 
 .tituloRegistro {
     margin-top: 2%;
     margin-bottom: 1.5%;
+    color: white;
 }
 
 .formulario {

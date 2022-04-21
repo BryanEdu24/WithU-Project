@@ -1,6 +1,6 @@
 .bodyVerPublicacion {
     color: black;
-    background: linear-gradient(to bottom, white, #5271ff);
+    background: linear-gradient(to bottom, #5271ff, #B0CDDB);
     transition: margin-left 0.3s;
 }
 

@@ -2,6 +2,12 @@ body {
   font-family: "Lato", sans-serif;
 }
 
+.bocadillo{
+  font-size: 28px;
+  margin-left: 12px;
+  color: white;
+}
+
 .navbarFixed{
   position: fixed;
   display: block;
@@ -43,7 +49,7 @@ body {
 
 .sidenav .closebtn {
   position: absolute;
-  color: white;
+  color: #0c0753;
   top: -5%;
   right: 15px;
   font-size: 45px;
