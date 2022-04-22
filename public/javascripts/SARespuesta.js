@@ -115,9 +115,9 @@ class SARespuesta {
 
 
 }
-module.exports = SAPublicacion;
+module.exports = SARespuesta;
 
-async function insertar( idP, et, daoE, daoEP){
+/*async function insertar( idP, et, daoE, daoEP){
 	let promesa1 = new Promise((resolve, reject) => {
 		daoE.leerEtiquetaPorNombre(et, function(err, eti){
 			if(err){
@@ -165,4 +165,4 @@ async function insertar( idP, et, daoE, daoEP){
 			return false;
 		}
 	});
-}
+}*/
