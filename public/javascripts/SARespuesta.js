@@ -94,7 +94,7 @@ class SARespuesta {
 		}
 	}
 
-	leerResouestasPorSeccion(idSec, callback) {
+	leerRespuestasPorSeccion(idSec, callback) {
 		if (idSec === undefined || isNaN(idSec) || idSec <= 0) {
 			callback("Error al seleccionar la publicacion");
 		}
