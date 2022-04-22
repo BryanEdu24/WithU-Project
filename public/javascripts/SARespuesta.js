@@ -1,4 +1,4 @@
-"use strict";
+/*"use strict";
 const DAOEtiqueta = require("./DAOEtiqueta");
 const DAOPublicacion = require("./DAOPublicacion");
 const DAOPublicacionEtiqueta = require("./DAOPublicacionEtiqueta");
@@ -115,7 +115,7 @@ class SARespuesta {
 
 
 }
-module.exports = SARespuesta;
+module.exports = SARespuesta;*/
 
 /*async function insertar( idP, et, daoE, daoEP){
 	let promesa1 = new Promise((resolve, reject) => {
