@@ -197,11 +197,13 @@ app.get("/seccion/:id", function(req, res){
 
 app.post("/login", multerFactory.none(), function(req,res){
 	let saUsuario = new SAUsuario(pool)
+	console.log("entro")
 	try{
 		let user = {
 			username: req.body.user.username,
 			password: req.body.user.password
-		}				
+		}	
+		console.log(user)
 		saUsuario.buscarUsuario(user.username, user.password, function(err, usr){
 			console.log(err)
 			if(err){						
@@ -246,5 +248,5 @@ app.get("*", function(req,res){
 });
 
 app.listen(80, () => {
-    console.log("Escuchando en el puerto 3000");
+    console.log("Escuchando en el puerto 80");
 });
