@@ -16,45 +16,47 @@
                     <h1>¡Inicia Sesión ahora!</h1>
                 </div>
 
-                <% if(!exito){  %> 
-                    <div class="badmsg msg align-self-center">
-                        Usuario o contraseña incorrectos
-                    </div>
-                <% } %> 
+                <form method="POST" action="login" enctype="multipart/form-data">
+                    <div class="container col-4 align-self-center">
 
-                <div class="container col-4 align-self-center">
-                    <div class="d-flex divUser">
-                        <label for="formNick" class="centrarVertical"><b>Username: </b></label>
-                        <div>
-                            <input class="form-control" type="text" placeholder="Username" name="username" id="username" style="background: #FFF0C9;">
+                        <% if(!exito){  %> 
+                            <div class="badmsg msg align-self-center">
+                                Usuario o contraseña incorrectos
+                            </div>
+                        <% } %> 
+
+                        <div class="d-flex divUser">
+                            <label for="formNick" class="centrarVertical"><b>Username: </b></label>
+                            <div>
+                                <input class="form-control" type="text" placeholder="Username" name="user[username]" id="username" style="background: #FFF0C9;">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="d-flex divPassword">
-                        <label for="formContrasena" class="centrarVertical"><b>Contraseña: </b></label>
-                        <div>
-                            <input class="form-control" type="password" placeholder="Contaseña" name="password" id="password" style="background: #FFF0C9;">
+                        <div class="d-flex divPassword">
+                            <label for="formContrasena" class="centrarVertical"><b>Contraseña: </b></label>
+                            <div>
+                                <input class="form-control" type="password" placeholder="Contaseña" name="user[password]" id="password" style="background: #FFF0C9;">
+                            </div>
                         </div>
+
+                        <div class="d-flex justify-content-center" id="BotonInicioSesion">
+                            <input type="submit" class="btn btn-primary" value="Iniciar Sesion" style="background: #5271FF">
+                        </div>
+
+                        <hr size="5px" style="color: blue;">
+
+                        <div>
+                            <p class="text-center">
+                                ¿Todavía no tienes una cuenta?
+                                <a data-testid="log-in-link" href="/registroUser" tabindex="0">
+                                    Registrate
+                                </a>
+                            </p>
+                        </div>
+
                     </div>
-
-                    <div class="d-flex justify-content-center" id="BotonInicioSesion">
-                        <input type="submit" class="btn btn-primary" value="Iniciar Sesion" style="background: #5271FF">
-                    </div>
-
-                    <hr size="5px" style="color: blue;">
-
-                    <div>
-                        <p class="text-center">
-                            ¿Todavía no tienes una cuenta?
-                            <a data-testid="log-in-link" href="/registroUser" tabindex="0">
-                                Registrate
-                            </a>
-                        </p>
-                    </div>
-
-                </div>
-            </form>
-            
+                </form>
+            </div>
 		</div>
     </body>
 </html>
