@@ -221,6 +221,26 @@ app.post("/login", multerFactory.none(), function(req,res){
 	}
 });
 
+//responder una publicacion
+app.post("/responderPublicacion",multerFactory.none(),function(req,res){
+	let respuesta= {
+		cuerpo: request.body.respuesta.cuerpo,
+		idPub: request.body.respuesta.idPub
+	};
+
+	let sa = new SAResponderPublicacion(pool);
+	sa.agregarRespuesta(respuesta,function(err,id){
+		if(err){
+			console.log(err);
+			res.setFlash(err);
+			res.render("mensaje", {mensaje : err});
+		}
+		else{
+			let msg="Se ha respondido correctamente con el id: "+id;
+			res.render("mensaje",{mensaje : msg,id : id})
+		}
+	});
+});
 
 app.get("/login", middleNoLogueado, function(req,res){
 	res.render("inicioSesion", {secciones:sections, exito: true});
