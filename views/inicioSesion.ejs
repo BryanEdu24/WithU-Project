@@ -16,6 +16,12 @@
                     <h1>¡Inicia Sesión ahora!</h1>
                 </div>
 
+                <% if(!exito){  %> 
+                    <div class="badmsg msg align-self-center">
+                        Usuario o contraseña incorrectos
+                    </div>
+                <% } %> 
+
                 <div class="container col-4 align-self-center">
                     <div class="d-flex divUser">
                         <label for="formNick" class="centrarVertical"><b>Username: </b></label>
@@ -47,8 +53,8 @@
                     </div>
 
                 </div>
-                
-            </div>
+            </form>
+            
 		</div>
     </body>
 </html>
