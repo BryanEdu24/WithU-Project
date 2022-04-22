@@ -6,21 +6,27 @@ class DAOUsuario {
 	}
 
     async agregarUsuario(usuario, callback){//El usuario es: username, password, email
-        let conexion
-        try {
-            conexion = await this._pool.getConnection();
-            let existe = await conexion.query("SELECT ID FROM usuario WHERE Username = ? OR Email = ?" , [usuario.username, usuario.email])
-            if(existe.length === 0){
-                let result = await conexion.query("INSERT INTO usuario (Titulo, IDSec, Cuerpo) VALUES (?, ?, ?)", [usuario.username, usuario.password, usuario.email])
-                await conexion.release()
-                callback(null, result.insertId) 
-            }
-            
-            
-        } catch (error) {
-            conexion.release()
-            callback(error)
-        }
+        this._pool.getConnection(function(err, connection) {
+			if (err) {
+				callback("Error de conexión a la base de datos");
+			}
+			else {
+				connection.query("INSERT INTO usuario (username, email, password) VALUES (?, ?, ?)",  [ usuario.username, usuario.email, usuario.password], 
+				function(err, result) {
+					connection.release();
+					if (err) {
+						callback("Ha ocurrido un error en la base de datos, por favor intentelo de nuevo más tarde");
+					}
+					else {
+						callback(null, result.insertId);
+					}
+				});
+			}
+		});
+
+
+
+        
     }
 
     leerUsuarioPorUsername(username, callback){

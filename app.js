@@ -138,6 +138,7 @@ req.body.etiquetas.etiqueta4,req.body.etiquetas.etiqueta5] : [];
 
 //Registrar un usuario
 app.post("/registrarUsuario", multerFactory.none(), function(req, res) {
+	console.log("entro")
 	let usuario = {
 		email: req.body.usuario.email,
 		username: req.body.usuario.username,
@@ -145,11 +146,12 @@ app.post("/registrarUsuario", multerFactory.none(), function(req, res) {
 		confirmPassword: req.body.usuario.confirmPassword,
 	};
 
+	console.log(usuario)
+
 	let sa = new SAUsuario(pool);
 	sa.agregarUsuario(usuario, function(err, id){
 		if(err){
 			console.log(err);
-			res.setFlash(err);
 			res.render("mensaje", {mensaje : err});
 		}
 		else{
