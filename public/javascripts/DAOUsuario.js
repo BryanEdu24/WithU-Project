@@ -44,7 +44,7 @@ class DAOUsuario {
                                     ID: rows[0].ID, 
                                     Email: rows[0].Email,
                                     Username: rows[0].Username,
-                                    Password: rows[0].Contraseña,
+                                    Password: rows[0].Password,
                                 };
                             }
                             callback(null,usuario);
@@ -58,12 +58,12 @@ class DAOUsuario {
     leerUsuarioPorCorreo(correo, callback){
         this._pool.getConnection(function(err, connection) {
             if (err) {
-                connection.release();
                 callback(new Error("Error de conexion a la base de datos"));
             }
             else {
                 connection.query("SELECT * FROM usuario WHERE Email=?" , [correo] ,//Aquí va la query a la BD
                     function(err, rows) {
+                        console.log(rows);
                         connection.release();
                         if (err) {
                             callback(new Error("Error de conexion a la base de datos"));
@@ -76,7 +76,7 @@ class DAOUsuario {
                                     ID: rows[0].ID, 
                                     Email: rows[0].Email,
                                     Username: rows[0].Username,
-                                    Password: rows[0].Contraseña,
+                                    Password: rows[0].Password,
                                 };
                             }
                             callback(null,usuario);
@@ -87,3 +87,4 @@ class DAOUsuario {
         });
     }
 }
+module.exports = DAOUsuario;

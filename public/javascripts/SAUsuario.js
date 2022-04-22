@@ -67,9 +67,9 @@ class SAUsuario {
 		}
     }
 
-    buscarUsuario(user, password, callback){//User puede ser username o email
-        if(isNaN(user) || user === "" || user === undefined || user === null || password === "" 
-        || password === undefined || password === null || isNaN(password)){
+    buscarUsuario(usuario, password, callback){//User puede ser username o email
+        if(usuario === "" || usuario === undefined || usuario === null || password === "" 
+        || password === undefined || password === null){
             callback("No puede haber campos vacios")
         }
         else if(password.length < 5 || password.length > 20){
@@ -77,28 +77,30 @@ class SAUsuario {
         }
         else{
             let dao = new DAOUsuario(this._pool);
-            dao.leerUsuarioPorCorreo(user, function(err,user){
+            dao.leerUsuarioPorCorreo(usuario, function(err,user1){
                 if(err){
                     callback(err)
                 }
                 else{
-                    if(user){
-                        if(user.Password === password){
-                            callback(null, user)
+                    if(user1){
+                        console.log(user1);
+                        if(user1.Password === password){
+                            callback(null, user1)
                         }
                         else{
                             callback("Contraseña incorrecta")
                         }                        
                     }
                     else{
-                        dao.leerUsuarioPorUsername(user, function(err,user){
+                        dao.leerUsuarioPorUsername(usuario, function(err,user2){
                             if(err){
                                 callback(err);
                             }
                             else{
-                                if(user){
-                                    if(user.Password === password){
-                                        callback(null, user)
+                                if(user2){
+                                    console.log(user2);
+                                    if(user2.Password === password){
+                                        callback(null, user2)
                                     }
                                     else{
                                         callback("Contraseña incorrecta")
