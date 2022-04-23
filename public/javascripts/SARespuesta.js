@@ -1,5 +1,6 @@
-/*"use strict";
+"use strict";
 const DAOEtiqueta = require("./DAOEtiqueta");
+const DAORespuesta = require("./DAORespuesta");
 const DAOPublicacion = require("./DAOPublicacion");
 const DAOPublicacionEtiqueta = require("./DAOPublicacionEtiqueta");
 const DAOSeccion = require("./DAOSeccion");
@@ -12,58 +13,37 @@ class SARespuesta {
     
 	agregarRespuesta(respuesta, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
 		
-		if(respuesta === undefined || respuesta === null || respuesta.id === undefined || respuesta.cuerpo === undefined || respuesta.idP === undefined 
-			|| publicacion.etiquetas === undefined || publicacion.etiquetas === null ||publicacion.titulo === "" || publicacion.cuerpo === "" || publicacion.seccion === ""){
+		if(respuesta === undefined || respuesta === null || respuesta.cuerpo === "" ||  respuesta.cuerpo === undefined || respuesta.idP === undefined ){
 			callback("No puede haber campos vacios");
 		}
-		else if(publicacion.titulo.length > 50){
-			callback("El titulo tiene más de 50 caracteres");
-		}
-		else if(publicacion.cuerpo.length < 200){
-			callback("El cuerpo debe tener más de 90 caracteres");
-		}
-		else if(isNaN(publicacion.seccion) && publicacion.seccion <= 0) {
-			callback("La seccion no es correcta");
-		}
-		else if(publicacion.etiquetas.length < 1 || publicacion.etiquetas.length > 5){
-			callback("Debe introducir entre 1 y 5 etiquetas");
+		else if(respuesta.cuerpo > 1500){
+			callback("El cuerpo no puede sobrepasar los 1500 caracteres");
 		}
 		else{
-			let pool = this._pool
-			let daoS = new DAOSeccion(pool);
-			daoS.leerSeccion(publicacion.seccion, function(err,seccion){
+			let DAOPub= new DAOPublicacion(this._pool);
+			DAOPub.leerPublicacion(respuesta.idP,function(err,pub){
 				if(err){
+					console.log(err);
 					callback(err);
 				}
 				else{
-					if(seccion === undefined){
-						callback("La seccion no es correcta");
-					}
-					else{
-						let etis = "";
-						publicacion.etiquetas.forEach(e => {
-							if(e !== undefined)
-								etis+= e + ",";
-						});
-						etis = etis.substring(0, etis.length-2);
-						publicacion.etiquetas = etis;
-						let dao = new DAOPublicacion(pool);
-						dao.agregarRespuesta(respuesta, function(err,idP){
-							if(err){
-								console.log(err);
-								callback(err);
-							}
-							else{
-								callback(null, idP);
-							}
-						});
-					}
-				}
-			});
-		}
-	}
+					let DAOResp=new DAORespuesta(this._pool);
+					DAOResp.agregarRespuesta(respuesta,function(err){
+						if(err){
+							console.log(err);
+							callback(error);
+						}
+						else{
+							callback("Se ha introducido la respuesta");
+						}
+					});
 
-	leerRespuesta(id, callback) {
+				}
+			});	
+		};
+	};
+
+	/*leerRespuesta(id, callback) {
 		//Comprobar datos
 		if (isNaN(id)) { //El id tiene que ser un número
 			callback("El id no es un número");
@@ -115,9 +95,9 @@ class SARespuesta {
 
 
 }
-module.exports = SARespuesta;*/
+module.exports = SARespuesta;
 
-/*async function insertar( idP, et, daoE, daoEP){
+async function insertar( idP, et, daoE, daoEP){
 	let promesa1 = new Promise((resolve, reject) => {
 		daoE.leerEtiquetaPorNombre(et, function(err, eti){
 			if(err){
@@ -164,5 +144,5 @@ module.exports = SARespuesta;*/
 		else{
 			return false;
 		}
-	});
-}*/
+	});*/
+}
