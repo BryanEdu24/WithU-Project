@@ -4,12 +4,18 @@
     <body class="bodyVerPublicaciones" id="main">
         
         <%- include("navbar") %>
+        <%- include("sidenavNormal") %>
         <%- include("botonFlotante") %>
 
+        <div class="contadorPublicaciones text-center">
+            <h4><b>Número de publicaciones: <%= publicaciones.length %></b></h4>
+        </div>
+
         <div class="container superContainer">
+            
             <div class="container-fluid">
                 <% publicaciones.forEach(function(publicacion) { %>
-                    <div class="d-flex" id="publicacionDrch">
+                    <div class="d-flex" id="publicacionesLista">
                         <div class="flex-column tituloYcuerpo">
                             <div class="text-left miniTitulos">               
                                 <h2><%= publicacion.Titulo %></h2>           
@@ -17,11 +23,18 @@
                             
                             <div class="container-fluid">
                                 <div class="cuerpoLimitSecciones">
-                                    <h4><%= publicacion.Cuerpo.substr(0, 200) + "..." %></h4>
+                                    <h4>
+                                        <%= publicacion.Cuerpo.substr(0, 200) %>
+                                        <a data-testid="log-in-link" href="/leerPublicacion/<%=publicacion.ID%>" tabindex="0">
+                                            <%=" Leer más..." %>
+                                        </a>
+                                    </h4>
                                 </div>
                                 <div id="etiquetasInfo">
-                                    📝<i style="color: black;">ETIQUETAS: </i>
-                                    <%= publicacion.Etiquetas %>
+                                    <h5>
+                                        📝<i style="color: black;">ETIQUETAS: </i>
+                                        <%= publicacion.Etiquetas %>
+                                    </h5>
                                 </div>
                             </div>
                         </div>

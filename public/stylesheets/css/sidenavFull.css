@@ -1,0 +1,56 @@
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0px;
+    left: 0;
+    background: linear-gradient(to bottom, #5271ff, #B0CDDB);
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+}
+.bocadillo {
+    font-size: 28px;
+    margin-left: 12px;
+    color: white;
+    margin-bottom: 650px;
+}
+
+.sidenav a {
+    padding: 15px 5px 15px 5px;
+    text-decoration: none;
+    font-size: 25px;
+    color: beige;
+    display: block;
+    transition: 0s;
+}
+    
+.sidenav a:hover {
+    color: black;
+}
+  
+.seccionesNav {
+    margin-top: -15px;
+}
+  
+.sidenav .closebtn {
+    position: absolute;
+    color: white;
+    top: -5%;
+    right: 15px;
+    font-size: 45px;
+}
+
+.closebtn {
+    margin-top: 2%;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}

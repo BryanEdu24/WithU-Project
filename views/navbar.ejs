@@ -1,40 +1,17 @@
-  <nav class="navbar navbar-light fixed-top" style="background-color: #5271ff;">
-    <a class="navbar-brand p-2" href="#" onclick="location='/crearPublicacion'">
-      <img src="/images/LogoBorde.png" width="35" height="35" class="d-inline-block align-top" alt=""/>
-    </a>
-    
-    <div class="form">
-      <input class="cuadroBusqueda form-control mr-sm-2" type="search" placeholder="Búsqueda por palabra clave" aria-label="Search">
-    </div>
-    <div>
-      Mi cuenta
-    </div>
-  </nav>
-
-  <div class="espaciado"></div>
+<nav class="navbar navbar-light fixed-top" style="background-color: #5271ff;">
+  <a class="navbar-brand p-2" href="#" onclick="location='/crearPublicacion'">
+    <img src="/images/LogoBorde.png" width="35" height="35" class="d-inline-block align-top" alt=""/>
+  </a>
   
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <div class="seccionesNav">
-      <% secciones.forEach( sec => { %>
-        <a href="/seccion/<%=sec.ID%>">
-          <img src="/images/<%= sec.Nombre %>.svg" width="40" height="40" class="d-inline-block align-top" alt=""/>
-          <%= sec.Nombre %>
-        </a>
-      <% }); %>
-    </div>  
+  <div class="form">
+    <input class="cuadroBusqueda form-control mr-sm-2" type="search" placeholder="Búsqueda por palabra clave" aria-label="Search">
   </div>
   
-  <span class="bocadillo" style="cursor:pointer;" onclick="openNav()">&#9776;</span>
+  <div class="miCuentaText">
+    Mi cuenta
+  </div>
+</nav>
 
-  <script>
-    function openNav() {
-        document.getElementById("mySidenav").style.width = "235px";
-        document.getElementById("main").style.marginLeft = "235px";
-    }  
-    function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-        document.getElementById("main").style.marginLeft= "0";
-    } 
-</script>
-
+<div class="espaciado">
+  Texto para el espaciado
+</div>

@@ -2,9 +2,9 @@
     font-size: 15px;
     text-transform: uppercase; 
     font-weight: bold; 
-    color: white; 
-    border-radius: 50px; 
-    background-color: RoyalBlue;
+    color: black; 
+    border-radius: 100px; 
+    background-color: #5271ff;
     padding: 30px 30px; 
     position: fixed;
     bottom: 35px;

@@ -3,14 +3,11 @@
 }
 
 .tituloRegistro {
-    margin-top: 2%;
     margin-bottom: 1.5%;
     color: white;
 }
 
 .formulario {
-    /* background-image: url("/images/fondo.jpg");
-    background-size: 70rem;  */
     background-color: transparent;
 }
 
