@@ -43,6 +43,46 @@ test('Agregamos una usuario correctamente', done =>{
     }
 });
 
+test('leemos usuario por username correctamente', done =>{
+    function cb(err, user){
+        try{
+            expect(err).toBe(null);
+            expect(user).toBe(!null);
+            done();
+        }catch(error){
+            done(error);
+        }
+    }
+
+    let username = usernameCorrecto;
+    
+    try{
+        dao.leerUsuarioPorUsername(username, cb);
+    } catch(err){
+        done(error);
+    }
+});
+
+test('leemos usuario por correo correctamente', done =>{
+    function cb(err, user){
+        try{
+            expect(err).toBe(null);
+            expect(user).toBe(!null);
+            done();
+        }catch(error){
+            done(error);
+        }
+    }
+
+    let correo = emailCorrecto;
+    
+    try{
+        dao.leerUsuarioPorCorreo(correo, cb);
+    } catch(err){
+        done(error);
+    }
+});
+
 test('Error de conexión a la BBDD', done =>{
     function cb(err, ID){
         try{
