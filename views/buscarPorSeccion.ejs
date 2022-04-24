@@ -14,8 +14,9 @@
         <div class="container superContainer">
             
             <div class="container-fluid">
+                <div style="height: 5px;">  </div>
                 <% publicaciones.forEach(function(publicacion) { %>
-                    <div class="d-flex" id="publicacionesLista">
+                    <div class="d-flex publiHover" id="publicacionesLista" onclick="location.href = '/leerPublicacion/<%=publicacion.ID%>';">
                         <div class="flex-column tituloYcuerpo">
                             <div class="text-left miniTitulos">               
                                 <h2><%= publicacion.Titulo %></h2>           
@@ -24,10 +25,10 @@
                             <div class="container-fluid">
                                 <div class="cuerpoLimitSecciones">
                                     <h4>
-                                        <%= publicacion.Cuerpo.substr(0, 200) %>
-                                        <a data-testid="log-in-link" href="/leerPublicacion/<%=publicacion.ID%>" tabindex="0">
+                                        <%= publicacion.Cuerpo.substr(0, 200) %>...
+                                        <!-- <a data-testid="log-in-link" href="/leerPublicacion/<%=publicacion.ID%>" tabindex="0">
                                             <%=" Leer más..." %>
-                                        </a>
+                                        </a> -->
                                     </h4>
                                 </div>
                                 <div id="etiquetasInfo">

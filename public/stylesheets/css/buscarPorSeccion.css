@@ -13,11 +13,12 @@
 }
 
 .superContainer {
-    background-color: white;
+    /* background-color: white; */
 }
 
 .tituloYcuerpo{
     background-color: white;
+    padding-left: 25px;
 }
 
 .miniTitulos {
@@ -66,4 +67,9 @@
 #usuarioName {
     color: grey;
     margin-top: 4%;
+}
+
+.publiHover:hover{
+    box-shadow: 0px 0px 20px PowderBlue;
+    border-radius: 20px;    
 }
