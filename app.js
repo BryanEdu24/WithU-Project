@@ -226,6 +226,10 @@ app.get("/login", middleNoLogueado, function(req,res){
 	res.render("inicioSesion", {secciones:sections, exito: true});
 });
 
+app.get("/inicio", middleNoLogueado, function(req,res){
+	res.render("paginaPrincipal", {secciones:sections, exito: true});
+});
+
 app.get("/registroUser", function(req,res){
 	let daoSec = new DAOSeccion(pool);
 			try {
