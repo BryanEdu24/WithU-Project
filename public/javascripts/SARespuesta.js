@@ -3,7 +3,6 @@ const DAOEtiqueta = require("./DAOEtiqueta");
 const DAORespuesta = require("./DAORespuesta");
 const DAOPublicacion = require("./DAOPublicacion");
 const DAOPublicacionEtiqueta = require("./DAOPublicacionEtiqueta");
-const DAOSeccion = require("./DAOSeccion");
 
 
 class SARespuesta {
@@ -11,7 +10,7 @@ class SARespuesta {
 		this._pool = pool;
 	}
     
-	agregarRespuesta(respuesta, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
+	/*agregarRespuesta(respuesta, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
 		
 		if(respuesta === undefined || respuesta === null || respuesta.cuerpo === "" ||  respuesta.cuerpo === undefined || respuesta.idP === undefined ){
 			callback("No puede haber campos vacios");
@@ -72,28 +71,26 @@ class SARespuesta {
 				}
 			});
 		}
-	}
+	}*/
 
-	leerRespuestasPorSeccion(idSec, callback) {
-		if (idSec === undefined || isNaN(idSec) || idSec <= 0) {
-			callback("Error al seleccionar la publicacion");
+	leerRespuestasPorPublicacion(idPub, callback) {
+		if (idPub === undefined || isNaN(idPub) || idPub <= 0) {
+			callback("No se ha podido encontrar la publicacion");
 		}
 		else {
-			let pool = this._pool;
-			let daoSec = new DAOSeccion(this._pool);
-			daoSec.leerSeccion(idSec, function(err, sec){
+			let pool = this_pool;
+			let daoPub = new DAOPublicacion(this_pool);
+			daoPub.leerPublicacion(idPub, function(err, sec){
 				if(err){
 					callback("La seccion no existe");
 				}
-				else{
-					let daoPub = new DAOPublicacion(pool);
-					daoPub.leerRespuestasPorSeccion(idSec,callback);
+				else {
+					let daoRes = new DAORespuesta(pool);
+					daoRes.leerRespuestasPorPublicacion(idPub,callback);
 				}
 			});
 		}
 	}
-
-
 }
 module.exports = SARespuesta;
 
@@ -144,5 +141,5 @@ async function insertar( idP, et, daoE, daoEP){
 		else{
 			return false;
 		}
-	});*/
+	});
 }
