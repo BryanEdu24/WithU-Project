@@ -37,6 +37,8 @@ var sections = [];
 
 const mysqlSession = require("express-mysql-session");
 const SARespuesta = require("./public/javascripts/SARespuesta");
+const { receiveMessageOnPort } = require("worker_threads");
+const { readlink } = require("fs");
 const MySQLStore = mysqlSession(session);
 const sessionStore = new MySQLStore({
 	host: config.host,
@@ -173,7 +175,7 @@ app.get("/leerPublicacion/:id", function(req, res){
 			res.redirect("/error404");
 		}
 		else {
-			res.render("verPublicacion", {publicacion: publicacion, secciones:sections});
+			res.render("verPublicacion", {publicacion: publicacion, secciones:sections, user: req.session.user});
 			/*let SARes = new SARespuesta(pool);
 			SARes.leerRespuestasPorPublicacion(id, function(err, result) {
 				if(err) {
