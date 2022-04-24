@@ -173,16 +173,17 @@ app.get("/leerPublicacion/:id", function(req, res){
 			res.redirect("/error404");
 		}
 		else {
-			let SARes = new SARespuesta(pool);
+			res.render("verPublicacion", {publicacion: publicacion, secciones:sections});
+			/*let SARes = new SARespuesta(pool);
 			SARes.leerRespuestasPorPublicacion(id, function(err, result) {
 				if(err) {
 					console.log(err);
 					res.redirect("/error404");
 				}
 				else {
-					res.render("verPublicacion", {publicacion: publicacion, secciones:sections, respuestas: result});
+					
 				}
-			});
+			});*/
 		}
 	});
 	
@@ -263,8 +264,8 @@ app.get("/login", middleNoLogueado, function(req,res){
 	res.render("inicioSesion", {secciones:sections, exito: true, user: req.session.user});
 });
 
-app.get("/inicio", middleNoLogueado, function(req,res){
-	res.render("paginaPrincipal", {secciones:sections, exito: true});
+app.get("/inicio", function(req,res){
+	res.render("paginaPrincipal");
 });
 
 app.get("/registroUser", function(req,res){
