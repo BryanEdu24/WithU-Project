@@ -20,17 +20,18 @@ class SARespuesta {
 		}
 		else{
 			let DAOPub= new DAOPublicacion(this._pool);
+			let pool = this._pool;
 			DAOPub.leerPublicacion(respuesta.idP,function(err,pub){
 				if(err){
 					console.log(err);
 					callback(err);
 				}
 				else{
-					let DAOResp=new DAORespuesta(this._pool);
+					let DAOResp=new DAORespuesta(pool);
 					DAOResp.agregarRespuesta(respuesta,function(err){
 						if(err){
 							console.log(err);
-							callback(error);
+							callback(err);
 						}
 						else{
 							callback("Se ha introducido la respuesta");

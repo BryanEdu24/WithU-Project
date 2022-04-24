@@ -1,14 +1,40 @@
-.formularioRespuesta{
-
-    width: 50%;
-    margin-left: 9%;
-
+.bodyRespuesta {
+    color:black;
+    background: linear-gradient(to bottom, #5271ff, #B0CDDB);
+    transition: margin-left 0.3s;
 }
 
-.respuesta{
-    margin-top: 2%;
+.tituloRespuesta {
+    margin-bottom: 1.5%;
+    color: white;
 }
-.respuestaCuadro{
+
+.ContainerRespuesta {
+    border: black;
+    border-radius: 10px;
     background-color: white;
+}
 
+.CuerpoRespuesta {
+    color: black;
+}
+
+.CuerpoTextoRespuesta, .CuerpoTextoRespuesta:focus{
+    border-color: transparent;
+    background: #FFF0C9;
+}
+
+.BotonRespuesta {
+    background-color: #5271ff;
+    margin-bottom: 1%;
+}
+
+.asterisco {
+    color:red;
+}
+
+.AvisoChiquito {
+    font-size: 12px;
+    margin-top: -1%;
+    color: red;
 }

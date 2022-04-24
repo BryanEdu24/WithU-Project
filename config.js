@@ -1,5 +1,7 @@
 "use strict";
 
+const { required } = require("nodemon/lib/config");
+
 module.exports = {
 	host: "localhost",
 	user: "root",

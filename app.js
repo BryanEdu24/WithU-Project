@@ -130,11 +130,11 @@ req.body.etiquetas.etiqueta4,req.body.etiquetas.etiqueta5] : [];
 	sa.agregarPublicacion(publicacion, function(err, id) {
 		if(err){
 			console.log(err);
-			res.render("mensaje", {mensaje : err});
+			res.render("mensaje", {mensaje : err, user: req.session.user});
 		}
 		else{
 			let msg= "Se ha creado la publicación con éxito con id:" + id;
-			res.render("mensaje", {mensaje : msg, id : id});
+			res.render("mensaje", {mensaje : msg, id : id, user: req.session.user});
 		}
 	});
 });
@@ -155,11 +155,11 @@ app.post("/registrarUsuario", multerFactory.none(), function(req, res) {
 	sa.agregarUsuario(usuario, function(err, id){
 		if(err){
 			console.log(err);
-			res.render("mensaje", {mensaje : err});
+			res.render("mensaje", {mensaje : err, user: req.session.user});
 		}
 		else{
 			let msg= "Se ha creado el usuario correctamente con id: " + id + " y nombre de usuario: " + usuario.username;
-			res.render("mensaje", {mensaje : msg, id : id});
+			res.render("mensaje", {mensaje : msg, id : id, user: req.session.user});
 		}
 	});
 });
@@ -237,20 +237,20 @@ app.post("/login", multerFactory.none(), function(req,res){
 //responder una publicacion
 app.post("/responderPublicacion",multerFactory.none(),function(req,res){
 	let respuesta= {
-		cuerpo: request.body.respuesta.cuerpo,
-		idPub: request.body.respuesta.idPub
+		cuerpo: req.body.respuesta.cuerpo,
+		idP: req.get("Referrer").split("Publicacion/")[1]
 	};
 
-	let sa = new SAResponderPublicacion(pool);
+	let sa = new SARespuesta(pool);
+
 	sa.agregarRespuesta(respuesta,function(err,id){
 		if(err){
 			console.log(err);
-			res.setFlash(err);
-			res.render("mensaje", {mensaje : err});
+			res.render("mensaje", {mensaje : err, user: req.session.user});
 		}
 		else{
 			let msg="Se ha respondido correctamente con el id: "+id;
-			res.render("mensaje",{mensaje : msg,id : id})
+			res.render("mensaje",{mensaje : msg,id : id, user: req.session.user})
 		}
 	});
 });
@@ -267,7 +267,7 @@ app.get("/login", middleNoLogueado, function(req,res){
 });
 
 app.get("/inicio", function(req,res){
-	res.render("paginaPrincipal");
+	res.render("paginaPrincipal", {secciones:sections, user: req.session.user});
 });
 
 app.get("/registroUser", function(req,res){
@@ -290,7 +290,7 @@ app.get("/", function(req,res){
 });
 
 app.get("*", function(req,res){
-	res.render("error404");
+	res.render("error404", {user: req.session.user});
 });
 
 app.listen(80, () => {

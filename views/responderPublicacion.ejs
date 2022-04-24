@@ -1,16 +1,38 @@
+<form method="POST" action="/responderPublicacion" enctype="multipart/form-data">
+    <div class="ContainerRespuesta container col-8">
 
-<form class = "formularioRespuesta" method="POST" action="responderPublicacion"  enctype="multipart/form-data">
-                  
-        <div class="form-group respuesta">
-            <label for="formNick"><b>Responder:</b></label>
-            <textarea class="respuestaCuadro form-control" type="text" rows="8" placeholder="Respuesta" name="respuesta[cuerpo]" required minlength="0" maxlength="1500"></textarea>
-            <div style="text-align:right">
-                <i>Máximo 1500 caracteres</i>
+        <div class="CuerpoRespuesta d-flex justify-content-center flex-column">
+            <div class="p-2">
+                <!-- En lugar de Anónimo iría nombre de usuario al que se responde -->
+                <b>Respuesta a "Anónimo"</b><i>(max. 1500 caracteres)</i><b>:</b><b class="asterisco">* </b>  
             </div>
+
+            <div class="form-group p-2">
+                <textarea class="CuerpoTextoRespuesta form-control" type="text" rows="7" placeholder="Cuerpo de la respuesta" name="respuesta[cuerpo]" required minlength="1" maxlength="1500" id="mensaje"></textarea>
+                <div style='text-align:left'>
+                    <i id="contador">Contador caracteres: 0 </i>   
+                </div>
+            </div>
+        </div>             
+
+        <div class="p-2 AvisoChiquito">
+            <b>Todos los campos con * son obligatorios </b>
         </div>
-    
-        <div class="d-flex justify-content-center" >
-            <input type="submit" class="btn btn-primary" value="Publicar respuesta" style="background: #5271FF">
+
+        <div class="d-flex justify-content-center">
+            <input type="submit" class="BotonRespuesta btn btn-primary" value ="Publicar respuesta">
         </div>
-    
+
+        <script>
+            const mensaje = document.getElementById('mensaje');
+            const contador = document.getElementById('contador');
+            mensaje.addEventListener('input', function(e) {
+                const target = e.target;
+                const longitudMax = target.getAttribute('maxlength');
+                const longitudAct = target.value.length;
+                contador.innerHTML = `Contador caracteres: ${longitudAct}`;
+            });
+        </script>
+
+    </div>
 </form>

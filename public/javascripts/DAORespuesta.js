@@ -12,7 +12,7 @@ class DAORespuesta {
 				callback("Error de conexion a la base de datos");
 			}
 			else {
-				connection.query("INSERT INTO respuestas (idPub, cuerpo) VALUES (?, ?)",  [ resp.idPub, resp.cuerpo ], //Aquí va la query a la BD
+				connection.query("INSERT INTO respuesta (idPub, cuerpo) VALUES (?, ?)",  [ resp.idP, resp.cuerpo ], //Aquí va la query a la BD
 					function(err, result) {
 						connection.release();
 						if (err) {
