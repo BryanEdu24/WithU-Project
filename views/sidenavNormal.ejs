@@ -1,0 +1,24 @@
+<div id="mySidenav" class="sidenavN">
+    <a href="javascript:void(0)" class="closebtnN" onclick="closeNav()">&times;</a>
+    <div class="seccionesNavN">
+      <% secciones.forEach( sec => { %>
+        <a href="/seccion/<%=sec.ID%>">
+          <img src="/images/<%= sec.Nombre %>.svg" width="40" height="40" class="d-inline-block align-top" alt=""/>
+          <%= sec.Nombre %>
+        </a>
+      <% }); %>
+    </div>  
+</div>
+  
+<span class="bocadilloN" style="cursor:pointer;" onclick="openNav()">&#9776;</span>
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "235px";
+    document.getElementById("main").style.marginLeft = "235px";
+    }
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+    } 
+</script>

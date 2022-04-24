@@ -4,6 +4,8 @@
     <body class="body" id="main">
 
         <%- include("navbar") %>
+        <%- include("sidenavNormal") %>
+        <%- include("botonFlotante") %>
 
         <div class="section1 text-center">
             <h1>Crea tu publicación</h1>
@@ -34,7 +36,7 @@
                         <textarea class="CuerpoTexto form-control" type="text" rows="8" placeholder="Cuerpo de publicación" name="publicacion[cuerpo]" required minlength="200" maxlength="" id="mensaje"></textarea>
                         <div style='text-align:left'>
                             <i id="contador">Contador caracteres: 0 </i>   
-                            <i id="espacioLinea"> ◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦</i>
+                            <i id="espacioLinea"> ◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦</i>
                             <i>Min. 200 caracteres</i>
                         </div>
                     </div>
@@ -95,8 +97,6 @@
             </div>
         </form>    
     </body>
-
-    <!--ESTO VA APARTE IGNORAAARR-->
 
     <script src="/stylesheets/js/crearPublicacion.js"></script>
 

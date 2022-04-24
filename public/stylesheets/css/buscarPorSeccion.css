@@ -8,6 +8,10 @@
     background-color: transparent!important
 }
 
+.contadorPublicaciones {
+    color: white;
+}
+
 .superContainer {
     background-color: white;
 }
@@ -24,9 +28,10 @@
 
 .cuerpoLimitSecciones {
     background-color: white;
+    margin-left: -10px;
 }
 
-#publicacionDrch {
+#publicacionesLista {
     margin-top: 2%;
     background-color: white;
     display: flex;
@@ -49,6 +54,7 @@
 #etiquetasInfo{
     color:#5271ff;
     text-align: left;
+    margin-left: -10px; 
 }
 
 #usuarioImage{

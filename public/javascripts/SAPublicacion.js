@@ -85,7 +85,7 @@ class SAPublicacion {
 							callback(err);
 						}
 						else{
-							pub.etiquetas = etiquetas;
+							pub.Etiquetas = etiquetas;
 							callback(null, pub);
 						}
 					})
