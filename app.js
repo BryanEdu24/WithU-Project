@@ -172,14 +172,14 @@ app.get("/leerPublicacion/:id", function(req, res){
 			res.redirect("/error404");
 		}
 		else {
-			res.render("verPublicacion", {publicacion: result, secciones:sections});
+			res.render("verPublicacion", {publicacion: result, secciones:sections, user: req.session.user});
 		}
 	});
 	
 });
 
 app.get("/crearPublicacion", middleLogueado, function(req,res){
-	res.render("crearPublicacion",{secciones:sections});
+	res.render("crearPublicacion",{secciones:sections, user : req.session.user});
 });
 
 //Busqueda de publicacion por seccion
@@ -192,7 +192,7 @@ app.get("/seccion/:id", function(req, res){
 			res.redirect("/error404");
 		}
 		else {
-			res.render("buscarPorSeccion", {publicaciones: result, secciones:sections});
+			res.render("buscarPorSeccion", {publicaciones: result, secciones:sections, user: req.session.user});
 		}
 	});
 });
@@ -209,7 +209,7 @@ app.post("/login", multerFactory.none(), function(req,res){
 		saUsuario.buscarUsuario(user.username, user.password, function(err, usr){
 			console.log(err)
 			if(err){						
-				res.render("inicioSesion", {secciones:sections, exito: false});						
+				res.render("inicioSesion", {secciones:sections, exito: false, user : req.session.user});						
 			}
 			else{
 				req.session.user = usr.Username						
@@ -217,13 +217,20 @@ app.post("/login", multerFactory.none(), function(req,res){
 			}
 		});
 	}catch(err){
-		res.render("inicioSesion", {secciones:sections, exito: true});
+		res.render("inicioSesion", {secciones:sections, exito: true, user: req.session.user});
 	}
 });
 
 
+app.get("/cerrarSesion", function(req,res){
+	console.log("Entro")
+	req.session.user = null
+	res.redirect("/seccion/1")
+});
+
+
 app.get("/login", middleNoLogueado, function(req,res){
-	res.render("inicioSesion", {secciones:sections, exito: true});
+	res.render("inicioSesion", {secciones:sections, exito: true, user: req.session.user});
 });
 
 app.get("/registroUser", function(req,res){
@@ -233,11 +240,11 @@ app.get("/registroUser", function(req,res){
 					if(sec === undefined){
 						sec = [];
 					}
-					res.render("registroUsuario", {secciones:sec});
+					res.render("registroUsuario", {secciones:sec, user: req.session.user});
 				});
 			}catch(err){
 				let sec = [];
-				res.render("registroUsuario", {secciones:sec});
+				res.render("registroUsuario", {secciones:sec, user: req.session.user});
 			}
 });
 

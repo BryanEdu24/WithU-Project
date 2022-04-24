@@ -4,10 +4,18 @@
     </a>
     
     <div class="form">
-      <input class="cuadroBusqueda form-control mr-sm-2" type="search" placeholder="Búsqueda por palabra clave" aria-label="Search">
+      <input class="cuadroBusqueda form-control align-self-center" type="search" placeholder="Búsqueda por palabra clave" aria-label="Search">
     </div>
-    <div>
-      Mi cuenta
+    <div class="userSesion">
+        <!-- <a href="/cerrarSesion" id="cerrar">Cerrar Sesion</a> -->
+        <% if(user !== null && user !== undefined){  %> 
+          <button type="button" class="btn btn-outline-light navbutton" onclick="location.href = '/cerrarSesion';">Cerrar Sesion</button>
+        <% } %> 
+        <% if(user === null || user ===undefined){  %> 
+          <button type="button" class="btn btn-outline-light navbutton" onclick="location.href = '/login';">Iniciar Sesion</button>
+          <button type="button" class="btn btn-outline-light navbutton" onclick="location.href = '/registroUser';">Registrate</button>
+        <% } %> 
+        
     </div>
   </nav>
 
