@@ -29,5 +29,34 @@ class DAORespuesta {
 			}
 		});
 	}
+		listarRespuestasPorPublicacion(idP,callback){
+			this._pool.getConnection(function(err, connection) {
+				if (err) {
+					connection.release();
+					callback(new Error("Error de conexion a la base de datos"));
+				}
+				else {
+					connection.query("SELECT * FROM respuesta WHERE IDPub =?",[idP], //Aquí va la query a la BD
+						function(err, rows) {
+							connection.release();
+							if (err) {
+								callback(new Error("Error de conexion a la base de datos"));
+							}
+							else {
+								let listaRespuesta = Array.from(new Set(
+									rows.map(l => l.idPub))).map(id => {
+										return {
+											ID: id, 
+											Cuerpo: rows.find(l => l.idPub === idPub).Cuerpo,
+											idPub: rows.find(l => l.idPub === idPub).idPub,
+										}
+									});
+								callback(null,listaRespuesta);
+							}
+						}
+					);
+				}
+			});
+		}
 }
 module.exports = DAORespuesta;

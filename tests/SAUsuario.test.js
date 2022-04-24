@@ -292,3 +292,93 @@ test('Intentamos agregar un usuario con email y password correctos, pero usernam
         done(error);
     }
 });
+
+test('Intentamos iniciar sesión de un usuario con usuario y contraseña que coincidan', done =>{
+    let usuario = { username: usernameCorrecto, email: emailCorrecto, password: passwordCorrecta, confirmPassword: passwordCorrecta};
+    sa.agregarUsuario(usuario, null);
+    function cb(err, ID){
+        try{
+            expect(err).toBe(null);
+            done();
+        }catch(error){
+            done(error);
+        }
+    }
+    try{
+        sa.buscarUsuario(usernameCorrecto, passwordCorrecta, cb);
+    }catch(error){
+        done(error);
+    }
+});
+
+test('Intentamos iniciar sesión de un usuario con usuario y contraseña que no coincidan', done =>{
+    let usuario = { username: usernameCorrecto, email: emailCorrecto, password: passwordCorrecta, confirmPassword: passwordCorrecta};
+    sa.agregarUsuario(usuario, null);
+    function cb(err, ID){
+        try{
+            expect(err).toBe("Contraseña incorrecta");
+            done();
+        }catch(error){
+            done(error);
+        }
+    }
+    try{
+        sa.buscarUsuario(usernameCorrecto, "12345", cb);
+    }catch(error){
+        done(error);
+    }
+});
+
+test('Intentamos iniciar sesión de un usuario que no existe', done =>{
+    let usuario = { username: usernameCorrecto, email: emailCorrecto, password: passwordCorrecta, confirmPassword: passwordCorrecta};
+    sa.agregarUsuario(usuario, null);
+    function cb(err, ID){
+        try{
+            expect(err).toBe("El usuario no existe");
+            done();
+        }catch(error){
+            done(error);
+        }
+    }
+    try{
+        sa.buscarUsuario("12345", "12345", cb);
+    }catch(error){
+        done(error);
+    }
+});
+
+test('Intentamos iniciar sesión de un usuario con usuario null', done =>{
+    let usuario = { username: usernameCorrecto, email: emailCorrecto, password: passwordCorrecta, confirmPassword: passwordCorrecta};
+    sa.agregarUsuario(usuario, null);
+    function cb(err, ID){
+        try{
+            expect(err).toBe("No puede haber campos vacios");
+            done();
+        }catch(error){
+            done(error);
+        }
+    }
+    try{
+        sa.buscarUsuario(null, "12345", cb);
+    }catch(error){
+        done(error);
+    }
+});
+
+test('Intentamos iniciar sesión de un usuario con contraseña null', done =>{
+    let usuario = { username: usernameCorrecto, email: emailCorrecto, password: passwordCorrecta, confirmPassword: passwordCorrecta};
+    sa.agregarUsuario(usuario, null);
+    function cb(err, ID){
+        try{
+            expect(err).toBe("No puede haber campos vacios");
+            done();
+        }catch(error){
+            done(error);
+        }
+    }
+    try{
+        sa.buscarUsuario("12345", null, cb);
+    }catch(error){
+        done(error);
+    }
+});

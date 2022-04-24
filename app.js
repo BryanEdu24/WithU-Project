@@ -36,6 +36,9 @@ const SAUsuario = require("./public/javascripts/SAUsuario");
 var sections = [];
 
 const mysqlSession = require("express-mysql-session");
+const SARespuesta = require("./public/javascripts/SARespuesta");
+const { receiveMessageOnPort } = require("worker_threads");
+const { readlink } = require("fs");
 const MySQLStore = mysqlSession(session);
 const sessionStore = new MySQLStore({
 	host: config.host,
@@ -164,15 +167,25 @@ app.post("/registrarUsuario", multerFactory.none(), function(req, res) {
 
 //Vista de datos básicos de publicación
 app.get("/leerPublicacion/:id", function(req, res){
-	let SA = new SAPublicacion(pool);
+	let SAPub = new SAPublicacion(pool);
 	let id = req.params.id;
-	SA.leerPublicacion(id, function(err, result) {
+	SAPub.leerPublicacion(id, function(err, publicacion) {
 		if(err) {
 			console.log(err);
 			res.redirect("/error404");
 		}
 		else {
-			res.render("verPublicacion", {publicacion: result, secciones:sections, user: req.session.user});
+			res.render("verPublicacion", {publicacion: publicacion, secciones:sections, user: req.session.user});
+			/*let SARes = new SARespuesta(pool);
+			SARes.leerRespuestasPorPublicacion(id, function(err, result) {
+				if(err) {
+					console.log(err);
+					res.redirect("/error404");
+				}
+				else {
+					
+				}
+			});*/
 		}
 	});
 	
@@ -251,6 +264,10 @@ app.get("/cerrarSesion", function(req,res){
 
 app.get("/login", middleNoLogueado, function(req,res){
 	res.render("inicioSesion", {secciones:sections, exito: true, user: req.session.user});
+});
+
+app.get("/inicio", function(req,res){
+	res.render("paginaPrincipal");
 });
 
 app.get("/registroUser", function(req,res){

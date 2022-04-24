@@ -1,0 +1,18 @@
+.tituloPaginaPrincipal {
+    margin-bottom: 1%;
+    color: white;
+}
+
+#main {
+    background: linear-gradient(to bottom, #5271ff, #B0CDDB);
+}
+
+.imagenPaginaPrincipal {
+    margin-bottom: 2%;
+}
+
+.containerPaginaPrincipal{
+    text-align: center;
+    background-color: transparent;
+}
+
