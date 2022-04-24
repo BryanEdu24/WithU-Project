@@ -104,3 +104,26 @@ test('Intentamos agregar una respuesta con cuerpo vacio', done =>{
         done(error);
     }
 });
+
+// Test de Vista Respuesta
+
+test('Leer datos de una respuesta', done => {
+    function callback(err, respuesta) { 
+        try{
+            expect(err).toBe(null);
+            expect(respuesta.Cuerpo).toBe(cuerpoRespuestaCorrecto);
+            done(); 
+        }catch(error){
+            done(error);
+        }  
+    }
+
+    let respuesta = { cuerpo: cuerpoRespuestaCorrecto };
+    
+    try{
+        sa.leerRespuestasPorPublicacion(1, callback);
+    }catch(error){
+        done(error);
+    }
+
+});

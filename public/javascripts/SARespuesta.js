@@ -10,7 +10,7 @@ class SARespuesta {
 		this._pool = pool;
 	}
     
-	/*agregarRespuesta(respuesta, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
+	agregarRespuesta(respuesta, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
 		
 		if(respuesta === undefined || respuesta === null || respuesta.cuerpo === "" ||  respuesta.cuerpo === undefined || respuesta.idP === undefined ){
 			callback("No puede haber campos vacios");
@@ -42,7 +42,7 @@ class SARespuesta {
 		};
 	};
 
-	/*leerRespuesta(id, callback) {
+	leerRespuesta(id, callback) {
 		//Comprobar datos
 		if (isNaN(id)) { //El id tiene que ser un número
 			callback("El id no es un número");
@@ -71,7 +71,7 @@ class SARespuesta {
 				}
 			});
 		}
-	}*/
+	}
 
 	leerRespuestasPorPublicacion(idPub, callback) {
 		if (idPub === undefined || isNaN(idPub) || idPub <= 0) {
