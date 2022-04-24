@@ -36,6 +36,7 @@ const SAUsuario = require("./public/javascripts/SAUsuario");
 var sections = [];
 
 const mysqlSession = require("express-mysql-session");
+const SARespuesta = require("./public/javascripts/SARespuesta");
 const MySQLStore = mysqlSession(session);
 const sessionStore = new MySQLStore({
 	host: config.host,
@@ -164,15 +165,24 @@ app.post("/registrarUsuario", multerFactory.none(), function(req, res) {
 
 //Vista de datos básicos de publicación
 app.get("/leerPublicacion/:id", function(req, res){
-	let SA = new SAPublicacion(pool);
+	let SAPub = new SAPublicacion(pool);
 	let id = req.params.id;
-	SA.leerPublicacion(id, function(err, result) {
+	SAPub.leerPublicacion(id, function(err, publicacion) {
 		if(err) {
 			console.log(err);
 			res.redirect("/error404");
 		}
 		else {
-			res.render("verPublicacion", {publicacion: result, secciones:sections});
+			let SARes = new SARespuesta(pool);
+			SARes.leerRespuestasPorPublicacion(id, function(err, result) {
+				if(err) {
+					console.log(err);
+					res.redirect("/error404");
+				}
+				else {
+					res.render("verPublicacion", {publicacion: publicacion, secciones:sections, respuestas: result});
+				}
+			});
 		}
 	});
 	

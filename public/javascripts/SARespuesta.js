@@ -93,7 +93,7 @@ class SARespuesta {
 		}
 	}*/
 
-	leerRespuestasPorSeccion(idPub, callback) {
+	leerRespuestasPorPublicacion(idPub, callback) {
 		if (idPub === undefined || isNaN(idPub) || idPub <= 0) {
 			callback("No se ha podido encontrar la publicacion");
 		}
