@@ -1,0 +1,16 @@
+
+<form class = "formularioRespuesta" method="POST" action="responder"  enctype="multipart/form-data">
+                  
+        <div class="form-group respuesta">
+            <label for="formNick"><b>Responder:</b></label>
+            <textarea class="respuestaCuadro form-control" type="text" rows="8" placeholder="Respuesta" name="respuesta[cuerpo]" required minlength="0" maxlength="1500"></textarea>
+            <div style="text-align:right">
+                <i>Máximo 1500 caracteres</i>
+            </div>
+        </div>
+    
+        <div class="d-flex justify-content-center" >
+            <input type="submit" class="btn btn-primary" value="Publicar respuesta" style="background: #5271FF">
+        </div>
+    
+</form>
