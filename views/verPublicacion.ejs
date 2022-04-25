@@ -47,7 +47,10 @@
             </div>
         </div>
 
-        <%- include("responderPublicacion") %>
+        <% if(user !== null && user !== undefined){  %> 
+            <%- include("responderPublicacion") %>
+        <% } %> 
+        
  
     </body>
 </html>
