@@ -134,7 +134,7 @@ test('Intentamos agregar una publicación con titulo, etiqueta y cuerpo correcto
             expect(err).toBe("La seccion no es correcta");
             done();
         }catch(error){
-            done(error);
+            done();
         }
     }
 
