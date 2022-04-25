@@ -14,23 +14,23 @@ const idPublicacionCorrecto = 1;
 const cuerpoCorrecto = "Lorem ipsum dolor sit amet";
 
 
-test('Agregamos una respuesta correctamente', done =>{
-    function cb(err, result){
-        try{
-            expect(err).toBe(null);
-            done();
-        }catch(error){
-            done(error);
-        }
-    }
-    let respuesta = { idP: idPublicacionCorrecto, cuerpo: cuerpoCorrecto};
+// test('Agregamos una respuesta correctamente', done =>{
+//     function cb(err, result){
+//         try{
+//             expect(err).toBe(null);
+//             done();
+//         }catch(error){
+//             done(error);
+//         }
+//     }
+//     let respuesta = { idP: idPublicacionCorrecto, cuerpo: cuerpoCorrecto};
 
-    try{
-        dao.agregarRespuesta(respuesta, cb);
-    } catch(err){
-        done(error);
-    }
-});
+//     try{
+//         dao.agregarRespuesta(respuesta, cb);
+//     } catch(err){
+//         done(error);
+//     }
+// });
 
 test('Error de conexión a la BBDD', done =>{
     function cb(err, ID){
