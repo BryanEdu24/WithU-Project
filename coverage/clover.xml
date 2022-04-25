@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1650909782457" clover="3.2.0">
-  <project timestamp="1650909782457" name="All files">
-    <metrics statements="379" coveredstatements="185" conditionals="231" coveredconditionals="116" methods="105" coveredmethods="59" elements="715" coveredelements="360" complexity="0" loc="379" ncloc="379" packages="2" files="10" classes="10"/>
+<coverage generated="1650916383251" clover="3.2.0">
+  <project timestamp="1650916383251" name="All files">
+    <metrics statements="379" coveredstatements="184" conditionals="231" coveredconditionals="114" methods="105" coveredmethods="59" elements="715" coveredelements="357" complexity="0" loc="379" ncloc="379" packages="2" files="10" classes="10"/>
     <package name="WithU-Project">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="config.js" path="C:\Users\Adrian\VSCodeRepos\WithU-Project\config.js">
+      <file name="config.js" path="D:\GitHub\Universidad\WithU-Project\config.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="3" count="9" type="stmt"/>
         <line num="5" count="9" type="stmt"/>
       </file>
     </package>
     <package name="WithU-Project.public.javascripts">
-      <metrics statements="377" coveredstatements="183" conditionals="231" coveredconditionals="116" methods="105" coveredmethods="59"/>
-      <file name="DAOEtiqueta.js" path="C:\Users\Adrian\VSCodeRepos\WithU-Project\public\javascripts\DAOEtiqueta.js">
+      <metrics statements="377" coveredstatements="182" conditionals="231" coveredconditionals="114" methods="105" coveredmethods="59"/>
+      <file name="DAOEtiqueta.js" path="D:\GitHub\Universidad\WithU-Project\public\javascripts\DAOEtiqueta.js">
         <metrics statements="31" coveredstatements="9" conditionals="12" coveredconditionals="3" methods="10" coveredmethods="4"/>
         <line num="5" count="3" type="stmt"/>
         <line num="9" count="3" type="stmt"/>
@@ -46,8 +46,8 @@
         <line num="69" count="0" type="stmt"/>
         <line num="77" count="5" type="stmt"/>
       </file>
-      <file name="DAOPublicacion.js" path="C:\Users\Adrian\VSCodeRepos\WithU-Project\public\javascripts\DAOPublicacion.js">
-        <metrics statements="41" coveredstatements="19" conditionals="16" coveredconditionals="6" methods="17" coveredmethods="7"/>
+      <file name="DAOPublicacion.js" path="D:\GitHub\Universidad\WithU-Project\public\javascripts\DAOPublicacion.js">
+        <metrics statements="41" coveredstatements="18" conditionals="16" coveredconditionals="5" methods="17" coveredmethods="7"/>
         <line num="2" count="3" type="stmt"/>
         <line num="3" count="3" type="stmt"/>
         <line num="6" count="4" type="stmt"/>
@@ -56,9 +56,9 @@
         <line num="12" count="0" type="stmt"/>
         <line num="15" count="3" type="stmt"/>
         <line num="17" count="3" type="stmt"/>
-        <line num="18" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="22" count="2" type="stmt"/>
+        <line num="18" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
         <line num="31" count="1" type="stmt"/>
         <line num="32" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="33" count="0" type="stmt"/>
@@ -90,7 +90,7 @@
         <line num="89" count="0" type="stmt"/>
         <line num="130" count="3" type="stmt"/>
       </file>
-      <file name="DAOPublicacionEtiqueta.js" path="C:\Users\Adrian\VSCodeRepos\WithU-Project\public\javascripts\DAOPublicacionEtiqueta.js">
+      <file name="DAOPublicacionEtiqueta.js" path="D:\GitHub\Universidad\WithU-Project\public\javascripts\DAOPublicacionEtiqueta.js">
         <metrics statements="21" coveredstatements="17" conditionals="8" coveredconditionals="5" methods="8" coveredmethods="8"/>
         <line num="6" count="2" type="stmt"/>
         <line num="10" count="2" type="stmt"/>
@@ -114,17 +114,17 @@
         <line num="49" count="1" type="stmt"/>
         <line num="57" count="4" type="stmt"/>
       </file>
-      <file name="DAORespuesta.js" path="C:\Users\Adrian\VSCodeRepos\WithU-Project\public\javascripts\DAORespuesta.js">
-        <metrics statements="24" coveredstatements="9" conditionals="8" coveredconditionals="3" methods="11" coveredmethods="4"/>
+      <file name="DAORespuesta.js" path="D:\GitHub\Universidad\WithU-Project\public\javascripts\DAORespuesta.js">
+        <metrics statements="24" coveredstatements="8" conditionals="8" coveredconditionals="2" methods="11" coveredmethods="4"/>
         <line num="6" count="2" type="stmt"/>
         <line num="10" count="3" type="stmt"/>
         <line num="11" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="12" count="0" type="stmt"/>
         <line num="15" count="2" type="stmt"/>
         <line num="17" count="2" type="stmt"/>
-        <line num="18" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
+        <line num="18" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
         <line num="32" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="33" count="0" type="stmt"/>
@@ -141,7 +141,7 @@
         <line num="52" count="0" type="stmt"/>
         <line num="60" count="2" type="stmt"/>
       </file>
-      <file name="DAOSeccion.js" path="C:\Users\Adrian\VSCodeRepos\WithU-Project\public\javascripts\DAOSeccion.js">
+      <file name="DAOSeccion.js" path="D:\GitHub\Universidad\WithU-Project\public\javascripts\DAOSeccion.js">
         <metrics statements="23" coveredstatements="18" conditionals="10" coveredconditionals="6" methods="8" coveredmethods="8"/>
         <line num="4" count="6" type="stmt"/>
         <line num="9" count="7" type="stmt"/>
@@ -167,7 +167,7 @@
         <line num="58" count="1" type="stmt"/>
         <line num="67" count="2" type="stmt"/>
       </file>
-      <file name="DAOUsuario.js" path="C:\Users\Adrian\VSCodeRepos\WithU-Project\public\javascripts\DAOUsuario.js">
+      <file name="DAOUsuario.js" path="D:\GitHub\Universidad\WithU-Project\public\javascripts\DAOUsuario.js">
         <metrics statements="31" coveredstatements="25" conditionals="16" coveredconditionals="11" methods="10" coveredmethods="10"/>
         <line num="5" count="5" type="stmt"/>
         <line num="9" count="3" type="stmt"/>
@@ -201,8 +201,8 @@
         <line num="87" count="3" type="stmt"/>
         <line num="95" count="2" type="stmt"/>
       </file>
-      <file name="SAPublicacion.js" path="C:\Users\Adrian\VSCodeRepos\WithU-Project\public\javascripts\SAPublicacion.js">
-        <metrics statements="83" coveredstatements="40" conditionals="59" coveredconditionals="30" methods="17" coveredmethods="8"/>
+      <file name="SAPublicacion.js" path="D:\GitHub\Universidad\WithU-Project\public\javascripts\SAPublicacion.js">
+        <metrics statements="83" coveredstatements="41" conditionals="59" coveredconditionals="30" methods="17" coveredmethods="8"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
@@ -234,9 +234,9 @@
         <line num="50" count="1" type="stmt"/>
         <line num="51" count="1" type="stmt"/>
         <line num="52" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="54" count="0" type="stmt"/>
-        <line num="57" count="1" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
         <line num="68" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="69" count="0" type="stmt"/>
         <line num="71" count="1" type="cond" truecount="1" falsecount="1"/>
@@ -287,7 +287,7 @@
         <line num="161" count="0" type="stmt"/>
         <line num="164" count="0" type="stmt"/>
       </file>
-      <file name="SARespuesta.js" path="C:\Users\Adrian\VSCodeRepos\WithU-Project\public\javascripts\SARespuesta.js">
+      <file name="SARespuesta.js" path="D:\GitHub\Universidad\WithU-Project\public\javascripts\SARespuesta.js">
         <metrics statements="70" coveredstatements="8" conditionals="40" coveredconditionals="4" methods="16" coveredmethods="2"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -360,7 +360,7 @@
         <line num="139" count="0" type="stmt"/>
         <line num="142" count="0" type="stmt"/>
       </file>
-      <file name="SAUsuario.js" path="C:\Users\Adrian\VSCodeRepos\WithU-Project\public\javascripts\SAUsuario.js">
+      <file name="SAUsuario.js" path="D:\GitHub\Universidad\WithU-Project\public\javascripts\SAUsuario.js">
         <metrics statements="53" coveredstatements="38" conditionals="62" coveredconditionals="48" methods="8" coveredmethods="8"/>
         <line num="2" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>

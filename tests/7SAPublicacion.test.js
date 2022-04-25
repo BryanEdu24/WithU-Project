@@ -256,28 +256,28 @@ test('Intentamos agregar una publicación con titulo incorrecto', done =>{
 
 // Test de Vista Publicacion
 
-test('Leer datos de una publicación', done => {
-    function callback(err, publicacion) { 
-        try{
-            expect(err).toBe(null);
-            expect(publicacion.Titulo).toBe(tituloCorrecto);
-            expect(publicacion.Cuerpo).toBe(cuerpoCorrecto);
-            expect(publicacion.IDSec).toBe(seccionCorrecta);
-            done(); 
-        }catch(error){
-            done(error);
-        }  
-    }
+// test('Leer datos de una publicación', done => {
+//     function callback(err, publicacion) { 
+//         try{
+//             expect(err).toBe(null);
+//             expect(publicacion.Titulo).toBe(tituloCorrecto);
+//             expect(publicacion.Cuerpo).toBe(cuerpoCorrecto);
+//             expect(publicacion.IDSec).toBe(seccionCorrecta);
+//             done(); 
+//         }catch(error){
+//             done(error);
+//         }  
+//     }
 
-    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiquetas: etiquetaCorrecta };
+//     let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiquetas: etiquetaCorrecta };
     
-    try{
-        sa.agregarPublicacion(publicacion, sa.leerPublicacion(1,callback))
-    }catch(error){
-        done(error);
-    }
+//     try{
+//         sa.agregarPublicacion(publicacion, sa.leerPublicacion(1,callback))
+//     }catch(error){
+//         done(error);
+//     }
 
-});
+// });
 /* 
 test('Leer datos por seccion de una publicacion', done => {
     function cb(err, publicacion) { 
