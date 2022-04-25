@@ -71,7 +71,7 @@ test('Intentamos agregar un objeto null', done =>{
         sa.agregarPublicacion(publicacion, cb);
     }catch(error){
         done(error);
-    }
+    }//
 });
 
 test('Intentamos agregar un objeto que no es una publicación', done =>{
