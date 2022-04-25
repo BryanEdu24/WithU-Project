@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "jest --runInBand --forceExit",
+    "test": "jest --runInBand --forceExit --detectOpenHandles",
     "test1": "jest --colors --runInBand --forceExit --testSequencer ./jest.customsequencer.js",
     "test-with-coverage": "jest --colors --coverage --runInBand --forceExit --testSequencer ./jest.customsequencer.js",
     "test-open": "jest --detectOpenHandles",
