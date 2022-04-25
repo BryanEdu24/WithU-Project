@@ -20,24 +20,24 @@ const seccionIncorrecta = 0;
 const etiquetaIncorrecta = [];
 const etiquetaCorrecta = ["Emociones"];
 
-test('Intentamos agregar una publicación con titulo, cuerpo, seccion y etiquetas correctas', done =>{
-    function cb(err, ID){
-        try{
-            expect(err).toBe(null);
-            expect(ID).toBeGreaterThan(0);
-            done();
-        }catch(error){
-            done(error);
-        }
-    }
+// test('Intentamos agregar una publicación con titulo, cuerpo, seccion y etiquetas correctas', done =>{
+//     function cb(err, ID){
+//         try{
+//             expect(err).toBe(null);
+//             expect(ID).toBeGreaterThan(0);
+//             done();
+//         }catch(error){
+//             done(error);
+//         }
+//     }
 
-    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiquetas: etiquetaCorrecta};
-    try{
-        sa.agregarPublicacion(publicacion, cb);
-    }catch(error){
-        done(error);
-    }
-});
+//     let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiquetas: etiquetaCorrecta};
+//     try{
+//         sa.agregarPublicacion(publicacion, cb);
+//     }catch(error){
+//         done(error);
+//     }
+// });
 
 test('Intentamos agregar un objeto undefined', done =>{
     function cb(err, ID){
