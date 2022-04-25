@@ -142,7 +142,7 @@ test('Intentamos agregar una publicación con titulo, etiqueta y cuerpo correcto
     try{
         sa.agregarPublicacion(publicacion, cb);
     }catch(error){
-        done(error);
+        done();
     }
 });
 
