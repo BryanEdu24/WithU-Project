@@ -10,6 +10,7 @@
 }
 
 .ContainerRespuesta {
+    margin-top: 2%;
     border: black;
     border-radius: 10px;
     background-color: white;

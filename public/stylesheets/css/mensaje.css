@@ -4,6 +4,10 @@
     transition: margin-left 0.3s;
 }
 
+.noLadosBordes {
+    background-color: transparent!important
+}
+
 .badmsg{
     background-color: #ff5e69;
     border-radius: 10px;

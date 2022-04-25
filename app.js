@@ -246,11 +246,11 @@ app.post("/responderPublicacion",multerFactory.none(),function(req,res){
 	sa.agregarRespuesta(respuesta,function(err,id){
 		if(err){
 			console.log(err);
-			res.render("mensaje", {mensaje : err, user: req.session.user});
+			res.render("mensaje", {mensaje : err, user: req.session.user, secciones:sections});
 		}
 		else{
 			let msg="Se ha respondido correctamente con el id: "+id;
-			res.render("mensaje",{mensaje : msg,id : id, user: req.session.user})
+			res.render("mensaje",{mensaje : msg,id : id, user: req.session.user, secciones:sections})
 		}
 	});
 });

@@ -61,11 +61,22 @@
     min-height: 350px;
 }
 
+.txtTituloRespuestas {
+    width: 1050px;
+    background-color: transparent;
+}
+
 .conjuntoRespuestas {
+    margin-top: 1%;
     display:block;
-    width: 1000px;
-    height: 320px;
+    width: 1050px;
+    height: 350px;
     overflow:scroll;
+}
+
+.txtTituloRespuesta {
+    margin-top: -1%;
+    color: #5271ff;
 }
 
 #columnaIzqInfo{
