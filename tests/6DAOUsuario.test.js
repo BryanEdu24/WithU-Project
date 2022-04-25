@@ -48,7 +48,7 @@ test('leemos usuario por username correctamente', done =>{
         try{
             expect(err).toBe(null);
             expect(user.Email).toBe("admin@ucm.es");
-            expect(user.ID).toBe(1);
+            expect(user.ID).toBe(2);
             expect(user.Password).toBe("Contraseña1234");
             expect(user.Username).toBe("AdminDeLaUcm");
             done();
