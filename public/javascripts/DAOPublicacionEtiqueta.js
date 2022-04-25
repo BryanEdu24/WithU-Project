@@ -9,7 +9,6 @@ class DAOPublicacionEtiqueta {
 	agregarPublicacionEtiqueta(idP, idE, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
 		this._pool.getConnection(function(err, connection) {
 			if (err) {
-				connection.release();
 				callback("Error de conexion a la base de datos");
 			}
 			else {
@@ -17,13 +16,10 @@ class DAOPublicacionEtiqueta {
 					function(err, result) {
 						connection.release();
 						if (err) {
-							console.log(err);
-							console.log("Los datos no son correctos: " + idP + idE);
 							callback("Los datos no son correctos.");
 						}
 						else {
 							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el instert)
-							console.log(result);
 							callback(null);
 						}
 					}

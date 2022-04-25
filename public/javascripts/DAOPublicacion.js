@@ -16,7 +16,6 @@ class DAOPublicacion {
 				function(err, rows) {
 					connection.release();
 					if (err) {
-						console.log(err)
 						callback("Ha ocurrido un error en la base de datos, por favor intentelo de nuevo más tarde");
 					}
 					else {
@@ -29,7 +28,6 @@ class DAOPublicacion {
 
 
 	leerPublicacion(ID,callback) {
-		console.log(ID);
 		this._pool.getConnection(function(err, connection) {
 			if (err) {
 				callback(new Error("Error de conexion a la base de datos"));

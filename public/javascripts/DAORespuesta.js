@@ -16,12 +16,10 @@ class DAORespuesta {
 					function(err, result) {
 						connection.release();
 						if (err) {
-							console.log(err);
 							callback("Los datos no son correctos.");
 						}
 						else {
 							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el instert)
-							console.log(result);
 							callback(null, result.insertId);
 						}
 					}

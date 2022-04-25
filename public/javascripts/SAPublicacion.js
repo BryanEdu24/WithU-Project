@@ -76,7 +76,6 @@ class SAPublicacion {
 			let daoPE = new DAOPublicacionEtiqueta(this._pool);
 			daoP.leerPublicacion(id, function(err, pub){
 				if(err){
-					console.log(err);
 					callback(err);
 				}
 				else{

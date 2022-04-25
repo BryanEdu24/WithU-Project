@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "jest --forceExit ",
-    "test-with-coverage": "jest --coverage --forceExit ",
+    "test": "jest --forceExit --runInBand --testSequencer ./test/secuenciador.js",
+    "test-with-coverage": "jest --coverage --runInBand --forceExit --testSequencer ./test/secuenciador.js",
     "test-open": "jest --detectOpenHandles",
-    "live": "nodemon app.js"
+    "live": "nodemon app.js",
+    "test1": "jest --colors --coverage --runInBand --forceExit --testSequencer ./jest.customsequencer.js"
+
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -23,6 +25,7 @@
     "nodemon": "^2.0.15"
   },
   "devDependencies": {
+    "@jest/test-sequencer": "^28.0.0",
     "jest": "^27.5.1"
   }
 }

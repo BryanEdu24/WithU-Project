@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">23.94% </span>
+                <span class="strong">11.42% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/71</span>
+                <span class='fraction'>8/70</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">10% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>10/40</span>
+                <span class='fraction'>4/40</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">12.5% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/16</span>
+                <span class='fraction'>2/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">23.94% </span>
+                <span class="strong">11.42% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>17/71</span>
+                <span class='fraction'>8/70</span>
             </div>
         
             
@@ -207,8 +207,7 @@
 <a name='L142'></a><a href='#L142'>142</a>
 <a name='L143'></a><a href='#L143'>143</a>
 <a name='L144'></a><a href='#L144'>144</a>
-<a name='L145'></a><a href='#L145'>145</a>
-<a name='L146'></a><a href='#L146'>146</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L145'></a><a href='#L145'>145</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -222,29 +221,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -367,29 +365,28 @@ class SARespuesta {
     
 	agregarRespuesta(respuesta, callback) { //Publicación debería ser una estructura {titulo, cuerpo}
 		
-		if(respuesta === undefined || respuesta === null || respuesta.cuerpo === "" ||  respuesta.cuerpo === undefined || respuesta.idP === undefined ){
+		if(respuesta === undefined || respuesta === null || respuesta.cuerpo === "" ||  <span class="branch-3 cbranch-no" title="branch not covered" >respuesta.cuerpo === undefined </span>|| <span class="branch-4 cbranch-no" title="branch not covered" >respuesta.idP === undefined </span>){
 			callback("No puede haber campos vacios");
 		}
-		else <span class="missing-if-branch" title="if path not taken" >I</span>if(respuesta.cuerpo &gt; 1500){
+		else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="else path not taken" >E</span>if(respuesta.cuerpo &gt; 1500){</span>
 <span class="cstat-no" title="statement not covered" >			callback("El cuerpo no puede sobrepasar los 1500 caracteres");</span>
 		}
 		else{
-			let DAOPub= new DAOPublicacion(this._pool);
-			let pool = this._pool;
-			DAOPub.leerPublicacion(respuesta.idP,function(err,pub){
-				<span class="missing-if-branch" title="if path not taken" >I</span>if(err){
-<span class="cstat-no" title="statement not covered" >					console.log(err);</span>
+			let DAOPub= <span class="cstat-no" title="statement not covered" >new DAOPublicacion(this._pool);</span>
+			let pool = <span class="cstat-no" title="statement not covered" >this._pool;</span>
+<span class="cstat-no" title="statement not covered" >			DAOPub.leerPublicacion(respuesta.idP,<span class="fstat-no" title="function not covered" >fu</span>nction(err,pub){</span>
+<span class="cstat-no" title="statement not covered" >				if(err){</span>
 <span class="cstat-no" title="statement not covered" >					callback(err);</span>
 				}
 				else{
-					let DAOResp=new DAORespuesta(pool);
-					DAOResp.agregarRespuesta(respuesta,function(err, id){
-						<span class="missing-if-branch" title="if path not taken" >I</span>if(err){
+					let DAOResp=<span class="cstat-no" title="statement not covered" >new DAORespuesta(pool);</span>
+<span class="cstat-no" title="statement not covered" >					DAOResp.agregarRespuesta(respuesta,<span class="fstat-no" title="function not covered" >fu</span>nction(err, id){</span>
+<span class="cstat-no" title="statement not covered" >						if(err){</span>
 <span class="cstat-no" title="statement not covered" >							console.log(err);</span>
 <span class="cstat-no" title="statement not covered" >							callback(err);</span>
 						}
 						else{
-							callback(null, id);
+<span class="cstat-no" title="statement not covered" >							callback(null, id);</span>
 						}
 					});
 &nbsp;
@@ -505,7 +502,7 @@ async function <span class="fstat-no" title="function not covered" >insertar(</s
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon Apr 25 2022 14:04:00 GMT+0200 (hora de verano de Europa central)
+                at Mon Apr 25 2022 19:57:11 GMT+0200 (hora de verano de Europa central)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

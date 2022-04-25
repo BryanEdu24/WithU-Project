@@ -52,7 +52,6 @@ class SAUsuario {
                                     callback("El nombre de usuario ya ha sido registrado");
                                 }
                                 else{
-                                    console.log(usuario)
                                     dao.agregarUsuario(usuario, function(err,id){
                                         if(err){
                                             callback(err);

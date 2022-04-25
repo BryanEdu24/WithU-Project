@@ -23,7 +23,6 @@ class SARespuesta {
 			let pool = this._pool;
 			DAOPub.leerPublicacion(respuesta.idP,function(err,pub){
 				if(err){
-					console.log(err);
 					callback(err);
 				}
 				else{
