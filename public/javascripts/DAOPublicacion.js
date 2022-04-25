@@ -16,6 +16,7 @@ class DAOPublicacion {
 				function(err, rows) {
 					connection.release();
 					if (err) {
+						console.log(err)
 						callback("Ha ocurrido un error en la base de datos, por favor intentelo de nuevo más tarde");
 					}
 					else {
@@ -44,7 +45,7 @@ class DAOPublicacion {
 							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el insert)
 							let publicacion;
 							if (rows[0]) {
-								publicacion={ID:rows[0].ID,Titulo:rows[0].Titulo,Cuerpo:rows[0].Cuerpo};
+								publicacion={ID:rows[0].ID,Titulo:rows[0].Titulo,Cuerpo:rows[0].Cuerpo, IDSec: rows[0].IDSec};
 								callback(null,publicacion);
 							}
 							else {
@@ -64,7 +65,7 @@ class DAOPublicacion {
 				callback(new Error("Error de conexion a la base de datos"));
 			}
 			else {
-				connection.query("SELECT p.ID, p.Titulo, p.Cuerpo, e.Nombre " +
+				connection.query("SELECT p.ID, p.Titulo, p.Cuerpo, p.IDSec, e.Nombre " +
 				"FROM publicacion p JOIN publicacionetiqueta pe ON (p.ID = pe.IDPub) JOIN etiqueta e ON (e.ID = pe.IDEti) " +
 				"WHERE p.IDSec = ? " +
 				"ORDER BY p.id" , [IDSec],

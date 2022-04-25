@@ -45,7 +45,7 @@ class SAPublicacion {
 							if(e !== undefined)
 								etis+= e + ",";
 						});
-						etis = etis.substring(0, etis.length-2);
+						etis = etis.substring(0, etis.length-1);
 						publicacion.etiquetas = etis;
 						let dao = new DAOPublicacion(pool);
 						dao.agregarPublicacion(publicacion, function(err,idP){
