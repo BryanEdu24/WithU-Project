@@ -92,23 +92,23 @@ test('Intentamos agregar un objeto que no es una publicación', done =>{
     }
 });
 
-test('Intentamos agregar una publicación con titulo, etiqueta y cuerpo correctos y seccion incorrecta', done =>{
-    function cb(err, ID){
-        try{
-            expect(err).toBe("La seccion no es correcta");
-            done();
-        }catch(error){
-            done(error);
-        }
-    }
+// test('Intentamos agregar una publicación con titulo, etiqueta y cuerpo correctos y seccion incorrecta', done =>{
+//     function cb(err, ID){
+//         try{
+//             expect(err).toBe("La seccion no es correcta");
+//             done();
+//         }catch(error){
+//             done(error);
+//         }
+//     }
 
-    let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion:seccionIncorrecta, etiquetas: etiquetaCorrecta};
-    try{
-        sa.agregarPublicacion(publicacion, cb);
-    }catch(error){
-        done(error);
-    }
-});
+//     let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion:seccionIncorrecta, etiquetas: etiquetaCorrecta};
+//     try{
+//         sa.agregarPublicacion(publicacion, cb);
+//     }catch(error){
+//         done(error);
+//     }
+// });
 
 test('Intentamos agregar una publicación con titulo ,etiqueta y cuerpo correctos y seccion undefined', done =>{
     function cb(err, ID){
