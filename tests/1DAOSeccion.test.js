@@ -22,24 +22,24 @@ const SeccionIncorrecta= "no problem";
 
 
 
-// test('Leemos una seccion correctamente',done =>{
-//     function cb(err,seccion){
-//         try{
-//             expect(err).toBe(null);
-//             expect(seccion.Nombre).toBe(Seccion1);
-//             done();
-//         }catch(error){
-//             done(error);
-//         }
-//     }
+test('Leemos una seccion correctamente',done =>{
+    function cb(err,seccion){
+        try{
+            expect(err).toBe(null);
+            expect(seccion.Nombre).toBe(Seccion1);
+            done();
+        }catch(error){
+            done(error);
+        }
+    }
     
-//     try{
-//         dao.leerSeccion(1, cb);
-//     } catch(err){
-//         done(error);
-//     }
+    try{
+        dao.leerSeccion(1, cb);
+    } catch(err){
+        done(error);
+    }
 
-// });//
+});
 
 test('Leemos una seccion Incorrectamente',done =>{
     function cb(err,seccion){
