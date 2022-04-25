@@ -9,3 +9,6 @@ module.exports = {
         password: 'withugps2022',
         database: 'withutest'
 }" > config.js
+
+
+mysql -u withuroot -p withugps2022 withutest < bdtest.sql
