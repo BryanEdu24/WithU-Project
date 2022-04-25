@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "jest --colors --runInBand --forceExit --testSequencer ./jest.customsequencer.js",
+    "test": "jest --colors --runInBand --forceExit",
+    "test1": "jest --colors --runInBand --forceExit --testSequencer ./jest.customsequencer.js",
     "test-with-coverage": "jest --colors --coverage --runInBand --forceExit --testSequencer ./jest.customsequencer.js",
     "test-open": "jest --detectOpenHandles",
     "live": "nodemon app.js"
