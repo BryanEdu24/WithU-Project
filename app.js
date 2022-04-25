@@ -37,7 +37,7 @@ var sections = [];
 
 const mysqlSession = require("express-mysql-session");
 const SARespuesta = require("./public/javascripts/SARespuesta");
-const { receiveMessageOnPort } = require("worker_threads");
+//const { receiveMessageOnPort } = require("worker_threads");
 const { readlink } = require("fs");
 const MySQLStore = mysqlSession(session);
 const sessionStore = new MySQLStore({
@@ -130,11 +130,11 @@ req.body.etiquetas.etiqueta4,req.body.etiquetas.etiqueta5] : [];
 	sa.agregarPublicacion(publicacion, function(err, id) {
 		if(err){
 			console.log(err);
-			res.render("mensaje", {mensaje : err, user: req.session.user});
+			res.render("mensaje", {mensaje : err, user: req.session.user,secciones:sections});
 		}
 		else{
 			let msg= "Se ha creado la publicación con éxito con id:" + id;
-			res.render("mensaje", {mensaje : msg, id : id, user: req.session.user});
+			res.render("mensaje", {mensaje : msg, id : id, user: req.session.user, secciones:sections});
 		}
 	});
 });

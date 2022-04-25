@@ -66,7 +66,7 @@ class DAOPublicacion {
 				connection.query("SELECT p.ID, p.Titulo, p.Cuerpo, p.IDSec, e.Nombre " +
 				"FROM publicacion p JOIN publicacionetiqueta pe ON (p.ID = pe.IDPub) JOIN etiqueta e ON (e.ID = pe.IDEti) " +
 				"WHERE p.IDSec = ? " +
-				"ORDER BY p.id" , [IDSec],
+				"ORDER BY p.id DESC" , [IDSec],
 					function(err, rows) {
 						connection.release(); // devolver al pool la conexión
 						if (err) {
