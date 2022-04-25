@@ -155,11 +155,11 @@ app.post("/registrarUsuario", multerFactory.none(), function(req, res) {
 	sa.agregarUsuario(usuario, function(err, id){
 		if(err){
 			console.log(err);
-			res.render("mensaje", {mensaje : err, user: req.session.user});
+			res.render("mensaje", {mensaje : err, user: req.session.user, secciones:sections});
 		}
 		else{
 			let msg= "Se ha creado el usuario correctamente con id: " + id + " y nombre de usuario: " + usuario.username;
-			res.render("mensaje", {mensaje : msg, id : id, user: req.session.user});
+			res.render("mensaje", {mensaje : msg, id : id, user: req.session.user, secciones:sections});
 		}
 	});
 });
@@ -290,7 +290,7 @@ app.get("/", function(req,res){
 });
 
 app.get("*", function(req,res){
-	res.render("error404", {user: req.session.user});
+	res.render("error404", {user: req.session.user, secciones:sections});
 });
 
 app.listen(80, () => {

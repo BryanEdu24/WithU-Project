@@ -1,5 +1,6 @@
 .paginaRegistro {
     background: linear-gradient(to bottom, #5271ff, #B0CDDB);
+    transition: margin-left 0.3s;
 }
 
 .tituloRegistro {

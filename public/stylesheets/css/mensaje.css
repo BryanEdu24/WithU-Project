@@ -1,10 +1,18 @@
-body{
+.cuerpoMsg {
     color: black;
     background: linear-gradient(to bottom, #5271ff, #B0CDDB);
+    transition: margin-left 0.3s;
 }
+
 .badmsg{
     background-color: #ff5e69;
+    border-radius: 10px;
 }
 .goodmsg{
     background-color: #66ff8a;
+    border-radius: 10px;
+}
+
+.containerMensaje {
+    background-color: transparent!important
 }

@@ -17,13 +17,15 @@
                 </div>
 
                 <form method="POST" action="login" enctype="multipart/form-data">
-                    <div class="container col-4 align-self-center">
-
+                    <div class="noMiniBorde container col-4 align-self-center">
                         <% if(!exito){  %> 
                             <div class="badmsg msg align-self-center">
                                 Usuario o contraseña incorrectos
                             </div>
                         <% } %> 
+                    </div>
+                    
+                    <div class="container col-4 align-self-center">
 
                         <div class="d-flex divUser">
                             <label for="formNick" class="centrarVertical"><b>Username: </b></label>
