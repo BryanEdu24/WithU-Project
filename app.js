@@ -37,7 +37,7 @@ var sections = [];
 
 const mysqlSession = require("express-mysql-session");
 const SARespuesta = require("./public/javascripts/SARespuesta");
-const { receiveMessageOnPort } = require("worker_threads");
+//const { receiveMessageOnPort } = require("worker_threads");
 const { readlink } = require("fs");
 const MySQLStore = mysqlSession(session);
 const sessionStore = new MySQLStore({
