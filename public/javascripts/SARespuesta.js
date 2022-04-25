@@ -28,13 +28,13 @@ class SARespuesta {
 				}
 				else{
 					let DAOResp=new DAORespuesta(pool);
-					DAOResp.agregarRespuesta(respuesta,function(err){
+					DAOResp.agregarRespuesta(respuesta,function(err, id){
 						if(err){
 							console.log(err);
 							callback(err);
 						}
 						else{
-							callback("Se ha introducido la respuesta");
+							callback(null, id);
 						}
 					});
 
@@ -79,15 +79,15 @@ class SARespuesta {
 			callback("No se ha podido encontrar la publicacion");
 		}
 		else {
-			let pool = this_pool;
-			let daoPub = new DAOPublicacion(this_pool);
+			let pool = this._pool;
+			let daoPub = new DAOPublicacion(this._pool);
 			daoPub.leerPublicacion(idPub, function(err, sec){
 				if(err){
 					callback("La seccion no existe");
 				}
 				else {
 					let daoRes = new DAORespuesta(pool);
-					daoRes.leerRespuestasPorPublicacion(idPub,callback);
+					daoRes.listarRespuestasPorPublicacion(idPub,callback);
 				}
 			});
 		}

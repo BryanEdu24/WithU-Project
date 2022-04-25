@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">34.61% </span>
+                <span class="strong">42.3% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/26</span>
+                <span class='fraction'>11/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">37.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/8</span>
+                <span class='fraction'>3/8</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">34.61% </span>
+                <span class="strong">42.3% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/26</span>
+                <span class='fraction'>11/26</span>
             </div>
         
             
@@ -129,26 +129,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -206,10 +206,10 @@ class DAORespuesta {
 							console.log(err);
 							callback("Los datos no son correctos.");
 						}
-						else <span class="missing-if-branch" title="else path not taken" >E</span>{
+						else {
 							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el instert)
-<span class="cstat-no" title="statement not covered" >							console.log(result);</span>
-<span class="cstat-no" title="statement not covered" >							callback(null);</span>
+							console.log(result);
+							callback(null, result.insertId);
 						}
 					}
 				);
@@ -234,8 +234,8 @@ class DAORespuesta {
 									rows.map(<span class="fstat-no" title="function not covered" >l </span>=&gt; <span class="cstat-no" title="statement not covered" >l.idPub)</span>)).map(<span class="fstat-no" title="function not covered" >id</span> =&gt; {
 <span class="cstat-no" title="statement not covered" >										return {</span>
 											ID: id, 
-											Cuerpo: rows.find(<span class="fstat-no" title="function not covered" >l </span>=&gt; <span class="cstat-no" title="statement not covered" >l.idPub === idPub)</span>.Cuerpo,
-											idPub: rows.find(<span class="fstat-no" title="function not covered" >l </span>=&gt; <span class="cstat-no" title="statement not covered" >l.idPub === idPub)</span>.idPub,
+											Cuerpo: rows.find(<span class="fstat-no" title="function not covered" >l </span>=&gt; <span class="cstat-no" title="statement not covered" >l.id === id)</span>.Cuerpo,
+											idP: rows.find(<span class="fstat-no" title="function not covered" >l </span>=&gt; <span class="cstat-no" title="statement not covered" >l.id === id)</span>.idPub,
 										}
 									});
 <span class="cstat-no" title="statement not covered" >								callback(null,listaRespuesta);</span>
@@ -253,7 +253,7 @@ module.exports = DAORespuesta;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon Apr 25 2022 12:08:22 GMT+0200 (hora de verano de Europa central)
+                at Mon Apr 25 2022 14:04:00 GMT+0200 (hora de verano de Europa central)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

@@ -47,7 +47,10 @@ test('leemos usuario por username correctamente', done =>{
     function cb(err, user){
         try{
             expect(err).toBe(null);
-            expect(user).toBe(!null);
+            expect(user.Email).toBe("admin@ucm.es");
+            expect(user.ID).toBe(1);
+            expect(user.Password).toBe("Contraseña1234");
+            expect(user.Username).toBe("AdminDeLaUcm");
             done();
         }catch(error){
             done(error);
@@ -67,7 +70,10 @@ test('leemos usuario por correo correctamente', done =>{
     function cb(err, user){
         try{
             expect(err).toBe(null);
-            expect(user).toBe(!null);
+            expect(user.Email).toBe("admin@ucm.es");
+            expect(user.ID).toBe(1);
+            expect(user.Password).toBe("Contraseña1234");
+            expect(user.Username).toBe("AdminDeLaUcm");
             done();
         }catch(error){
             done(error);
@@ -105,7 +111,7 @@ test('Error de conexión a la BBDD', done =>{
 test('Error al ejecutar la petición a la BBDD', done =>{
     function cb(err, ID){
         try{
-            expect(err).toBe("Los datos no son correctos.");
+            expect(err).toBe("Ha ocurrido un error en la base de datos, por favor intentelo de nuevo más tarde");
             done();
         }catch(error){
             done(error);

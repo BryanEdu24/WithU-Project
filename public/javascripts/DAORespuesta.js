@@ -22,7 +22,7 @@ class DAORespuesta {
 						else {
 							//Aquí se tratan los datos y llama al callback (Habría que devolver el ID generado por el instert)
 							console.log(result);
-							callback(null);
+							callback(null, result.insertId);
 						}
 					}
 				);
@@ -47,8 +47,8 @@ class DAORespuesta {
 									rows.map(l => l.idPub))).map(id => {
 										return {
 											ID: id, 
-											Cuerpo: rows.find(l => l.idPub === idPub).Cuerpo,
-											idPub: rows.find(l => l.idPub === idPub).idPub,
+											Cuerpo: rows.find(l => l.id === id).Cuerpo,
+											idP: rows.find(l => l.id === id).idPub,
 										}
 									});
 								callback(null,listaRespuesta);

@@ -23,7 +23,7 @@ test('Agregamos una respuesta correctamente', done =>{
             done(error);
         }
     }
-    let respuesta = { idPub: idPublicacionCorrecto, cuerpo: cuerpoCorrecto};
+    let respuesta = { idP: idPublicacionCorrecto, cuerpo: cuerpoCorrecto};
 
     try{
         dao.agregarRespuesta(respuesta, cb);

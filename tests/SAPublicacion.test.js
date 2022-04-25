@@ -298,7 +298,9 @@ test('Leer datos por seccion de una publicacion', done => {
     let publicacion = { titulo: tituloCorrecto, cuerpo: cuerpoCorrecto, seccion: seccionCorrecta, etiquetas: etiquetaCorrecta };
     
     try{
-        sa.agregarPublicacion(publicacion, sa.leerPublicacionesPorSeccion(1,callback))
+        sa.agregarPublicacion(publicacion, function(err, id){
+            sa.leerPublicacionesPorSeccion(1,callback)
+        })
         //sa.leerPublicacionesPorSeccion(1, callback);
     }catch(error){
         done(error);

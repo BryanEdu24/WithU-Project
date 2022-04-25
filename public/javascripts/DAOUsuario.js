@@ -69,7 +69,6 @@ class DAOUsuario {
             else {
                 connection.query("SELECT * FROM usuario WHERE Email=?" , [correo] ,//Aquí va la query a la BD
                     function(err, rows) {
-                        console.log(rows);
                         connection.release();
                         if (err) {
                             callback(new Error("Error de conexion a la base de datos"));

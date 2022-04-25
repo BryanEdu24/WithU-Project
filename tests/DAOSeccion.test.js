@@ -45,7 +45,7 @@ test('Leemos una seccion Incorrectamente',done =>{
     function cb(err,seccion){
         try{
             expect(err).toBe(null);
-            expect(seccion.Nombre).toBe(SeccionIncorrecta);
+            expect(seccion).toBe(undefined);
             done();
         }catch(error){
             done(error);
@@ -53,7 +53,7 @@ test('Leemos una seccion Incorrectamente',done =>{
     }
     
     try{
-        dao.leerSeccion(1, cb);
+        dao.leerSeccion(7, cb);
     } catch(err){
         done(error);
     }
@@ -77,7 +77,7 @@ test('Leemos todas las secciones correctamente', done =>{
     }
 
     try{
-        dao.leerSeccion(cb);
+        dao.leerTodas(cb);
     } catch(err){
         done(error);
     }
@@ -103,16 +103,3 @@ test('Error de conexión a la BBDD', done =>{
     }
 });
 
-
-test('Error al ejecutar la petición a la BBDD', done =>{
-    function cb(err, ID){
-        try{
-            expect(err).toBe("Los datos no son correctos.");
-            done();
-        }catch(error){
-            done(error);
-        }    
-    }
-    
-    dao.leerSeccion(9, cb);
-});

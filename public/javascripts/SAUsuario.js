@@ -8,8 +8,10 @@ class SAUsuario {
     
 //usuario.username, usuario.password, usuario.email 
 	agregarUsuario(usuario, callback) { //Usuario debería ser una estructura {username, email, password, confirmPassword}
-		if(usuario === undefined || usuario === null || usuario.username === "" 
-            || usuario.email === "" || usuario.password === "" || usuario.confirmPassword === ""){
+		if(usuario === undefined || usuario === null  
+            || usuario.username === undefined || usuario.email === undefined || usuario.password === undefined || usuario.confirmPassword === undefined
+            || usuario.username === null || usuario.email === null || usuario.password === null || usuario.confirmPassword === null
+        || usuario.username === "" || usuario.email === "" || usuario.password === "" || usuario.confirmPassword === ""){
 			callback("No puede haber campos vacios");
 		}
 		else if(usuario.username.length < 3){
@@ -99,7 +101,6 @@ class SAUsuario {
                             }
                             else{
                                 if(user2){
-                                    console.log(user2);
                                     if(user2.Password === password){
                                         callback(null, user2)
                                     }

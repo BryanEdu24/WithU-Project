@@ -57,7 +57,7 @@ test('Error de conexión a la BBDD', done =>{
 test('Error al ejecutar la petición a la BBDD', done =>{
     function cb(err, ID){
         try{
-            expect(err).toBe("Los datos no son correctos.");
+            expect(err).toBe("Ha ocurrido un error en la base de datos, por favor intentelo de nuevo más tarde");
             done();
         }catch(error){
             done(error);

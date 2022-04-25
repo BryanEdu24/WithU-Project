@@ -295,7 +295,7 @@ test('Intentamos agregar un usuario con email y password correctos, pero usernam
 
 test('Intentamos iniciar sesión de un usuario con usuario y contraseña que coincidan', done =>{
     let usuario = { username: usernameCorrecto, email: emailCorrecto, password: passwordCorrecta, confirmPassword: passwordCorrecta};
-    sa.agregarUsuario(usuario, null);
+
     function cb(err, ID){
         try{
             expect(err).toBe(null);
@@ -305,7 +305,9 @@ test('Intentamos iniciar sesión de un usuario con usuario y contraseña que coi
         }
     }
     try{
-        sa.buscarUsuario(usernameCorrecto, passwordCorrecta, cb);
+        sa.agregarUsuario(usuario, function(err){
+            sa.buscarUsuario(usernameCorrecto, passwordCorrecta, cb)
+        });
     }catch(error){
         done(error);
     }
@@ -313,7 +315,6 @@ test('Intentamos iniciar sesión de un usuario con usuario y contraseña que coi
 
 test('Intentamos iniciar sesión de un usuario con usuario y contraseña que no coincidan', done =>{
     let usuario = { username: usernameCorrecto, email: emailCorrecto, password: passwordCorrecta, confirmPassword: passwordCorrecta};
-    sa.agregarUsuario(usuario, null);
     function cb(err, ID){
         try{
             expect(err).toBe("Contraseña incorrecta");
@@ -323,15 +324,14 @@ test('Intentamos iniciar sesión de un usuario con usuario y contraseña que no 
         }
     }
     try{
-        sa.buscarUsuario(usernameCorrecto, "12345", cb);
+        sa.agregarUsuario(usuario, function(err){
+            sa.buscarUsuario(usernameCorrecto, "12345", cb)});
     }catch(error){
         done(error);
     }
 });
 
 test('Intentamos iniciar sesión de un usuario que no existe', done =>{
-    let usuario = { username: usernameCorrecto, email: emailCorrecto, password: passwordCorrecta, confirmPassword: passwordCorrecta};
-    sa.agregarUsuario(usuario, null);
     function cb(err, ID){
         try{
             expect(err).toBe("El usuario no existe");
