@@ -1,6 +1,7 @@
 #!/bin/bash
 
 rm config.js
+mysql -u withuroot withutest < bdtest.sql
 
 echo "'use strict';
 module.exports = {
@@ -11,4 +12,3 @@ module.exports = {
 }" > config.js
 
 
-mysql -u withuroot -p withugps2022 withutest < bdtest.sql
